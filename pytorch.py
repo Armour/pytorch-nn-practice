@@ -174,7 +174,7 @@ def train(epoch):
         total_size += targets.size(0)
         
         if batch_idx % args.log_interval == 0:
-            print('== %f/%f ==> Training loss: %f    Correct number: %f' % (batch_idx, len(trainloader), loss.data[0], batch_correct))
+            print('%f/%f ==> Training loss: %f    Correct number: %f/%f' % (batch_idx, len(trainloader), loss.data[0], batch_correct, targets.size(0)))
         
     print("==> Total training loss: %f    Total correct: %f/%f" % (total_train_loss, total_correct, total_size))
 
@@ -206,7 +206,7 @@ def test(epoch):
         total_size += targets.size(0)
         
         if batch_idx % args.log_interval == 0:
-            print('== %f/%f ==> Testing loss: %f    Correct number: %f' % (batch_idx, len(testloader), loss.data[0], batch_correct))
+            print('%f/%f ==> Testing loss: %f    Correct number: %f/%f' % (batch_idx, len(testloader), loss.data[0], batch_correct, targets.size(0)))
 
     print("==> Total testing loss: %f    Total correct: %f/%f" % (total_test_loss, total_correct, total_size))
 
