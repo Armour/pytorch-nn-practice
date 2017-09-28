@@ -27,8 +27,8 @@ from torchvision import models, datasets, transforms
 
 # Args
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
-parser.add_argument('--learning-rate', type=float, default=0.1, 
-                    help='initial learning rate (default: 0.1)')
+parser.add_argument('--learning-rate', type=float, default=0.01, 
+                    help='initial learning rate (default: 0.01)')
 parser.add_argument('--train-batch-size', type=int, default=64,
                     help='input batch size for training (default: 64)')
 parser.add_argument('--test-batch-size', type=int, default=100,
