@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[26]:
+# In[1]:
 
 
 from __future__ import print_function
@@ -22,7 +22,7 @@ from torch.autograd import Variable
 from torchvision import models, datasets, transforms
 
 
-# In[27]:
+# In[2]:
 
 
 # Args
@@ -119,19 +119,20 @@ testloader = utils.data.DataLoader(testset, batch_size=args.test_batch_size, shu
 
 
 # Model
+print('==> Building model..')
+net = VGG('vgg16', num_classes=10)
+
+if use_cuda:
+    net = net.cuda()
+    
 if args.resume:
     print('==> Resuming from checkpoint..')
     assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
     checkpoint = torch.load('./checkpoint/ckpt.t7')
-    net = checkpoint['net']
-    best_accuracy = checkpoint['accuracy']
     start_epoch = checkpoint['epoch']
-else:
-    print('==> Building model..')
-    net = VGG('vgg16', num_classes=10)
-
-if use_cuda:
-    net = net.cuda()
+    best_accuracy = checkpoint['accuracy']
+    net.load_state_dict(checkpoint['state_dict'])
+    optimizer.load_state_dict(checkpoint['optimizer'])
 
 
 # In[32]:
@@ -207,9 +208,10 @@ def test(epoch):
     if accuracy > best_accuracy:
         print('==> Saving checkpoint..')
         state = {
-            'net': net.module if use_cuda else net,
-            'accuracy': accuracy,
             'epoch': epoch,
+            'accuracy': accuracy,
+            'state_dict': net.state_dict(),
+            'optimizer': optimizer.state_dict(),
         }
         if not os.path.isdir('checkpoint'):
             os.mkdir('checkpoint')
