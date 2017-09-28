@@ -124,18 +124,9 @@ net = VGG('vgg16', num_classes=10)
 
 if use_cuda:
     net = net.cuda()
-    
-if args.resume:
-    print('==> Resuming from checkpoint..')
-    assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
-    checkpoint = torch.load('./checkpoint/ckpt.t7')
-    start_epoch = checkpoint['epoch']
-    best_accuracy = checkpoint['accuracy']
-    net.load_state_dict(checkpoint['state_dict'])
-    optimizer.load_state_dict(checkpoint['optimizer'])
 
 
-# In[10]:
+# In[ ]:
 
 
 # Loss function and Optimizer
@@ -144,6 +135,20 @@ if use_cuda:
     criterion = criterion.cuda()
 
 optimizer = optim.SGD(net.parameters(), lr=args.learning_rate, momentum=args.momentum, weight_decay=5e-4)
+
+
+# In[10]:
+
+
+# Resume from check point
+if args.resume:
+    print('==> Resuming from checkpoint..')
+    assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
+    checkpoint = torch.load('./checkpoint/ckpt.t7')
+    start_epoch = checkpoint['epoch']
+    best_accuracy = checkpoint['accuracy']
+    net.load_state_dict(checkpoint['state_dict'])
+    optimizer.load_state_dict(checkpoint['optimizer'])
 
 
 # In[33]:
