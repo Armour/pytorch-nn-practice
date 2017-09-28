@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[2]:
 
 
 from __future__ import print_function
@@ -22,7 +22,7 @@ from torch.autograd import Variable
 from torchvision import models, datasets, transforms
 
 
-# In[2]:
+# In[3]:
 
 
 # Args
@@ -47,10 +47,10 @@ parser.add_argument('--log-interval', type=int, default=10,
                     help='how many batches to wait before logging training status (default: 10)')
 parser.add_argument('--resume', action='store_true', default=False,
                     help='resume from checkpoint')
-args = parser.parse_args()
+args = parser.parse_args([])
 
 
-# In[28]:
+# In[4]:
 
 
 # Init variables
@@ -65,7 +65,7 @@ if use_cuda:
     cuda.manual_seed(args.seed)
 
 
-# In[29]:
+# In[5]:
 
 
 def get_mean_and_std(dataset):
@@ -82,7 +82,7 @@ def get_mean_and_std(dataset):
     return mean, std
 
 
-# In[30]:
+# In[6]:
 
 
 # Data
@@ -115,7 +115,7 @@ testset = datasets.CIFAR10(root='data', train=False, download=True, transform=tr
 testloader = utils.data.DataLoader(testset, batch_size=args.test_batch_size, shuffle=False, num_workers=args.num_workers)
 
 
-# In[31]:
+# In[7]:
 
 
 # Model
@@ -135,7 +135,7 @@ if args.resume:
     optimizer.load_state_dict(checkpoint['optimizer'])
 
 
-# In[32]:
+# In[10]:
 
 
 # Loss function and Optimizer
@@ -173,7 +173,7 @@ def train(epoch):
         total += targets.size(0)
         correct += predicted.eq(targets.data).cpu().sum()
         
-        print('Training loss: %f    Correct number: %f' % (train_loss, correct))
+        print('== %f/%f ==> Training loss: %f    Correct number: %f' % (batch_idx, trainloader.batch_size, train_loss, correct))
 
 
 # In[34]:
@@ -201,7 +201,7 @@ def test(epoch):
         total += targets.size(0)
         correct += predicted.eq(targets.data).cpu().sum()
         
-        print('Testing loss: %f    Correct number: %f' % (test_loss, correct))
+        print('== %f/%f ==> Testing loss: %f    Correct number: %f' % (batch_idx, testloader.batch_size, test_loss, correct))
 
     # Save checkpoint.
     accuracy = 100.*correct/total
