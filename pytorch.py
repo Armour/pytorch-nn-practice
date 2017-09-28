@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 
 from __future__ import print_function
@@ -22,15 +22,15 @@ from torch.autograd import Variable
 from torchvision import models, datasets, transforms
 
 
-# In[3]:
+# In[2]:
 
 
 # Args
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
 parser.add_argument('--learning-rate', type=float, default=0.01, 
                     help='initial learning rate (default: 0.01)')
-parser.add_argument('--train-batch-size', type=int, default=64,
-                    help='input batch size for training (default: 64)')
+parser.add_argument('--train-batch-size', type=int, default=50,
+                    help='input batch size for training (default: 50)')
 parser.add_argument('--test-batch-size', type=int, default=100,
                     help='input batch size for testing (default: 100)')
 parser.add_argument('--epochs', type=int, default=300,
@@ -50,7 +50,7 @@ parser.add_argument('--resume', action='store_true', default=False,
 args = parser.parse_args()
 
 
-# In[4]:
+# In[3]:
 
 
 # Init variables
@@ -65,7 +65,7 @@ if use_cuda:
     cuda.manual_seed(args.seed)
 
 
-# In[5]:
+# In[4]:
 
 
 def get_mean_and_std(dataset):
@@ -82,7 +82,7 @@ def get_mean_and_std(dataset):
     return mean, std
 
 
-# In[6]:
+# In[5]:
 
 
 # Data
@@ -115,7 +115,7 @@ testset = datasets.CIFAR10(root='data', train=False, download=True, transform=tr
 testloader = utils.data.DataLoader(testset, batch_size=args.test_batch_size, shuffle=False, num_workers=args.num_workers)
 
 
-# In[7]:
+# In[12]:
 
 
 # Model
@@ -134,7 +134,7 @@ if args.resume:
     net.load_state_dict(checkpoint['state_dict'])
 
 
-# In[ ]:
+# In[13]:
 
 
 # Loss function and Optimizer
@@ -145,7 +145,7 @@ if use_cuda:
 optimizer = optim.SGD(net.parameters(), lr=args.learning_rate, momentum=args.momentum, weight_decay=5e-4)
 
 
-# In[33]:
+# In[14]:
 
 
 def train(epoch):
@@ -172,10 +172,11 @@ def train(epoch):
         total += targets.size(0)
         correct += predicted.eq(targets.data).cpu().sum()
         
-        print('== %f/%f ==> Training loss: %f    Correct number: %f' % (batch_idx, len(trainloader), train_loss, correct))
+        if batch_idx % args.log_interval == 0:
+            print('== %f/%f ==> Training loss: %f    Correct number: %f' % (batch_idx, len(trainloader), train_loss, correct))
 
 
-# In[34]:
+# In[15]:
 
 
 def test(epoch):
@@ -200,7 +201,8 @@ def test(epoch):
         total += targets.size(0)
         correct += predicted.eq(targets.data).cpu().sum()
         
-        print('== %f/%f ==> Testing loss: %f    Correct number: %f' % (batch_idx, len(testloader), test_loss, correct))
+        if batch_idx % args.log_interval == 0:
+            print('== %f/%f ==> Testing loss: %f    Correct number: %f' % (batch_idx, len(testloader), test_loss, correct))
 
     # Save checkpoint.
     accuracy = 100.*correct/total
@@ -218,7 +220,7 @@ def test(epoch):
         
 
 
-# In[42]:
+# In[16]:
 
 
 def adjust_learning_rate(optimizer, epoch):
@@ -229,7 +231,7 @@ def adjust_learning_rate(optimizer, epoch):
         param_group['lr'] = learning_rate
 
 
-# In[43]:
+# In[17]:
 
 
 for epoch in range(start_epoch, start_epoch + args.epochs):
