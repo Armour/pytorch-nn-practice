@@ -211,7 +211,7 @@ def test(epoch):
     print("==> Total testing loss: %f    Total correct: %f/%f" % (total_test_loss, total_correct, total_size))
 
     # Save checkpoint.
-    accuracy = 100.*correct/total
+    accuracy = 100.*total_correct/total_size
     if accuracy > best_accuracy:
         print('==> Saving checkpoint..')
         state = {
