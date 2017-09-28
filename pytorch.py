@@ -47,7 +47,7 @@ parser.add_argument('--log-interval', type=int, default=10,
                     help='how many batches to wait before logging training status (default: 10)')
 parser.add_argument('--resume', action='store_true', default=False,
                     help='resume from checkpoint')
-args = parser.parse_args([])
+args = parser.parse_args()
 
 
 # In[28]:
@@ -167,12 +167,12 @@ def train(epoch):
         loss.backward()
         optimizer.step()
 
-        train_loss += loss.data
+        train_loss += loss.data[0]
         _, predicted = torch.max(outputs.data, 1)
         total += targets.size(0)
         correct += predicted.eq(targets.data).cpu().sum()
         
-        print('Training loss: %f    Correct number: %f' % train_loss, correct)
+        print('Training loss: %f    Correct number: %f' % (train_loss, correct))
 
 
 # In[34]:
@@ -195,12 +195,12 @@ def test(epoch):
         outputs = net(inputs)
         loss = criterion(outputs, targets)
 
-        test_loss += loss.data
+        test_loss += loss.data[0]
         _, predicted = torch.max(outputs.data, 1)
         total += targets.size(0)
         correct += predicted.eq(targets.data).cpu().sum()
         
-        print('Testing loss: %f    Correct number: %f' % test_loss, correct)
+        print('Testing loss: %f    Correct number: %f' % (test_loss, correct))
 
     # Save checkpoint.
     accuracy = 100.*correct/total
