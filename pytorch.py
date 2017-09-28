@@ -47,7 +47,7 @@ parser.add_argument('--log-interval', type=int, default=10,
                     help='how many batches to wait before logging training status (default: 10)')
 parser.add_argument('--resume', action='store_true', default=False,
                     help='resume from checkpoint')
-args = parser.parse_args([])
+args = parser.parse_args()
 
 
 # In[4]:
@@ -173,7 +173,7 @@ def train(epoch):
         total += targets.size(0)
         correct += predicted.eq(targets.data).cpu().sum()
         
-        print('== %f/%f ==> Training loss: %f    Correct number: %f' % (batch_idx, trainloader.batch_size, train_loss, correct))
+        print('== %f/%f ==> Training loss: %f    Correct number: %f' % (batch_idx, len(trainloader), train_loss, correct))
 
 
 # In[34]:
@@ -201,7 +201,7 @@ def test(epoch):
         total += targets.size(0)
         correct += predicted.eq(targets.data).cpu().sum()
         
-        print('== %f/%f ==> Testing loss: %f    Correct number: %f' % (batch_idx, testloader.batch_size, test_loss, correct))
+        print('== %f/%f ==> Testing loss: %f    Correct number: %f' % (batch_idx, len(testloader), test_loss, correct))
 
     # Save checkpoint.
     accuracy = 100.*correct/total
