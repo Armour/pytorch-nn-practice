@@ -52,7 +52,7 @@ parser.add_argument('--log-interval', type=int, default=10,
                     help='how many batches to wait before logging training status (default: 10)')
 parser.add_argument('--resume', action='store_true', default=False,
                     help='resume from checkpoint')
-args = parser.parse_args([])
+args = parser.parse_args()
 
 
 # In[105]:
