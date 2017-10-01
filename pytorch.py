@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[2]:
+# In[103]:
 
 
 from __future__ import print_function
@@ -9,6 +9,8 @@ from __future__ import print_function
 import os
 import math
 import argparse
+import cv2
+import numpy as np
 
 import torch
 import torch.nn as nn
@@ -17,12 +19,13 @@ import torch.optim as optim
 import torch.utils as utils
 
 from model.vgg import VGG
+from transform.gamma import Gamma
 
 from torch.autograd import Variable
 from torchvision import models, datasets, transforms
 
 
-# In[3]:
+# In[104]:
 
 
 # Args
@@ -43,14 +46,16 @@ parser.add_argument('--momentum', type=float, default=0.9,
                     help='SGD momentum (default: 0.9)')
 parser.add_argument('--seed', type=int, default=1,
                     help='random seed (default: 1)')
+parser.add_argument('--gamma', type=float, default=1.0,
+                    help='gamma correction value (default: 1.0)')
 parser.add_argument('--log-interval', type=int, default=10,
                     help='how many batches to wait before logging training status (default: 10)')
 parser.add_argument('--resume', action='store_true', default=False,
                     help='resume from checkpoint')
-args = parser.parse_args()
+args = parser.parse_args([])
 
 
-# In[4]:
+# In[105]:
 
 
 # Init variables
@@ -65,7 +70,7 @@ if use_cuda:
     cuda.manual_seed(args.seed)
 
 
-# In[5]:
+# In[106]:
 
 
 def get_mean_and_std(dataset):
@@ -82,7 +87,7 @@ def get_mean_and_std(dataset):
     return mean, std
 
 
-# In[6]:
+# In[107]:
 
 
 # Data
@@ -94,7 +99,7 @@ data_mean, data_std = get_mean_and_std(dataset)
 
 print(data_mean)
 print(data_std)
-
+    
 transform_train = transforms.Compose([
     transforms.Scale(224),
     transforms.RandomHorizontalFlip(),
@@ -103,6 +108,7 @@ transform_train = transforms.Compose([
 ])
 transform_test = transforms.Compose([
     transforms.Scale(224),
+    Gamma(args.gamma),
     transforms.ToTensor(),
     transforms.Normalize(data_mean, data_std),
 ])
