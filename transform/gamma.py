@@ -1,8 +1,5 @@
-
+#!/usr/bin/env python3
 # coding: utf-8
-
-# In[9]:
-
 
 from __future__ import print_function
 
@@ -14,10 +11,6 @@ import torch.utils as utils
 from torchvision import datasets, transforms
 
 from PIL import Image
-
-
-# In[10]:
-
 
 class Gamma(object):
     def __init__(self, gamma=1.0):
@@ -33,9 +26,9 @@ class Gamma(object):
         img = cv2.LUT(img, table)
         # convert nparray to PIL.Image and return
         return Image.fromarray(np.uint8(img))
-              
-    def __call__(self, img):        
-        """
+
+    def __call__(self, img):
+        """ Call in torchvision transforms
         Args:
             img (PIL.Image): Image to be gamma corrected.
         Returns:
@@ -51,11 +44,10 @@ class Gamma(object):
 
 # gammaset = datasets.CIFAR10(root='data', train=True, download=True, transform=gamma_transform)
 # gammaloader = utils.data.DataLoader(gammaset, batch_size=1, shuffle=True, num_workers=2)
-    
+
 # for batch_idx, (inputs, targets) in enumerate(gammaloader):
 #     img = inputs[0].numpy()
 #     img = np.uint8(np.stack([img[0], img[1], img[2]], axis=-1) * 255)
 #     cv2.imwrite('test/gamma-correction-%f.jpg' % batch_idx, img)
 #     if batch_idx == 50:
 #         break
-

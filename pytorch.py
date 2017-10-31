@@ -1,8 +1,5 @@
-
+#!/usr/bin/env python3
 # coding: utf-8
-
-# In[103]:
-
 
 from __future__ import print_function
 
@@ -25,12 +22,9 @@ from torch.autograd import Variable
 from torchvision import models, datasets, transforms
 
 
-# In[104]:
-
-
 # Args
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
-parser.add_argument('--learning-rate', type=float, default=0.01, 
+parser.add_argument('--learning-rate', type=float, default=0.01,
                     help='initial learning rate (default: 0.01)')
 parser.add_argument('--train-batch-size', type=int, default=50,
                     help='input batch size for training (default: 50)')
@@ -55,9 +49,6 @@ parser.add_argument('--resume', action='store_true', default=False,
 args = parser.parse_args()
 
 
-# In[105]:
-
-
 # Init variables
 print('==> Init variables..')
 use_cuda = cuda.is_available()
@@ -68,9 +59,6 @@ classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 torch.manual_seed(args.seed)
 if use_cuda:
     cuda.manual_seed(args.seed)
-
-
-# In[106]:
 
 
 def get_mean_and_std(dataset):
@@ -87,9 +75,6 @@ def get_mean_and_std(dataset):
     return mean, std
 
 
-# In[107]:
-
-
 # Data
 print('==> Download data..')
 dataset = datasets.CIFAR10(root='data', train=True, download=True, transform=transforms.ToTensor())
@@ -99,7 +84,7 @@ data_mean, data_std = get_mean_and_std(dataset)
 
 print(data_mean)
 print(data_std)
-    
+
 transform_train = transforms.Compose([
     transforms.Scale(224),
     transforms.RandomHorizontalFlip(),
@@ -121,9 +106,6 @@ testset = datasets.CIFAR10(root='data', train=False, download=True, transform=tr
 testloader = utils.data.DataLoader(testset, batch_size=args.test_batch_size, shuffle=False, num_workers=args.num_workers)
 
 
-# In[7]:
-
-
 # Model
 print('==> Building model..')
 net = VGG('vgg16', num_classes=10)
@@ -140,18 +122,12 @@ if args.resume:
     net.load_state_dict(checkpoint['state_dict'])
 
 
-# In[8]:
-
-
 # Loss function and Optimizer
 criterion = nn.CrossEntropyLoss()
 if use_cuda:
     criterion = criterion.cuda()
 
 optimizer = optim.SGD(net.parameters(), lr=args.learning_rate, momentum=args.momentum, weight_decay=5e-4)
-
-
-# In[9]:
 
 
 def train(epoch):
@@ -161,12 +137,12 @@ def train(epoch):
     total_train_loss = 0
     total_correct = 0
     total_size = 0
-    
+
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
         inputs, targets = Variable(inputs), Variable(targets)
-        
+
         optimizer.zero_grad()
         outputs = net(inputs)
         loss = criterion(outputs, targets)
@@ -178,14 +154,11 @@ def train(epoch):
         batch_correct = predicted.eq(targets.data).cpu().sum()
         total_correct += batch_correct
         total_size += targets.size(0)
-        
+
         if batch_idx % args.log_interval == 0:
             print('%f/%f ==> Training loss: %f    Correct number: %f/%f' % (batch_idx, len(trainloader), loss.data[0], batch_correct, targets.size(0)))
-        
+
     print("==> Total training loss: %f    Total correct: %f/%f" % (total_train_loss, total_correct, total_size))
-
-
-# In[9]:
 
 
 def test(epoch):
@@ -196,12 +169,12 @@ def test(epoch):
     total_test_loss = 0
     total_correct = 0
     total_size = 0
-    
+
     for batch_idx, (inputs, targets) in enumerate(testloader):
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
         inputs, targets = Variable(inputs, volatile=True), Variable(targets)
-        
+
         outputs = net(inputs)
         loss = criterion(outputs, targets)
 
@@ -210,7 +183,7 @@ def test(epoch):
         batch_correct = predicted.eq(targets.data).cpu().sum()
         total_correct += batch_correct
         total_size += targets.size(0)
-        
+
         if batch_idx % args.log_interval == 0:
             print('%f/%f ==> Testing loss: %f    Correct number: %f/%f' % (batch_idx, len(testloader), loss.data[0], batch_correct, targets.size(0)))
 
@@ -229,10 +202,7 @@ def test(epoch):
             os.mkdir('checkpoint')
         torch.save(state, './checkpoint/ckpt.t7')
         best_accuracy = accuracy
-        
 
-
-# In[10]:
 
 
 def adjust_learning_rate(optimizer, epoch):
@@ -241,9 +211,6 @@ def adjust_learning_rate(optimizer, epoch):
     print('==> Change learning rate: %f' % learning_rate)
     for param_group in optimizer.param_groups:
         param_group['lr'] = learning_rate
-
-
-# In[17]:
 
 
 for epoch in range(start_epoch, start_epoch + args.epochs):
