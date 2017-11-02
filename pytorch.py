@@ -167,9 +167,9 @@ testloader = utils.data.DataLoader(testset, batch_size=args.test_batch_size, shu
 
 # Model
 print('==> Building model..')
-# net = vgg.VGG('vgg16', num_classes=10)
+net = vgg.VGG('vgg16', num_classes=10)
 # net = alexnet.AlexNet(num_classes=10)
-net = inception.InceptionV3(num_classes=10)
+# net = inception.InceptionV3(num_classes=10)
 
 if use_cuda:
     net = net.cuda()
