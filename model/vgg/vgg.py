@@ -12,9 +12,9 @@ cfg = {
 }
 
 class VGG(nn.Module):
-    """ VGG template """
+    """ VGG model """
     def __init__(self, vgg_name, batch_norm=True, num_classes=1000):
-        """ Init vgg network
+        """ Init
         Args:
             vgg_name (string): VGG identifier, map to different config parameters
             batch_norm (bool): If True, use batch normalization
@@ -24,13 +24,21 @@ class VGG(nn.Module):
         if vgg_name in cfg:
             self.features = make_layers(cfg[vgg_name], batch_norm)
             self.classifier = nn.Sequential(
+                # [n, 512 * 7 * 7]
                 nn.Linear(512 * 7 * 7, 4096),
+                # [n, 4096]
                 nn.ReLU(inplace=True),
+                # [n, 4096]
                 nn.Dropout(),
+                # [n, 4096]
                 nn.Linear(4096, 4096),
+                # [n, 4096]
                 nn.ReLU(inplace=True),
+                # [n, 4096]
                 nn.Dropout(),
+                # [n, 4096]
                 nn.Linear(4096, num_classes),
+                # [n, num_classes]
             )
             self._initialize_weights()
         else:
@@ -39,7 +47,7 @@ class VGG(nn.Module):
     def forward(self, x):
         """ Pytorch forward function implementation """
         x = self.features(x)
-        x = x.view(x.size(0), -1)
+        x = x.view(x.size(0), 512 * 7 * 7)
         x = self.classifier(x)
         return x
 

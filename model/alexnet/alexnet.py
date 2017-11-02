@@ -5,36 +5,58 @@ import math
 import torch.nn as nn
 
 class AlexNet(nn.Module):
-    """ Alexnet template """
+    """ Alexnet model """
     def __init__(self, num_classes=1000):
-        """ Init alexnet
+        """ Init
         Args:
             num_classes (int): The number of output classes
         """
         super(AlexNet, self).__init__()
         self.features = nn.Sequential(
-            nn.Conv2d(3, 64, kernel_size=11, stride=4, padding=2),
+            # [n, 3, 224, 224]
+            nn.Conv2d(3, 96, kernel_size=11, stride=4, padding=2),
+            # [n, 96, 55, 55]
             nn.ReLU(inplace=True),
+            # [n, 96, 55, 55]
             nn.MaxPool2d(kernel_size=3, stride=2),
-            nn.Conv2d(64, 192, kernel_size=5, padding=2),
+            # [n, 96, 27, 27]
+            nn.Conv2d(96, 256, kernel_size=5, padding=2),
+            # [n, 256, 27, 27]
             nn.ReLU(inplace=True),
+            # [n, 256, 27, 27]
             nn.MaxPool2d(kernel_size=3, stride=2),
-            nn.Conv2d(192, 384, kernel_size=3, padding=1),
+            # [n, 256, 13, 13]
+            nn.Conv2d(256, 384, kernel_size=3, padding=1),
+            # [n, 384, 13, 13]
             nn.ReLU(inplace=True),
+            # [n, 384, 13, 13]
+            nn.Conv2d(384, 384, kernel_size=3, padding=1),
+            # [n, 384, 13, 13]
+            nn.ReLU(inplace=True),
+            # [n, 384, 13, 13]
             nn.Conv2d(384, 256, kernel_size=3, padding=1),
+            # [n, 256, 13, 13]
             nn.ReLU(inplace=True),
-            nn.Conv2d(256, 256, kernel_size=3, padding=1),
-            nn.ReLU(inplace=True),
+            # [n, 256, 13, 13]
             nn.MaxPool2d(kernel_size=3, stride=2),
+            # [n, 256, 6, 6]
         )
         self.classifier = nn.Sequential(
-            nn.Dropout(),
+            # [n, 256 * 6 * 6]
             nn.Linear(256 * 6 * 6, 4096),
+            # [n, 4096]
             nn.ReLU(inplace=True),
+            # [n, 4096]
             nn.Dropout(),
+            # [n, 4096]
             nn.Linear(4096, 4096),
+            # [n, 4096]
             nn.ReLU(inplace=True),
+            # [n, 4096]
+            nn.Dropout(),
+            # [n, 4096]
             nn.Linear(4096, num_classes),
+            # [n, num_classes]
         )
         self._initialize_weights()
 
