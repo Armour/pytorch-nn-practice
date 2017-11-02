@@ -13,6 +13,6 @@
 
 * [x] alexnet
 * [x] vgg
-* [ ] inception
+* [x] inception
 * [ ] resnet
 * [ ] densenet

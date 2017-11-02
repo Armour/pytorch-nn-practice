@@ -95,103 +95,100 @@ def test(epoch):
 def adjust_learning_rate(optimizer, epoch):
     """Sets the learning rate to the initial learning rate decayed by 10 every args.lr_decay_interval epochs."""
     learning_rate = args.learning_rate * (0.1 ** (epoch // args.lr_decay_interval))
-    print('==> Change learning rate: %f' % learning_rate)
+    print('==> Set learning rate: %f' % learning_rate)
     for param_group in optimizer.param_groups:
         param_group['lr'] = learning_rate
 
-def main():
-    # Setup args
-    parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
-    parser.add_argument('--learning-rate', type=float, default=0.01,
-                        help='initial learning rate (default: 0.01)')
-    parser.add_argument('--train-batch-size', type=int, default=50,
-                        help='input batch size for training (default: 50)')
-    parser.add_argument('--test-batch-size', type=int, default=100,
-                        help='input batch size for testing (default: 100)')
-    parser.add_argument('--epochs', type=int, default=300,
-                        help='number of epochs to train (default: 300)')
-    parser.add_argument('--lr-decay-interval', type=int, default=50,
-                        help='number of epochs to decay the learning rate (default: 50)')
-    parser.add_argument('--num-workers', type=int, default=4,
-                        help='number of workers (default: 4)')
-    parser.add_argument('--momentum', type=float, default=0.9,
-                        help='SGD momentum (default: 0.9)')
-    parser.add_argument('--seed', type=int, default=1,
-                        help='random seed (default: 1)')
-    parser.add_argument('--log-interval', type=int, default=10,
-                        help='how many batches to wait before logging training status (default: 10)')
-    parser.add_argument('--resume', action='store_true', default=False,
-                        help='resume from checkpoint')
-    args = parser.parse_args()
 
-    # Init variables
-    print('==> Init variables..')
-    use_cuda = cuda.is_available()
-    best_accuracy = 0  # best test accuracy
-    start_epoch = 0  # start from epoch 0 or last checkpoint epoch
-    data_mean = [0.49139968  0.48215841  0.44653091]
-    data_std = [0.24703223  0.24348513  0.26158784]
-    classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
+# Setup args
+parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
+parser.add_argument('--learning-rate', type=float, default=0.01,
+                    help='initial learning rate (default: 0.01)')
+parser.add_argument('--train-batch-size', type=int, default=50,
+                    help='input batch size for training (default: 50)')
+parser.add_argument('--test-batch-size', type=int, default=100,
+                    help='input batch size for testing (default: 100)')
+parser.add_argument('--epochs', type=int, default=300,
+                    help='number of epochs to train (default: 300)')
+parser.add_argument('--lr-decay-interval', type=int, default=50,
+                    help='number of epochs to decay the learning rate (default: 50)')
+parser.add_argument('--num-workers', type=int, default=4,
+                    help='number of workers (default: 4)')
+parser.add_argument('--momentum', type=float, default=0.9,
+                    help='SGD momentum (default: 0.9)')
+parser.add_argument('--seed', type=int, default=1,
+                    help='random seed (default: 1)')
+parser.add_argument('--log-interval', type=int, default=10,
+                    help='how many batches to wait before logging training status (default: 10)')
+parser.add_argument('--resume', action='store_true', default=False,
+                    help='resume from checkpoint')
+args = parser.parse_args()
 
-    # Init seed
-    print('==> Init seed..')
-    torch.manual_seed(args.seed)
-    if use_cuda:
-        cuda.manual_seed(args.seed)
+# Init variables
+print('==> Init variables..')
+use_cuda = cuda.is_available()
+best_accuracy = 0  # best test accuracy
+start_epoch = 0  # start from epoch 0 or last checkpoint epoch
+data_mean = [0.49139968, 0.48215841, 0.44653091]
+data_std = [0.24703223, 0.24348513, 0.26158784]
+classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
-    # Download data
-    print('==> Download data..')
-    dataset = datasets.CIFAR10(root='data', train=True, download=True, transform=transforms.ToTensor())
+# Init seed
+print('==> Init seed..')
+torch.manual_seed(args.seed)
+if use_cuda:
+    cuda.manual_seed(args.seed)
 
-    # Prepare transform
-    print('==> Prepare transform..')
-    transform_train = transforms.Compose([
-        transforms.Scale(224),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        transforms.Normalize(data_mean, data_std),
-    ])
-    transform_test = transforms.Compose([
-        transforms.Scale(224),
-        transforms.ToTensor(),
-        transforms.Normalize(data_mean, data_std),
-    ])
+# Download data
+print('==> Download data..')
+dataset = datasets.CIFAR10(root='data', train=True, download=True, transform=transforms.ToTensor())
 
-    # Init dataloader
-    print('==> Init dataloader..')
-    trainset = datasets.CIFAR10(root='data', train=True, download=True, transform=transform_train)
-    trainloader = utils.data.DataLoader(trainset, batch_size=args.train_batch_size, shuffle=True, num_workers=args.num_workers)
+# Prepare transform
+print('==> Prepare transform..')
+transform_train = transforms.Compose([
+    transforms.Scale(224),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    transforms.Normalize(data_mean, data_std),
+])
+transform_test = transforms.Compose([
+    transforms.Scale(224),
+    transforms.ToTensor(),
+    transforms.Normalize(data_mean, data_std),
+])
 
-    testset = datasets.CIFAR10(root='data', train=False, download=True, transform=transform_test)
-    testloader = utils.data.DataLoader(testset, batch_size=args.test_batch_size, shuffle=False, num_workers=args.num_workers)
+# Init dataloader
+print('==> Init dataloader..')
+trainset = datasets.CIFAR10(root='data', train=True, download=True, transform=transform_train)
+trainloader = utils.data.DataLoader(trainset, batch_size=args.train_batch_size, shuffle=True, num_workers=args.num_workers)
 
-    # Model
-    print('==> Building model..')
-    net = vgg.VGG('vgg16', num_classes=10)
-    # net = alexnet.AlexNet(num_classes=10)
-    # net = inception.InceptionV3(num_classes=10)
+testset = datasets.CIFAR10(root='data', train=False, download=True, transform=transform_test)
+testloader = utils.data.DataLoader(testset, batch_size=args.test_batch_size, shuffle=False, num_workers=args.num_workers)
 
-    if use_cuda:
-        net = net.cuda()
+# Model
+print('==> Building model..')
+# net = vgg.VGG('vgg16', num_classes=10)
+# net = alexnet.AlexNet(num_classes=10)
+net = inception.InceptionV3(num_classes=10)
 
-    if args.resume:
-        print('==> Resuming from checkpoint..')
-        assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
-        checkpoint = torch.load('./checkpoint/ckpt.t7')
-        start_epoch = checkpoint['epoch']
-        best_accuracy = checkpoint['accuracy']
-        net.load_state_dict(checkpoint['state_dict'])
+if use_cuda:
+    net = net.cuda()
 
-    # Loss function and Optimizer
-    criterion = nn.CrossEntropyLoss()
-    if use_cuda:
-        criterion = criterion.cuda()
-    optimizer = optim.SGD(net.parameters(), lr=args.learning_rate, momentum=args.momentum, weight_decay=5e-4)
+if args.resume:
+    print('==> Resuming from checkpoint..')
+    assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
+    checkpoint = torch.load('./checkpoint/ckpt.t7')
+    start_epoch = checkpoint['epoch']
+    best_accuracy = checkpoint['accuracy']
+    net.load_state_dict(checkpoint['state_dict'])
 
-    for epoch in range(start_epoch, start_epoch + args.epochs):
-        adjust_learning_rate(optimizer, epoch)
-        train(epoch)
-        test(epoch)
+# Loss function and Optimizer
+criterion = nn.CrossEntropyLoss()
+if use_cuda:
+    criterion = criterion.cuda()
+optimizer = optim.SGD(net.parameters(), lr=args.learning_rate, momentum=args.momentum, weight_decay=5e-4)
 
-if __name__ == '__main__':
-    main()
+for epoch in range(start_epoch, start_epoch + args.epochs):
+    adjust_learning_rate(optimizer, epoch)
+    train(epoch)
+    test(epoch)
