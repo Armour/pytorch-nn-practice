@@ -4,7 +4,6 @@
 import os
 import math
 import argparse
-import cv2
 import numpy as np
 
 import torch
@@ -16,6 +15,7 @@ import torch.utils as utils
 from model.vgg import vgg
 from model.alexnet import alexnet
 from model.inception import inception
+from transform import illumination
 
 from torch.autograd import Variable
 from torchvision import models, datasets, transforms
@@ -153,6 +153,7 @@ transform_train = transforms.Compose([
 ])
 transform_test = transforms.Compose([
     transforms.Scale(224),
+    # illumination.Illumination(r=1.5)
     transforms.ToTensor(),
     transforms.Normalize(data_mean, data_std),
 ])

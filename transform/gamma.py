@@ -7,14 +7,16 @@ import numpy as np
 import torch.utils as utils
 
 from torchvision import datasets, transforms
-
 from PIL import Image
 
 class Gamma(object):
+    """ Gamma correction transformer """
     def __init__(self, gamma=1.0):
+        """ Init """
         self.gamma = gamma
 
     def _adjust_gamma(self, img):
+        """ Adjust gamma value """
         # convert PIL.Image to nparray
         img = np.asarray(img)
         # build a lookup table mapping the pixel values [0, 255] to their adjusted gamma values
@@ -34,6 +36,7 @@ class Gamma(object):
         """
         return self._adjust_gamma(img)
 
+# Example uasage:
 # gamma_transform = transforms.Compose([
 #     transforms.Scale(224),
 #     Gamma(0.5),
@@ -47,5 +50,5 @@ class Gamma(object):
 #     img = inputs[0].numpy()
 #     img = np.uint8(np.stack([img[0], img[1], img[2]], axis=-1) * 255)
 #     cv2.imwrite('test/gamma-correction-%f.jpg' % batch_idx, img)
-#     if batch_idx == 50:
+#     if batch_idx == 10:
 #         break

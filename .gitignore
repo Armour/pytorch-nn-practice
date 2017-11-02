@@ -102,3 +102,6 @@ ENV/
 
 # downloaded image data
 data/
+
+# test folder
+test/
