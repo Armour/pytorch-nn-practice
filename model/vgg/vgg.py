@@ -67,9 +67,7 @@ class VGG(nn.Module):
                 m.bias.data.zero_()
 
 def make_layers(cfg, batch_norm=False):
-    """
-    Generate network layers based on configs
-    """
+    """ Generate network layers based on configs """
     layers = []
     in_channels = 3
     for v in cfg:

@@ -18,6 +18,7 @@ import torch.utils as utils
 from model.vgg import vgg
 from model.alexnet import alexnet
 from model.inception import inception
+from model.resnet import resnet
 from transform import illumination
 
 from torch.autograd import Variable
@@ -111,8 +112,8 @@ parser.add_argument('--train-batch-size', type=int, default=50,
                     help='input batch size for training (default: 50)')
 parser.add_argument('--test-batch-size', type=int, default=100,
                     help='input batch size for testing (default: 100)')
-parser.add_argument('--epochs', type=int, default=300,
-                    help='number of epochs to train (default: 300)')
+parser.add_argument('--epochs', type=int, default=100,
+                    help='number of epochs to train (default: 100)')
 parser.add_argument('--lr-decay-interval', type=int, default=50,
                     help='number of epochs to decay the learning rate (default: 50)')
 parser.add_argument('--num-workers', type=int, default=4,
@@ -121,8 +122,20 @@ parser.add_argument('--momentum', type=float, default=0.9,
                     help='SGD momentum (default: 0.9)')
 parser.add_argument('--seed', type=int, default=1,
                     help='random seed (default: 1)')
-parser.add_argument('--log-interval', type=int, default=10,
-                    help='how many batches to wait before logging training status (default: 10)')
+parser.add_argument('--log-interval', type=int, default=50,
+                    help='how many batches to wait before logging training status (default: 50)')
+parser.add_argument('--enable-training-transform', action='store_true', default=False,
+                    help='enable illumination transform for traning')
+parser.add_argument('--enable-testing-transform', action='store_true', default=False,
+                    help='enable illumination transform for testing')
+parser.add_argument('--only-testing', action='store_true', default=False,
+                    help='only run testing')
+parser.add_argument('-r', '--red', type=float, default=1.0,
+                    help='red channel scale parameter (default: 1.0)')
+parser.add_argument('-g', '--green', type=float, default=1.0,
+                    help='green channel scale parameter (default: 1.0)')
+parser.add_argument('-b', '--blue', type=float, default=1.0,
+                    help='blue channel scale parameter (default: 1.0)')
 parser.add_argument('--resume', action='store_true', default=False,
                     help='resume from checkpoint')
 args = parser.parse_args()
@@ -148,18 +161,34 @@ dataset = datasets.CIFAR10(root='data', train=True, download=True, transform=tra
 
 # Prepare transform
 print('==> Prepare transform..')
-transform_train = transforms.Compose([
-    transforms.Scale(224),
-    transforms.RandomHorizontalFlip(),
-    transforms.ToTensor(),
-    transforms.Normalize(data_mean, data_std),
-])
-transform_test = transforms.Compose([
-    transforms.Scale(224),
-    # illumination.Illumination(r=1.5)
-    transforms.ToTensor(),
-    transforms.Normalize(data_mean, data_std),
-])
+if args.enable_training_transform:
+    transform_train = transforms.Compose([
+        transforms.Scale(224),
+        transforms.RandomHorizontalFlip(),
+        illumination.Illumination(r=args.red, g=args.green, b=args.blue),
+        transforms.ToTensor(),
+        transforms.Normalize(data_mean, data_std),
+    ])
+else:
+    transform_train = transforms.Compose([
+        transforms.Scale(224),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize(data_mean, data_std),
+    ])
+if args.enable_testing_transform:
+    transform_test = transforms.Compose([
+        transforms.Scale(224),
+        illumination.Illumination(r=args.red, g=args.green, b=args.blue),
+        transforms.ToTensor(),
+        transforms.Normalize(data_mean, data_std),
+    ])
+else:
+    transform_test = transforms.Compose([
+        transforms.Scale(224),
+        transforms.ToTensor(),
+        transforms.Normalize(data_mean, data_std),
+    ])
 
 # Init dataloader
 print('==> Init dataloader..')
@@ -171,7 +200,8 @@ testloader = utils.data.DataLoader(testset, batch_size=args.test_batch_size, shu
 
 # Model
 print('==> Building model..')
-net = vgg.VGG('vgg16', num_classes=10)
+net = resnet.ResNet('res34', num_classes=10)
+# net = vgg.VGG('vgg16', num_classes=10)
 # net = alexnet.AlexNet(num_classes=10)
 # net = inception.InceptionV3(num_classes=10)
 
@@ -193,6 +223,10 @@ if use_cuda:
 optimizer = optim.SGD(net.parameters(), lr=args.learning_rate, momentum=args.momentum, weight_decay=5e-4)
 
 for epoch in range(start_epoch, start_epoch + args.epochs):
-    adjust_learning_rate(optimizer, epoch)
-    train(epoch)
-    test(epoch)
+    if args.only_testing:
+        test(epoch)
+        break
+    else:
+        adjust_learning_rate(optimizer, epoch)
+        train(epoch)
+        test(epoch)
