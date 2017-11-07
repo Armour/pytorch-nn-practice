@@ -19,10 +19,23 @@ from model.vgg import vgg
 from model.alexnet import alexnet
 from model.inception import inception
 from model.resnet import resnet
-from transform import illumination
+from transform.illumination import Illumination
 
 from torch.autograd import Variable
 from torchvision import models, datasets, transforms
+
+def calculate_mean_and_std(enable_illumination, enable_log, r, g, b):
+    print(enable_illumination, enable_log)
+    transform_train = transforms.Compose([
+        Illumination(enable_illumination=enable_illumination, enable_log=enable_log, r=r, g=g, b=b),
+        transforms.ToTensor(),
+    ])
+    dataset = datasets.CIFAR10(root='data', train=True, download=True, transform=transform_train)
+    dataloader = utils.data.DataLoader(dataset)
+    data = np.stack([inputs[0].numpy() for inputs, targets in dataloader])
+    mean = data.mean(axis=(0,2,3))
+    std = data.std(axis=(0,2,3))
+    return torch.from_numpy(mean), torch.from_numpy(std)
 
 def train(epoch):
     """Traning epoch."""
@@ -106,14 +119,14 @@ def adjust_learning_rate(optimizer, epoch):
 
 # Setup args
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
-parser.add_argument('--learning-rate', type=float, default=0.01,
+parser.add_argument('-lr','--learning-rate', type=float, default=0.01,
                     help='initial learning rate (default: 0.01)')
+parser.add_argument('-e', '--epochs', type=int, default=100,
+                    help='number of epochs to train (default: 100)')
 parser.add_argument('--train-batch-size', type=int, default=50,
                     help='input batch size for training (default: 50)')
 parser.add_argument('--test-batch-size', type=int, default=100,
                     help='input batch size for testing (default: 100)')
-parser.add_argument('--epochs', type=int, default=100,
-                    help='number of epochs to train (default: 100)')
 parser.add_argument('--lr-decay-interval', type=int, default=50,
                     help='number of epochs to decay the learning rate (default: 50)')
 parser.add_argument('--num-workers', type=int, default=4,
@@ -124,11 +137,15 @@ parser.add_argument('--seed', type=int, default=1,
                     help='random seed (default: 1)')
 parser.add_argument('--log-interval', type=int, default=50,
                     help='how many batches to wait before logging training status (default: 50)')
-parser.add_argument('--enable-training-transform', action='store_true', default=False,
+parser.add_argument('-i1', '--enable-training-illumination-transform', action='store_true', default=False,
                     help='enable illumination transform for traning')
-parser.add_argument('--enable-testing-transform', action='store_true', default=False,
+parser.add_argument('-i2', '--enable-testing-illumination-transform', action='store_true', default=False,
                     help='enable illumination transform for testing')
-parser.add_argument('--only-testing', action='store_true', default=False,
+parser.add_argument('-l1', '--enable-training-log-transform', action='store_true', default=False,
+                    help='enable log transform for traning')
+parser.add_argument('-l2', '--enable-testing-log-transform', action='store_true', default=False,
+                    help='enable log transform for testing')
+parser.add_argument('-o', '--only-testing', action='store_true', default=False,
                     help='only run testing')
 parser.add_argument('-r', '--red', type=float, default=1.0,
                     help='red channel scale parameter (default: 1.0)')
@@ -145,8 +162,6 @@ print('==> Init variables..')
 use_cuda = cuda.is_available()
 best_accuracy = 0  # best test accuracy
 start_epoch = 0  # start from epoch 0 or last checkpoint epoch
-data_mean = [0.49139968, 0.48215841, 0.44653091]
-data_std = [0.24703223, 0.24348513, 0.26158784]
 classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
 # Init seed
@@ -157,38 +172,38 @@ if use_cuda:
 
 # Download data
 print('==> Download data..')
-dataset = datasets.CIFAR10(root='data', train=True, download=True, transform=transforms.ToTensor())
+datasets.CIFAR10(root='data', train=True, download=True)
 
-# Prepare transform
-print('==> Prepare transform..')
-if args.enable_training_transform:
-    transform_train = transforms.Compose([
-        transforms.Scale(224),
-        transforms.RandomHorizontalFlip(),
-        illumination.Illumination(r=args.red, g=args.green, b=args.blue),
-        transforms.ToTensor(),
-        transforms.Normalize(data_mean, data_std),
-    ])
-else:
-    transform_train = transforms.Compose([
-        transforms.Scale(224),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        transforms.Normalize(data_mean, data_std),
-    ])
-if args.enable_testing_transform:
-    transform_test = transforms.Compose([
-        transforms.Scale(224),
-        illumination.Illumination(r=args.red, g=args.green, b=args.blue),
-        transforms.ToTensor(),
-        transforms.Normalize(data_mean, data_std),
-    ])
-else:
-    transform_test = transforms.Compose([
-        transforms.Scale(224),
-        transforms.ToTensor(),
-        transforms.Normalize(data_mean, data_std),
-    ])
+# Calculate mean and std
+print('==> Calculate mean and std..')
+data_mean, data_std = calculate_mean_and_std(enable_illumination=args.enable_training_illumination_transform,
+                                             enable_log=args.enable_training_log_transform,
+                                             r=args.red, g=args.green, b=args.blue)
+print('mean = ', data_mean)
+print('std = ', data_std)
+
+# Prepare training transform
+print('==> Prepare training transform..')
+transform_train = transforms.Compose([
+    transforms.Scale(224),
+    transforms.RandomHorizontalFlip(),
+    Illumination(enable_illumination=args.enable_training_illumination_transform,
+                 enable_log=args.enable_training_log_transform,
+                 r=args.red, g=args.green, b=args.blue),
+    transforms.ToTensor(),
+    transforms.Normalize(data_mean, data_std),
+])
+
+# Prepare testing transform
+print('==> Prepare testing transform..')
+transform_test = transforms.Compose([
+    transforms.Scale(224),
+    Illumination(enable_illumination=args.enable_testing_illumination_transform,
+                 enable_log=args.enable_testing_log_transform,
+                 r=args.red, g=args.green, b=args.blue),
+    transforms.ToTensor(),
+    transforms.Normalize(data_mean, data_std),
+])
 
 # Init dataloader
 print('==> Init dataloader..')
