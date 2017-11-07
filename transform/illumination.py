@@ -7,29 +7,44 @@ from __future__ import division
 import cv2
 import numpy as np
 
+import torch
 import torch.utils as utils
 
 from torchvision import datasets, transforms
 from PIL import Image
 
 class Illumination(object):
-    """ Illumination transform """
-    def __init__(self, r=1.0, g=1.0, b=1.0, enable_log=False, enable_illumination=False):
-        """ Init """
-        self.r = r
-        self.g = g
-        self.b = b
+    """ Illumination transform
+    Example usage:
+        illumination_transform = transforms.Compose([
+           transforms.Scale(224),
+           Illumination(enable_illumination=True, enable_log=True),
+           transforms.ToTensor(),
+        ])
+    """
+    def __init__(self, enable_log=False, enable_illumination=False):
+        """ Init
+        Args:
+            enable_log: enable log transform
+            enable_illumination: enable illumination transform
+        """
         self.enable_log = enable_log
         self.enable_illumination = enable_illumination
 
     def _adjust_illumination(self, img):
-        """ Adjust illumination """
+        """ Adjust illumination
+        Args:
+            img (PIL.Image): Image to be transformed
+        Returns:
+            PIL.Image: transformed image
+        """
         # convert PIL.Image to nparray
         img = np.asarray(img)
 
-        # updated channels value using r, g, b parameters
+        # updated channels value using scale parameters (0.6 - 1.4)
         if self.enable_illumination:
-            img = np.clip(img * [self.r, self.g, self.b], a_min=0, a_max=255)
+            channel_scale = torch.rand(3) * 0.8 + 0.6
+            img = np.clip(img * channel_scale.numpy(), a_min=0, a_max=255)
 
         # log
         if self.enable_log:
@@ -43,23 +58,6 @@ class Illumination(object):
         Args:
             img (PIL.Image): Image to be transformed
         Returns:
-            PIL.Image: image that with illumination adjusted
+            PIL.Image: transformed image
         """
         return self._adjust_illumination(img)
-
-# Example uasage:
-# illumination_transform = transforms.Compose([
-#     transforms.Scale(224),
-#     Illumination(r=1.5, enable_log=True),
-#     transforms.ToTensor(),
-# ])
-
-# dataset = datasets.CIFAR10(root='data', train=True, download=True, transform=illumination_transform)
-# dataloader = utils.data.DataLoader(dataset, batch_size=1, shuffle=True, num_workers=4)
-
-# for batch_idx, (inputs, targets) in enumerate(dataloader):
-#     img = inputs[0].numpy()
-#     img = np.uint8(np.stack([img[0], img[1], img[2]], axis=-1))
-#     cv2.imwrite('test/illumination-%f.jpg' % batch_idx, img)
-#     if batch_idx == 10:
-#         break

@@ -104,4 +104,7 @@ ENV/
 data/
 
 # test folder
-test/
+test/*.jpg
+
+# checkpoint
+checkpoint/

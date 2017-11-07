@@ -8,6 +8,7 @@ import os
 import math
 import argparse
 import numpy as np
+import cv2
 
 import torch
 import torch.nn as nn
@@ -24,9 +25,9 @@ from transform.illumination import Illumination
 from torch.autograd import Variable
 from torchvision import models, datasets, transforms
 
-def calculate_mean_and_std(enable_illumination, enable_log, r, g, b):
+def calculate_mean_and_std():
     transform_train = transforms.Compose([
-        Illumination(enable_illumination=enable_illumination, enable_log=enable_log, r=r, g=g, b=b),
+        Illumination(enable_illumination=args.enable_training_illumination_transform, enable_log=args.enable_training_log_transform),
         transforms.ToTensor(),
     ])
     dataset = datasets.CIFAR10(root='data', train=True, download=True, transform=transform_train)
@@ -61,6 +62,7 @@ def train(epoch):
         total_correct += batch_correct
         total_size += targets.size(0)
 
+        # Print traning loss
         if batch_idx % args.log_interval == 0:
             print('%f/%f ==> Training loss: %f    Correct number: %f/%f' % (batch_idx, len(trainloader), loss.data[0], batch_correct, targets.size(0)))
 
@@ -89,8 +91,19 @@ def test(epoch):
         total_correct += batch_correct
         total_size += targets.size(0)
 
+        # Print testing loss
         if batch_idx % args.log_interval == 0:
             print('%f/%f ==> Testing loss: %f    Correct number: %f/%f' % (batch_idx, len(testloader), loss.data[0], batch_correct, targets.size(0)))
+
+        # Save output image
+        if batch_idx % args.save_interval == 0:
+            img = inputs.data.numpy()[0]
+            img = img * data_std.numpy()[0] + data_mean.numpy()[0] # denormalize
+            img = np.clip(img, a_min=0.0, a_max=1.0) # clip
+            img = np.uint8(np.stack([img[0], img[1], img[2]], axis=-1) * 255)
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            cv2.putText(img, classes[predicted[0]] + ':' + classes[targets.data[0]], (5,len(img[0]) - 15), font, 1, (255,255,255), 2, cv2.LINE_AA)
+            cv2.imwrite('test/illumination-%f.jpg' % (batch_idx // args.save_interval), img)
 
     print("==> Total testing loss: %f    Total correct: %f/%f" % (total_test_loss, total_correct, total_size))
 
@@ -136,6 +149,8 @@ parser.add_argument('--seed', type=int, default=1,
                     help='random seed (default: 1)')
 parser.add_argument('--log-interval', type=int, default=50,
                     help='how many batches to wait before logging training status (default: 50)')
+parser.add_argument('--save-interval', type=int, default=50,
+                    help='how many batches to wait before saving testing output image (default: 50)')
 parser.add_argument('-i1', '--enable-training-illumination-transform', action='store_true', default=False,
                     help='enable illumination transform for traning')
 parser.add_argument('-i2', '--enable-testing-illumination-transform', action='store_true', default=False,
@@ -144,15 +159,9 @@ parser.add_argument('-l1', '--enable-training-log-transform', action='store_true
                     help='enable log transform for traning')
 parser.add_argument('-l2', '--enable-testing-log-transform', action='store_true', default=False,
                     help='enable log transform for testing')
-parser.add_argument('-o', '--only-testing', action='store_true', default=False,
+parser.add_argument('-t', '--only-testing', action='store_true', default=False,
                     help='only run testing')
-parser.add_argument('-r', '--red', type=float, default=1.0,
-                    help='red channel scale parameter (default: 1.0)')
-parser.add_argument('-g', '--green', type=float, default=1.0,
-                    help='green channel scale parameter (default: 1.0)')
-parser.add_argument('-b', '--blue', type=float, default=1.0,
-                    help='blue channel scale parameter (default: 1.0)')
-parser.add_argument('--resume', action='store_true', default=False,
+parser.add_argument('-r', '--resume', action='store_true', default=False,
                     help='resume from checkpoint')
 args = parser.parse_args()
 
@@ -161,7 +170,7 @@ print('==> Init variables..')
 use_cuda = cuda.is_available()
 best_accuracy = 0  # best test accuracy
 start_epoch = 0  # start from epoch 0 or last checkpoint epoch
-classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
+classes = ['plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
 # Init seed
 print('==> Init seed..')
@@ -175,9 +184,7 @@ datasets.CIFAR10(root='data', train=True, download=True)
 
 # Calculate mean and std
 print('==> Calculate mean and std..')
-data_mean, data_std = calculate_mean_and_std(enable_illumination=args.enable_training_illumination_transform,
-                                             enable_log=args.enable_training_log_transform,
-                                             r=args.red, g=args.green, b=args.blue)
+data_mean, data_std = calculate_mean_and_std()
 print('mean = ', data_mean)
 print('std = ', data_std)
 
@@ -186,9 +193,7 @@ print('==> Prepare training transform..')
 transform_train = transforms.Compose([
     transforms.Scale(224),
     transforms.RandomHorizontalFlip(),
-    Illumination(enable_illumination=args.enable_training_illumination_transform,
-                 enable_log=args.enable_training_log_transform,
-                 r=args.red, g=args.green, b=args.blue),
+    Illumination(enable_illumination=args.enable_training_illumination_transform, enable_log=args.enable_training_log_transform),
     transforms.ToTensor(),
     transforms.Normalize(data_mean, data_std),
 ])
@@ -197,9 +202,7 @@ transform_train = transforms.Compose([
 print('==> Prepare testing transform..')
 transform_test = transforms.Compose([
     transforms.Scale(224),
-    Illumination(enable_illumination=args.enable_testing_illumination_transform,
-                 enable_log=args.enable_testing_log_transform,
-                 r=args.red, g=args.green, b=args.blue),
+    Illumination(enable_illumination=args.enable_testing_illumination_transform, enable_log=args.enable_testing_log_transform),
     transforms.ToTensor(),
     transforms.Normalize(data_mean, data_std),
 ])
