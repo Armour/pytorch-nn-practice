@@ -25,7 +25,6 @@ from torch.autograd import Variable
 from torchvision import models, datasets, transforms
 
 def calculate_mean_and_std(enable_illumination, enable_log, r, g, b):
-    print(enable_illumination, enable_log)
     transform_train = transforms.Compose([
         Illumination(enable_illumination=enable_illumination, enable_log=enable_log, r=r, g=g, b=b),
         transforms.ToTensor(),
