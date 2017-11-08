@@ -25,12 +25,12 @@ from transform.illumination import Illumination
 from torch.autograd import Variable
 from torchvision import models, datasets, transforms
 
-def calculate_mean_and_std():
-    transform_train = transforms.Compose([
-        Illumination(enable_illumination=args.enable_training_illumination_transform, enable_log=args.enable_training_log_transform),
+def calculate_mean_and_std(enable_log):
+    transform = transforms.Compose([
+        Illumination(enable_log=enable_log),
         transforms.ToTensor(),
     ])
-    dataset = datasets.CIFAR10(root='data', train=True, download=True, transform=transform_train)
+    dataset = datasets.CIFAR100(root='data', train=True, download=True, transform=transform)
     dataloader = utils.data.DataLoader(dataset)
     data = np.stack([inputs[0].numpy() for inputs, targets in dataloader])
     mean = data.mean(axis=(0,2,3))
@@ -96,14 +96,14 @@ def test(epoch):
             print('%f/%f ==> Testing loss: %f    Correct number: %f/%f' % (batch_idx, len(testloader), loss.data[0], batch_correct, targets.size(0)))
 
         # Save output image
-        if batch_idx % args.save_interval == 0:
-            img = inputs.data.numpy()[0]
-            img = img * data_std.numpy()[0] + data_mean.numpy()[0] # denormalize
-            img = np.clip(img, a_min=0.0, a_max=1.0) # clip
-            img = np.uint8(np.stack([img[0], img[1], img[2]], axis=-1) * 255)
-            font = cv2.FONT_HERSHEY_SIMPLEX
-            cv2.putText(img, classes[predicted[0]] + ':' + classes[targets.data[0]], (5,len(img[0]) - 15), font, 1, (255,255,255), 2, cv2.LINE_AA)
-            cv2.imwrite('test/illumination-%f.jpg' % (batch_idx // args.save_interval), img)
+        # if batch_idx % args.save_interval == 0:
+        #     img = inputs.data.cpu().numpy()[0]
+        #     img = img * testing_data_std.numpy()[0] + testing_data_mean.numpy()[0] # denormalize
+        #     img = np.clip(img, a_min=0.0, a_max=1.0) # clip
+        #     img = np.uint8(np.stack([img[0], img[1], img[2]], axis=-1) * 255)
+        #     font = cv2.FONT_HERSHEY_SIMPLEX
+        #     cv2.putText(img, str(predicted[0]) + ':' + str(targets.data[0]), (5,len(img[0]) - 15), font, 1, (255,255,255), 2, cv2.LINE_AA)
+        #     cv2.imwrite('test/illumination-%f-%f.jpg' % (epoch, batch_idx // args.save_interval), img)
 
     print("==> Total testing loss: %f    Total correct: %f/%f" % (total_test_loss, total_correct, total_size))
 
@@ -170,7 +170,6 @@ print('==> Init variables..')
 use_cuda = cuda.is_available()
 best_accuracy = 0  # best test accuracy
 start_epoch = 0  # start from epoch 0 or last checkpoint epoch
-classes = ['plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
 # Init seed
 print('==> Init seed..')
@@ -180,47 +179,56 @@ if use_cuda:
 
 # Download data
 print('==> Download data..')
-datasets.CIFAR10(root='data', train=True, download=True)
+datasets.CIFAR100(root='data', train=True, download=True)
 
 # Calculate mean and std
 print('==> Calculate mean and std..')
-data_mean, data_std = calculate_mean_and_std()
-print('mean = ', data_mean)
-print('std = ', data_std)
+# mean_ori, std_ori = calculate_mean_and_std(enable_log=False)
+# print('mean = ', mean_ori)
+# print('std = ', std_ori)
+mean_ori, std_ori = [0.50707516, 0.48654887, 0.44091784], [0.26733429, 0.25643846, 0.27615047]
+# mean_log, std_log = calculate_mean_and_std(enable_log=True)
+# print('mean = ', mean_log)
+# print('std = ', std_log)
+mean_log, std_log = [0.019762, 0.019206, 0.018976], [0.055353, 0.052025, 0.055829]
 
 # Prepare training transform
 print('==> Prepare training transform..')
-transform_train = transforms.Compose([
+traning_data_mean = torch.FloatTensor([mean_log if args.enable_training_log_transform else mean_ori]).t()
+traning_data_std = torch.FloatTensor([std_log if args.enable_training_log_transform else std_ori]).t()
+traning_transform = transforms.Compose([
     transforms.Scale(224),
     transforms.RandomHorizontalFlip(),
     Illumination(enable_illumination=args.enable_training_illumination_transform, enable_log=args.enable_training_log_transform),
     transforms.ToTensor(),
-    transforms.Normalize(data_mean, data_std),
+    transforms.Normalize(traning_data_mean, traning_data_std),
 ])
 
 # Prepare testing transform
 print('==> Prepare testing transform..')
-transform_test = transforms.Compose([
+testing_data_mean = torch.FloatTensor([mean_log if args.enable_testing_log_transform else mean_ori]).t()
+testing_data_std = torch.FloatTensor([std_log if args.enable_testing_log_transform else std_ori]).t()
+testing_transform = transforms.Compose([
     transforms.Scale(224),
     Illumination(enable_illumination=args.enable_testing_illumination_transform, enable_log=args.enable_testing_log_transform),
     transforms.ToTensor(),
-    transforms.Normalize(data_mean, data_std),
+    transforms.Normalize(testing_data_mean, testing_data_std),
 ])
 
 # Init dataloader
 print('==> Init dataloader..')
-trainset = datasets.CIFAR10(root='data', train=True, download=True, transform=transform_train)
+trainset = datasets.CIFAR100(root='data', train=True, download=True, transform=traning_transform)
 trainloader = utils.data.DataLoader(trainset, batch_size=args.train_batch_size, shuffle=True, num_workers=args.num_workers)
 
-testset = datasets.CIFAR10(root='data', train=False, download=True, transform=transform_test)
+testset = datasets.CIFAR100(root='data', train=False, download=True, transform=testing_transform)
 testloader = utils.data.DataLoader(testset, batch_size=args.test_batch_size, shuffle=False, num_workers=args.num_workers)
 
 # Model
 print('==> Building model..')
-net = resnet.ResNet('res34', num_classes=10)
-# net = vgg.VGG('vgg16', num_classes=10)
-# net = alexnet.AlexNet(num_classes=10)
-# net = inception.InceptionV3(num_classes=10)
+net = resnet.ResNet('res34', num_classes=100)
+# net = vgg.VGG('vgg16', num_classes=100)
+# net = alexnet.AlexNet(num_classes=100)
+# net = inception.InceptionV3(num_classes=100)
 
 if use_cuda:
     net = net.cuda()
@@ -228,7 +236,10 @@ if use_cuda:
 if args.resume:
     print('==> Resuming from checkpoint..')
     assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
-    checkpoint = torch.load('./checkpoint/ckpt.t7')
+    if use_cuda:
+        checkpoint = torch.load('./checkpoint/ckpt.t7')
+    else:
+        checkpoint = torch.load('./checkpoint/ckpt.t7', map_location=lambda storage, loc: storage)
     start_epoch = checkpoint['epoch']
     best_accuracy = checkpoint['accuracy']
     net.load_state_dict(checkpoint['state_dict'])
