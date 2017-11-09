@@ -81,3 +81,12 @@ def make_layers(cfg, batch_norm=False):
                 layers += [conv2d, nn.ReLU(inplace=True)]
             in_channels = v
     return nn.Sequential(*layers)
+
+
+if __name__ == "__main__":
+    import torch
+    from torch.autograd import Variable
+    sample_data = torch.ones(12, 3, 224, 224)
+    sample_input = Variable(sample_data)
+    net = VGG("vgg16")
+    print(net(sample_input))

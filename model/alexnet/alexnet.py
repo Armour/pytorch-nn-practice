@@ -78,3 +78,12 @@ class AlexNet(nn.Module):
             elif isinstance(m, nn.Linear):
                 m.weight.data.normal_(0, 0.01)
                 m.bias.data.zero_()
+
+
+if __name__ == "__main__":
+    import torch
+    from torch.autograd import Variable
+    sample_data = torch.ones(12, 3, 224, 224)
+    sample_input = Variable(sample_data)
+    net = AlexNet()
+    print(net(sample_input))

@@ -232,7 +232,7 @@ class InceptionV3(nn.Module):
             num_classes (int): The number of output classes
         """
         super(InceptionV3, self).__init__()
-
+        self.aux_logits = aux_logits
         self.Conv2d_1_3x3 = BasicConv2d(3, 32, kernel_size=3, stride=2)
         self.Conv2d_2_3x3 = BasicConv2d(32, 32, kernel_size=3)
         self.Conv2d_3_3x3 = BasicConv2d(32, 64, kernel_size=3, padding=1)
@@ -248,7 +248,7 @@ class InceptionV3(nn.Module):
         self.InceptionC2 = InceptionC(768, channels_7x7=160)
         self.InceptionC3 = InceptionC(768, channels_7x7=160)
         self.InceptionC4 = InceptionC(768, channels_7x7=192)
-        if aux_logits:
+        if self.aux_logits:
             self.AuxLogits = InceptionAux(768, num_classes)
         self.InceptionD = InceptionD(768)
         self.InceptionE1 = InceptionE(1280)
@@ -270,7 +270,7 @@ class InceptionV3(nn.Module):
         # [n, 64, 147, 147]
         x = self.MaxPool2d_1_3x3(x)
         # [n, 64, 73, 73]
-        x = self.Conv2d_4_3x3(x)
+        x = self.Conv2d_4_1x1(x)
         # [n, 80, 73, 73]
         x = self.Conv2d_5_3x3(x)
         # [n, 192, 71, 71]
@@ -328,3 +328,12 @@ class InceptionV3(nn.Module):
             elif isinstance(m, nn.Linear):
                 m.weight.data.normal_(0, 0.01)
                 m.bias.data.zero_()
+
+
+if __name__ == "__main__":
+    import torch
+    from torch.autograd import Variable
+    sample_data = torch.ones(12, 3, 224, 224)
+    sample_input = Variable(sample_data)
+    net = InceptionV3()
+    print(net(sample_input))

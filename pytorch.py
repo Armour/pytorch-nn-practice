@@ -19,23 +19,28 @@ import torch.utils as utils
 from model.vgg import vgg
 from model.alexnet import alexnet
 from model.inception import inception
-from model.resnet import resnet
-from transform.illumination import Illumination
+from model.resnet import resnet_cifar
+from transform.log_space import LogSpace
+from transform.disturb_illumination import DisturbIllumination
 
 from torch.autograd import Variable
 from torchvision import models, datasets, transforms
 
 def calculate_mean_and_std(enable_log):
     transform = transforms.Compose([
-        Illumination(enable_log=enable_log),
         transforms.ToTensor(),
     ])
+    if enable_log:
+        transform = transforms.Compose([
+            transform,
+            LogSpace(),
+        ])
     dataset = datasets.CIFAR100(root='data', train=True, download=True, transform=transform)
     dataloader = utils.data.DataLoader(dataset)
     data = np.stack([inputs[0].numpy() for inputs, targets in dataloader])
     mean = data.mean(axis=(0,2,3))
     std = data.std(axis=(0,2,3))
-    return torch.from_numpy(mean), torch.from_numpy(std)
+    return torch.FloatTensor(mean), torch.FloatTensor(std)
 
 def train(epoch):
     """Traning epoch."""
@@ -96,14 +101,14 @@ def test(epoch):
             print('%f/%f ==> Testing loss: %f    Correct number: %f/%f' % (batch_idx, len(testloader), loss.data[0], batch_correct, targets.size(0)))
 
         # Save output image
-        # if batch_idx % args.save_interval == 0:
-        #     img = inputs.data.cpu().numpy()[0]
-        #     img = img * testing_data_std.numpy()[0] + testing_data_mean.numpy()[0] # denormalize
-        #     img = np.clip(img, a_min=0.0, a_max=1.0) # clip
-        #     img = np.uint8(np.stack([img[0], img[1], img[2]], axis=-1) * 255)
-        #     font = cv2.FONT_HERSHEY_SIMPLEX
-        #     cv2.putText(img, str(predicted[0]) + ':' + str(targets.data[0]), (5,len(img[0]) - 15), font, 1, (255,255,255), 2, cv2.LINE_AA)
-        #     cv2.imwrite('test/illumination-%f-%f.jpg' % (epoch, batch_idx // args.save_interval), img)
+        if batch_idx % args.save_interval == 0:
+            img = inputs.data.cpu().numpy()[0]
+            img = img * testing_data_std.numpy()[0] + testing_data_mean.numpy()[0] # denormalize
+            img = np.clip(img, a_min=0.0, a_max=1.0) # clip
+            img = np.uint8(np.stack([img[0], img[1], img[2]], axis=-1) * 255)
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            cv2.putText(img, str(predicted[0]) + ':' + str(targets.data[0]), (5,len(img[0]) - 15), font, 1, (255,255,255), 2, cv2.LINE_AA)
+            cv2.imwrite('test/illumination-%f-%f.jpg' % (epoch, batch_idx // args.save_interval), img)
 
     print("==> Total testing loss: %f    Total correct: %f/%f" % (total_test_loss, total_correct, total_size))
 
@@ -151,10 +156,10 @@ parser.add_argument('--log-interval', type=int, default=50,
                     help='how many batches to wait before logging training status (default: 50)')
 parser.add_argument('--save-interval', type=int, default=50,
                     help='how many batches to wait before saving testing output image (default: 50)')
-parser.add_argument('-i1', '--enable-training-illumination-transform', action='store_true', default=False,
-                    help='enable illumination transform for traning')
-parser.add_argument('-i2', '--enable-testing-illumination-transform', action='store_true', default=False,
-                    help='enable illumination transform for testing')
+parser.add_argument('-i1', '--enable-training-disturb-illumination', action='store_true', default=False,
+                    help='enable disturb illumination for traning data')
+parser.add_argument('-i2', '--enable-testing-disturb-illumination', action='store_true', default=False,
+                    help='enable disturb illumination for testing data')
 parser.add_argument('-l1', '--enable-training-log-transform', action='store_true', default=False,
                     help='enable log transform for traning')
 parser.add_argument('-l2', '--enable-testing-log-transform', action='store_true', default=False,
@@ -184,34 +189,57 @@ datasets.CIFAR100(root='data', train=True, download=True)
 # Calculate mean and std
 print('==> Calculate mean and std..')
 # mean_ori, std_ori = calculate_mean_and_std(enable_log=False)
-# print('mean = ', mean_ori)
-# print('std = ', std_ori)
-mean_ori, std_ori = [0.50707516, 0.48654887, 0.44091784], [0.26733429, 0.25643846, 0.27615047]
+# print('mean_ori = ', mean_ori)
+# print('std_ori = ', std_ori)
+mean_ori, std_ori = (0.5070, 0.4865, 0.4409), (0.2673, 0.2564, 0.2761)
 # mean_log, std_log = calculate_mean_and_std(enable_log=True)
-# print('mean = ', mean_log)
-# print('std = ', std_log)
-mean_log, std_log = [0.019762, 0.019206, 0.018976], [0.055353, 0.052025, 0.055829]
+# print('mean_log = ', mean_log)
+# print('std_log = ', std_log)
+mean_log, std_log = (4.6436, 4.6157, 4.4427), (0.8357, 0.7980, 0.9122)
 
 # Prepare training transform
 print('==> Prepare training transform..')
-traning_data_mean = torch.FloatTensor([mean_log if args.enable_training_log_transform else mean_ori]).t()
-traning_data_std = torch.FloatTensor([std_log if args.enable_training_log_transform else std_ori]).t()
+traning_data_mean = mean_log if args.enable_training_log_transform else mean_ori
+traning_data_std = std_log if args.enable_training_log_transform else std_ori
 traning_transform = transforms.Compose([
-    transforms.Scale(224),
+    transforms.RandomCrop(32, padding=4),
     transforms.RandomHorizontalFlip(),
-    Illumination(enable_illumination=args.enable_training_illumination_transform, enable_log=args.enable_training_log_transform),
     transforms.ToTensor(),
+])
+if args.enable_training_disturb_illumination:
+    traning_transform = transforms.Compose([
+        traning_transform,
+        DisturbIllumination(),
+    ])
+if args.enable_training_log_transform:
+    traning_transform = transforms.Compose([
+        traning_transform,
+        LogSpace(),
+    ])
+traning_transform = transforms.Compose([
+    traning_transform,
     transforms.Normalize(traning_data_mean, traning_data_std),
 ])
 
 # Prepare testing transform
 print('==> Prepare testing transform..')
-testing_data_mean = torch.FloatTensor([mean_log if args.enable_testing_log_transform else mean_ori]).t()
-testing_data_std = torch.FloatTensor([std_log if args.enable_testing_log_transform else std_ori]).t()
+testing_data_mean = mean_log if args.enable_testing_log_transform else mean_ori
+testing_data_std = std_log if args.enable_testing_log_transform else std_ori
 testing_transform = transforms.Compose([
-    transforms.Scale(224),
-    Illumination(enable_illumination=args.enable_testing_illumination_transform, enable_log=args.enable_testing_log_transform),
     transforms.ToTensor(),
+])
+if args.enable_testing_disturb_illumination:
+    testing_transform = transforms.Compose([
+        traning_transform,
+        DisturbIllumination(),
+    ])
+if args.enable_testing_log_transform:
+    testing_transform = transforms.Compose([
+        traning_transform,
+        LogSpace(),
+    ])
+testing_transform = transforms.Compose([
+    traning_transform,
     transforms.Normalize(testing_data_mean, testing_data_std),
 ])
 
@@ -225,7 +253,7 @@ testloader = utils.data.DataLoader(testset, batch_size=args.test_batch_size, shu
 
 # Model
 print('==> Building model..')
-net = resnet.ResNet('res34', num_classes=100)
+net = resnet_cifar.ResNet('res34', num_classes=100)
 # net = vgg.VGG('vgg16', num_classes=100)
 # net = alexnet.AlexNet(num_classes=100)
 # net = inception.InceptionV3(num_classes=100)

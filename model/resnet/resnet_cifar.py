@@ -114,15 +114,15 @@ class ResNet(nn.Module):
         super(ResNet, self).__init__()
         if resnet_name in cfg:
             self.block = globals()[cfg[resnet_name]['block']]
-            self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3, bias=False)
+            self.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1, bias=False)
             self.bn1 = nn.BatchNorm2d(64)
             self.relu = nn.ReLU(inplace=True)
-            self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
+            # self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
             self.layer1 = self._make_layer(64, 64, cfg[resnet_name]['num_blocks'][0], stride=1)
             self.layer2 = self._make_layer(64, 128, cfg[resnet_name]['num_blocks'][1], stride=2)
             self.layer3 = self._make_layer(128, 256, cfg[resnet_name]['num_blocks'][2], stride=2)
             self.layer4 = self._make_layer(256, 512, cfg[resnet_name]['num_blocks'][3], stride=2)
-            self.avgpool = nn.AvgPool2d(7, stride=1)
+            self.avgpool = nn.AvgPool2d(4)
             self.fc = nn.Linear(512 * self.block.expansion, num_classes)
             self._initialize_weights()
         else:
@@ -130,23 +130,21 @@ class ResNet(nn.Module):
 
     def forward(self, x):
         """ Pytorch forward function implementation """
-        # [n, 3, 224, 224]
+        # [n, 3, 32, 32]
         x = self.conv1(x)
-        # [n, 64, 112, 112]
+        # [n, 64, 32, 32]
         x = self.bn1(x)
-        # [n, 64, 112, 112]
+        # [n, 64, 32, 32]
         x = self.relu(x)
-        # [n, 64, 112, 112]
-        x = self.maxpool(x)
-        # [n, 64, 56, 56]
+        # [n, 64, 32, 32]
         x = self.layer1(x)
-        # [n, 64 * self.block.expansion, 56, 56]
+        # [n, 64 * self.block.expansion, 32, 32]
         x = self.layer2(x)
-        # [n, 128 * self.block.expansion, 28, 28]
+        # [n, 128 * self.block.expansion, 16, 16]
         x = self.layer3(x)
-        # [n, 256 * self.block.expansion, 14, 14]
+        # [n, 256 * self.block.expansion, 8, 8]
         x = self.layer4(x)
-        # [n, 512 * self.block.expansion, 7, 7]
+        # [n, 512 * self.block.expansion, 4, 4]
         x = self.avgpool(x)
         # [n, 512 * self.block.expansion, 1, 1]
         x = x.view(x.size(0), -1)
@@ -189,7 +187,7 @@ class ResNet(nn.Module):
 if __name__ == "__main__":
     import torch
     from torch.autograd import Variable
-    sample_data = torch.ones(12, 3, 224, 224)
+    sample_data = torch.ones(12, 3, 32, 32)
     sample_input = Variable(sample_data)
     net = ResNet("res18")
     print(net(sample_input))
