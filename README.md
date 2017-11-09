@@ -16,3 +16,4 @@
 * [x] inception
 * [x] resnet
 * [ ] densenet
+* [ ] gan
