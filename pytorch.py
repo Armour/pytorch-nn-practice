@@ -40,7 +40,7 @@ def calculate_mean_and_std(enable_log):
     data = np.stack([inputs[0].numpy() for inputs, targets in dataloader])
     mean = data.mean(axis=(0,2,3))
     std = data.std(axis=(0,2,3))
-    return torch.FloatTensor(mean), torch.FloatTensor(std)
+    return mean, std
 
 def train(epoch):
     """Traning epoch."""
@@ -69,9 +69,9 @@ def train(epoch):
 
         # Print traning loss
         if batch_idx % args.log_interval == 0:
-            print('%f/%f ==> Training loss: %f    Correct number: %f/%f' % (batch_idx, len(trainloader), loss.data[0], batch_correct, targets.size(0)))
+            print('%f/%f ==> Training loss: %f    Training error rate: %f' % (batch_idx, len(trainloader), loss.data[0], (targets.size(0) - batch_correct) / targets.size(0) * 100))
 
-    print("==> Total training loss: %f    Total correct: %f/%f" % (total_train_loss, total_correct, total_size))
+    print('==> Total training loss: %f    Total training error rate: %f' % (total_train_loss, (total_size - total_correct) / total_size * 100))
 
 def test(epoch):
     """Testing epoch."""
@@ -98,19 +98,19 @@ def test(epoch):
 
         # Print testing loss
         if batch_idx % args.log_interval == 0:
-            print('%f/%f ==> Testing loss: %f    Correct number: %f/%f' % (batch_idx, len(testloader), loss.data[0], batch_correct, targets.size(0)))
+            print('%f/%f ==> Testing loss: %f    Testing error rate: %f' % (batch_idx, len(testloader), loss.data[0], (targets.size(0) - batch_correct) / targets.size(0) * 100))
 
         # Save output image
-        if batch_idx % args.save_interval == 0:
-            img = inputs.data.cpu().numpy()[0]
-            img = img * testing_data_std.numpy()[0] + testing_data_mean.numpy()[0] # denormalize
-            img = np.clip(img, a_min=0.0, a_max=1.0) # clip
-            img = np.uint8(np.stack([img[0], img[1], img[2]], axis=-1) * 255)
-            font = cv2.FONT_HERSHEY_SIMPLEX
-            cv2.putText(img, str(predicted[0]) + ':' + str(targets.data[0]), (5,len(img[0]) - 15), font, 1, (255,255,255), 2, cv2.LINE_AA)
-            cv2.imwrite('test/illumination-%f-%f.jpg' % (epoch, batch_idx // args.save_interval), img)
+        # if batch_idx % args.save_interval == 0:
+        #     img = inputs.data.cpu().numpy()[0]
+        #     img = img * testing_data_std.numpy()[0] + testing_data_mean.numpy()[0] # denormalize
+        #     img = np.clip(img, a_min=0.0, a_max=1.0) # clip
+        #     img = np.uint8(np.stack([img[0], img[1], img[2]], axis=-1) * 255)
+        #     font = cv2.FONT_HERSHEY_SIMPLEX
+        #     cv2.putText(img, str(predicted[0]) + ':' + str(targets.data[0]), (5,len(img[0]) - 15), font, 1, (255,255,255), 2, cv2.LINE_AA)
+        #     cv2.imwrite('test/illumination-%f-%f.jpg' % (epoch, batch_idx // args.save_interval), img)
 
-    print("==> Total testing loss: %f    Total correct: %f/%f" % (total_test_loss, total_correct, total_size))
+    print('==> Total testing loss: %f    Total testing error rate: %f' % (total_test_loss, (total_size - total_correct) / total_size * 100))
 
     # Save checkpoint.
     accuracy = 100.*total_correct/total_size
@@ -191,16 +191,16 @@ print('==> Calculate mean and std..')
 # mean_ori, std_ori = calculate_mean_and_std(enable_log=False)
 # print('mean_ori = ', mean_ori)
 # print('std_ori = ', std_ori)
-mean_ori, std_ori = (0.5070, 0.4865, 0.4409), (0.2673, 0.2564, 0.2761)
 # mean_log, std_log = calculate_mean_and_std(enable_log=True)
 # print('mean_log = ', mean_log)
 # print('std_log = ', std_log)
-mean_log, std_log = (4.6436, 4.6157, 4.4427), (0.8357, 0.7980, 0.9122)
+mean_ori, std_ori = (0.50707543, 0.48655024, 0.44091907), (0.26733398, 0.25643876, 0.27615029)
+mean_log, std_log = (6.69928741, 6.65900993, 6.40947819), (1.2056427,  1.15127575, 1.31597221)
 
 # Prepare training transform
 print('==> Prepare training transform..')
-traning_data_mean = mean_log if args.enable_training_log_transform else mean_ori
-traning_data_std = std_log if args.enable_training_log_transform else std_ori
+traning_data_mean = torch.FloatTensor(mean_log) if args.enable_training_log_transform else torch.FloatTensor(mean_ori)
+traning_data_std = torch.FloatTensor(std_log) if args.enable_training_log_transform else torch.FloatTensor(std_ori)
 traning_transform = transforms.Compose([
     transforms.RandomCrop(32, padding=4),
     transforms.RandomHorizontalFlip(),
@@ -223,23 +223,23 @@ traning_transform = transforms.Compose([
 
 # Prepare testing transform
 print('==> Prepare testing transform..')
-testing_data_mean = mean_log if args.enable_testing_log_transform else mean_ori
-testing_data_std = std_log if args.enable_testing_log_transform else std_ori
+testing_data_mean = torch.FloatTensor(mean_log) if args.enable_testing_log_transform else torch.FloatTensor(mean_ori)
+testing_data_std = torch.FloatTensor(std_log) if args.enable_testing_log_transform else torch.FloatTensor(std_ori)
 testing_transform = transforms.Compose([
     transforms.ToTensor(),
 ])
 if args.enable_testing_disturb_illumination:
     testing_transform = transforms.Compose([
-        traning_transform,
+        testing_transform,
         DisturbIllumination(),
     ])
 if args.enable_testing_log_transform:
     testing_transform = transforms.Compose([
-        traning_transform,
+        testing_transform,
         LogSpace(),
     ])
 testing_transform = transforms.Compose([
-    traning_transform,
+    testing_transform,
     transforms.Normalize(testing_data_mean, testing_data_std),
 ])
 
@@ -257,10 +257,10 @@ net = resnet_cifar.ResNet('res34', num_classes=100)
 # net = vgg.VGG('vgg16', num_classes=100)
 # net = alexnet.AlexNet(num_classes=100)
 # net = inception.InceptionV3(num_classes=100)
-
 if use_cuda:
     net = net.cuda()
 
+# Resume if required
 if args.resume:
     print('==> Resuming from checkpoint..')
     assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
@@ -281,7 +281,6 @@ optimizer = optim.SGD(net.parameters(), lr=args.learning_rate, momentum=args.mom
 for epoch in range(start_epoch, start_epoch + args.epochs):
     if args.only_testing:
         test(epoch)
-        break
     else:
         adjust_learning_rate(optimizer, epoch)
         train(epoch)

@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import torch
+import math
 
 class LogSpace(object):
     """ Transform to log space
@@ -23,5 +24,5 @@ class LogSpace(object):
             PIL.Image: transformed image
         """
         img = img * 255 + 1 # 1 ~ 256
-        img = torch.log(img) # 0 ~ 8
+        img = torch.div(torch.log(img), math.log(2)) # 0 ~ 8
         return img
