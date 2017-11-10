@@ -147,14 +147,14 @@ if __name__ == '__main__':
                         help='input batch size for testing (default: 100)')
     parser.add_argument('--lr-decay-interval', type=int, default=50,
                         help='number of epochs to decay the learning rate (default: 50)')
-    parser.add_argument('--num-workers', type=int, default=4,
-                        help='number of workers (default: 4)')
+    parser.add_argument('--num-workers', type=int, default=0,
+                        help='number of workers (default: 0)')
     parser.add_argument('--momentum', type=float, default=0.9,
                         help='SGD momentum (default: 0.9)')
     parser.add_argument('--seed', type=int, default=1,
                         help='random seed (default: 1)')
-    parser.add_argument('--log-interval', type=int, default=50,
-                        help='how many batches to wait before logging training status (default: 50)')
+    parser.add_argument('--log-interval', type=int, default=100,
+                        help='how many batches to wait before logging training status (default: 100)')
     parser.add_argument('--save-interval', type=int, default=50,
                         help='how many batches to wait before saving testing output image (default: 50)')
     parser.add_argument('-d', '--enable-disturb-illumination', action='store_true', default=False,

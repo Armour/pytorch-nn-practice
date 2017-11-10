@@ -28,6 +28,6 @@ class DisturbIllumination(object):
         img[1,:,:] = img[1,:,:] * rgb_scale[1]  # 0.0 ~ 1.4
         img[2,:,:] = img[2,:,:] * rgb_scale[2]  # 0.0 ~ 1.4
 
-        img[img > 1] = 1  # 0.0 ~ 1.0
+        img = torch.div(img, torch.max(img))  # 0.0 ~ 1.0
 
         return img
