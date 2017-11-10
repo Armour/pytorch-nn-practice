@@ -43,7 +43,7 @@ def calculate_mean_and_std(enable_log):
     return mean, std
 
 def train(epoch):
-    """Traning epoch."""
+    """ Traning epoch """
     print('==> Training Epoch: %d' % epoch)
     net.train()
     total_train_loss = 0
@@ -74,7 +74,7 @@ def train(epoch):
     print('==> Total training loss: %f    Total training error rate: %f' % (total_train_loss, (total_size - total_correct) / total_size * 100))
 
 def test(epoch):
-    """Testing epoch."""
+    """ Testing epoch """
     global best_accuracy
     print('==> Testing Epoch: %d' % epoch)
     net.eval()
@@ -127,7 +127,7 @@ def test(epoch):
         best_accuracy = accuracy
 
 def adjust_learning_rate(optimizer, epoch):
-    """Sets the learning rate to the initial learning rate decayed by 10 every args.lr_decay_interval epochs."""
+    """ Sets the learning rate to the initial learning rate decayed by 10 every args.lr_decay_interval epochs """
     learning_rate = args.learning_rate * (0.1 ** (epoch // args.lr_decay_interval))
     print('==> Set learning rate: %f' % learning_rate)
     for param_group in optimizer.param_groups:
@@ -279,10 +279,10 @@ if __name__ == '__main__':
         criterion = criterion.cuda()
     optimizer = optim.SGD(net.parameters(), lr=args.learning_rate, momentum=args.momentum, weight_decay=5e-4)
 
-    for epoch in range(start_epoch, start_epoch + args.epochs):
+    for epoch in range(start_epoch, args.epochs):
         if args.only_testing:
-            test(epoch)
+            test(epoch + 1)
         else:
             adjust_learning_rate(optimizer, epoch)
-            train(epoch)
-            test(epoch)
+            train(epoch + 1)
+            test(epoch + 1)
