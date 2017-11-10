@@ -26,11 +26,11 @@ from transform.disturb_illumination import DisturbIllumination
 from torch.autograd import Variable
 from torchvision import models, datasets, transforms
 
-def calculate_mean_and_std(enable_log):
+def calculate_mean_and_std(enable_log_transform):
     transform = transforms.Compose([
         transforms.ToTensor(),
     ])
-    if enable_log:
+    if enable_log_transform:
         transform = transforms.Compose([
             transform,
             LogSpace(),
@@ -157,14 +157,10 @@ if __name__ == '__main__':
                         help='how many batches to wait before logging training status (default: 50)')
     parser.add_argument('--save-interval', type=int, default=50,
                         help='how many batches to wait before saving testing output image (default: 50)')
-    parser.add_argument('-i1', '--enable-training-disturb-illumination', action='store_true', default=False,
+    parser.add_argument('-d', '--enable-disturb-illumination', action='store_true', default=False,
                         help='enable disturb illumination for traning data')
-    parser.add_argument('-i2', '--enable-testing-disturb-illumination', action='store_true', default=False,
-                        help='enable disturb illumination for testing data')
-    parser.add_argument('-l1', '--enable-training-log-transform', action='store_true', default=False,
-                        help='enable log transform for traning')
-    parser.add_argument('-l2', '--enable-testing-log-transform', action='store_true', default=False,
-                        help='enable log transform for testing')
+    parser.add_argument('-l', '--enable-log-transform', action='store_true', default=False,
+                        help='enable log transform for both traning and testing data')
     parser.add_argument('-t', '--only-testing', action='store_true', default=False,
                         help='only run testing')
     parser.add_argument('-r', '--resume', action='store_true', default=False,
@@ -189,59 +185,57 @@ if __name__ == '__main__':
 
     # Calculate mean and std
     print('==> Calculate mean and std..')
-    # mean_ori, std_ori = calculate_mean_and_std(enable_log=False)
+    # mean_ori, std_ori = calculate_mean_and_std(enable_log_transform=False)
     # print('mean_ori = ', mean_ori)
     # print('std_ori = ', std_ori)
-    # mean_log, std_log = calculate_mean_and_std(enable_log=True)
+    # mean_log, std_log = calculate_mean_and_std(enable_log_transform=True)
     # print('mean_log = ', mean_log)
     # print('std_log = ', std_log)
     mean_ori, std_ori = (0.50707543, 0.48655024, 0.44091907), (0.26733398, 0.25643876, 0.27615029)
     mean_log, std_log = (6.69928741, 6.65900993, 6.40947819), (1.2056427,  1.15127575, 1.31597221)
 
+    if args.enable_log_transform:
+        data_mean = torch.FloatTensor(mean_log)
+        data_std = torch.FloatTensor(std_log)
+    else:
+        data_mean = torch.FloatTensor(mean_ori)
+        data_std = torch.FloatTensor(std_ori)
+
     # Prepare training transform
     print('==> Prepare training transform..')
-    traning_data_mean = torch.FloatTensor(mean_log) if args.enable_training_log_transform else torch.FloatTensor(mean_ori)
-    traning_data_std = torch.FloatTensor(std_log) if args.enable_training_log_transform else torch.FloatTensor(std_ori)
     traning_transform = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
     ])
-    if args.enable_training_disturb_illumination:
+    if args.enable_disturb_illumination:
         traning_transform = transforms.Compose([
             traning_transform,
             DisturbIllumination(),
         ])
-    if args.enable_training_log_transform:
+    if args.enable_log_transform:
         traning_transform = transforms.Compose([
             traning_transform,
             LogSpace(),
         ])
     traning_transform = transforms.Compose([
         traning_transform,
-        transforms.Normalize(traning_data_mean, traning_data_std),
+        transforms.Normalize(data_mean, data_std),
     ])
 
     # Prepare testing transform
     print('==> Prepare testing transform..')
-    testing_data_mean = torch.FloatTensor(mean_log) if args.enable_testing_log_transform else torch.FloatTensor(mean_ori)
-    testing_data_std = torch.FloatTensor(std_log) if args.enable_testing_log_transform else torch.FloatTensor(std_ori)
     testing_transform = transforms.Compose([
         transforms.ToTensor(),
     ])
-    if args.enable_testing_disturb_illumination:
-        testing_transform = transforms.Compose([
-            testing_transform,
-            DisturbIllumination(),
-        ])
-    if args.enable_testing_log_transform:
+    if args.enable_log_transform:
         testing_transform = transforms.Compose([
             testing_transform,
             LogSpace(),
         ])
     testing_transform = transforms.Compose([
         testing_transform,
-        transforms.Normalize(testing_data_mean, testing_data_std),
+        transforms.Normalize(data_mean, data_std),
     ])
 
     # Init dataloader
