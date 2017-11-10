@@ -28,12 +28,15 @@ class InceptionA(nn.Module):
 
         self.branch1_1x1 = BasicConv2d(in_channels, 64, kernel_size=1)
 
-        self.branch2_1x1 = BasicConv2d(in_channels, 48, kernel_size=1)
-        self.branch2_5x5 = BasicConv2d(48, 64, kernel_size=5, padding=2)
+        self.branch2_1x1 = BasicConv2d(in_channels, 64, kernel_size=1)
+        self.branch2_1x5 = BasicConv2d(64, 64, kernel_size=(1, 5), padding=(0, 2))
+        self.branch2_5x1 = BasicConv2d(64, 64, kernel_size=(5, 1), padding=(2, 0))
 
-        self.branch3_1x1 = BasicConv2d(in_channels, 64, kernel_size=1)
-        self.branch3_3x3_1 = BasicConv2d(64, 96, kernel_size=3, padding=1)
-        self.branch3_3x3_2 = BasicConv2d(96, 96, kernel_size=3, padding=1)
+        self.branch3_1x1 = BasicConv2d(in_channels, 96, kernel_size=1)
+        self.branch3_1x3_1 = BasicConv2d(96, 96, kernel_size=(1, 3), padding=(0, 1))
+        self.branch3_3x1_1 = BasicConv2d(96, 96, kernel_size=(3, 1), padding=(1, 0))
+        self.branch3_1x3_2 = BasicConv2d(96, 96, kernel_size=(1, 3), padding=(0, 1))
+        self.branch3_3x1_2 = BasicConv2d(96, 96, kernel_size=(3, 1), padding=(1, 0))
 
         self.branch4_avgpool = nn.AvgPool2d(kernel_size=3, stride=1, padding=1)
         self.branch4_1x1 = BasicConv2d(in_channels, pool_features, kernel_size=1)
@@ -43,11 +46,14 @@ class InceptionA(nn.Module):
         branch1 = self.branch1_1x1(x)
 
         branch2 = self.branch2_1x1(x)
-        branch2 = self.branch2_5x5(branch2)
+        branch2 = self.branch2_1x5(branch2)
+        branch2 = self.branch2_5x1(branch2)
 
         branch3 = self.branch3_1x1(x)
-        branch3 = self.branch3_3x3_1(branch3)
-        branch3 = self.branch3_3x3_2(branch3)
+        branch3 = self.branch3_1x3_1(branch3)
+        branch3 = self.branch3_3x1_1(branch3)
+        branch3 = self.branch3_1x3_2(branch3)
+        branch3 = self.branch3_3x1_2(branch3)
 
         branch4 = self.branch4_avgpool(x)
         branch4 = self.branch4_1x1(branch4)
@@ -333,7 +339,7 @@ class InceptionV3(nn.Module):
 if __name__ == "__main__":
     import torch
     from torch.autograd import Variable
-    sample_data = torch.ones(12, 3, 224, 224)
+    sample_data = torch.ones(12, 3, 299, 299)
     sample_input = Variable(sample_data)
     net = InceptionV3()
     print(net(sample_input))
