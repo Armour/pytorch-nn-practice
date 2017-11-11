@@ -158,7 +158,7 @@ if __name__ == '__main__':
     parser.add_argument('--save-interval', type=int, default=50,
                         help='how many batches to wait before saving testing output image (default: 50)')
     parser.add_argument('-d', '--enable-disturb-illumination', action='store_true', default=False,
-                        help='enable disturb illumination for traning data')
+                        help='enable disturb illumination for testing data')
     parser.add_argument('-l', '--enable-log-transform', action='store_true', default=False,
                         help='enable log transform for both traning and testing data')
     parser.add_argument('-t', '--only-testing', action='store_true', default=False,
@@ -208,11 +208,6 @@ if __name__ == '__main__':
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
     ])
-    if args.enable_disturb_illumination:
-        traning_transform = transforms.Compose([
-            traning_transform,
-            DisturbIllumination(),
-        ])
     if args.enable_log_transform:
         traning_transform = transforms.Compose([
             traning_transform,
@@ -228,6 +223,11 @@ if __name__ == '__main__':
     testing_transform = transforms.Compose([
         transforms.ToTensor(),
     ])
+    if args.enable_disturb_illumination:
+        testing_transform = transforms.Compose([
+            testing_transform,
+            DisturbIllumination(),
+        ])
     if args.enable_log_transform:
         testing_transform = transforms.Compose([
             testing_transform,
