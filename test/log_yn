@@ -1,0 +1,1641 @@
+==> Init variables..
+==> Init seed..
+==> Download data..
+Files already downloaded and verified
+==> Calculate mean and std..
+==> Prepare training transform..
+==> Prepare testing transform..
+==> Init dataloader..
+Files already downloaded and verified
+Files already downloaded and verified
+==> Building model..
+==> Set learning rate: 0.010000
+==> Training Epoch: 1
+0.000000/1000.000000 ==> Training loss: 4.889718    Training error rate: 100.000000
+100.000000/1000.000000 ==> Training loss: 4.363822    Training error rate: 98.000000
+200.000000/1000.000000 ==> Training loss: 4.231044    Training error rate: 92.000000
+300.000000/1000.000000 ==> Training loss: 3.893598    Training error rate: 100.000000
+400.000000/1000.000000 ==> Training loss: 3.867337    Training error rate: 92.000000
+500.000000/1000.000000 ==> Training loss: 3.832970    Training error rate: 86.000000
+600.000000/1000.000000 ==> Training loss: 3.767282    Training error rate: 88.000000
+700.000000/1000.000000 ==> Training loss: 3.563849    Training error rate: 86.000000
+800.000000/1000.000000 ==> Training loss: 3.646954    Training error rate: 82.000000
+900.000000/1000.000000 ==> Training loss: 3.969856    Training error rate: 88.000000
+==> Total training loss: 3938.275505    Total training error rate: 90.624000
+==> Testing Epoch: 1
+0.000000/100.000000 ==> Testing loss: 4.611198    Testing error rate: 93.000000
+==> Total testing loss: 435.185087    Total testing error rate: 91.180000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 2
+0.000000/1000.000000 ==> Training loss: 3.895885    Training error rate: 90.000000
+100.000000/1000.000000 ==> Training loss: 3.350642    Training error rate: 80.000000
+200.000000/1000.000000 ==> Training loss: 3.527586    Training error rate: 78.000000
+300.000000/1000.000000 ==> Training loss: 3.449449    Training error rate: 76.000000
+400.000000/1000.000000 ==> Training loss: 3.296001    Training error rate: 84.000000
+500.000000/1000.000000 ==> Training loss: 3.694554    Training error rate: 82.000000
+600.000000/1000.000000 ==> Training loss: 3.144366    Training error rate: 80.000000
+700.000000/1000.000000 ==> Training loss: 2.965384    Training error rate: 78.000000
+800.000000/1000.000000 ==> Training loss: 3.140166    Training error rate: 82.000000
+900.000000/1000.000000 ==> Training loss: 2.723055    Training error rate: 70.000000
+==> Total training loss: 3245.258010    Total training error rate: 79.920000
+==> Testing Epoch: 2
+0.000000/100.000000 ==> Testing loss: 3.988761    Testing error rate: 88.000000
+==> Total testing loss: 394.353869    Total testing error rate: 85.890000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 3
+0.000000/1000.000000 ==> Training loss: 2.960262    Training error rate: 72.000000
+100.000000/1000.000000 ==> Training loss: 3.115059    Training error rate: 74.000000
+200.000000/1000.000000 ==> Training loss: 3.071705    Training error rate: 76.000000
+300.000000/1000.000000 ==> Training loss: 2.867232    Training error rate: 68.000000
+400.000000/1000.000000 ==> Training loss: 3.366022    Training error rate: 84.000000
+500.000000/1000.000000 ==> Training loss: 2.988204    Training error rate: 70.000000
+600.000000/1000.000000 ==> Training loss: 3.036246    Training error rate: 82.000000
+700.000000/1000.000000 ==> Training loss: 2.257668    Training error rate: 60.000000
+800.000000/1000.000000 ==> Training loss: 2.367460    Training error rate: 62.000000
+900.000000/1000.000000 ==> Training loss: 2.765112    Training error rate: 70.000000
+==> Total training loss: 2755.351698    Total training error rate: 70.646000
+==> Testing Epoch: 3
+0.000000/100.000000 ==> Testing loss: 3.397583    Testing error rate: 81.000000
+==> Total testing loss: 333.280169    Total testing error rate: 76.440000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 4
+0.000000/1000.000000 ==> Training loss: 2.113579    Training error rate: 56.000000
+100.000000/1000.000000 ==> Training loss: 2.230099    Training error rate: 56.000000
+200.000000/1000.000000 ==> Training loss: 2.452639    Training error rate: 62.000000
+300.000000/1000.000000 ==> Training loss: 2.336541    Training error rate: 64.000000
+400.000000/1000.000000 ==> Training loss: 2.614124    Training error rate: 68.000000
+500.000000/1000.000000 ==> Training loss: 2.423603    Training error rate: 72.000000
+600.000000/1000.000000 ==> Training loss: 2.786725    Training error rate: 70.000000
+700.000000/1000.000000 ==> Training loss: 2.192360    Training error rate: 56.000000
+800.000000/1000.000000 ==> Training loss: 2.218538    Training error rate: 60.000000
+900.000000/1000.000000 ==> Training loss: 2.128800    Training error rate: 66.000000
+==> Total training loss: 2366.327251    Total training error rate: 62.720000
+==> Testing Epoch: 4
+0.000000/100.000000 ==> Testing loss: 2.789964    Testing error rate: 71.000000
+==> Total testing loss: 307.051542    Total testing error rate: 72.370000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 5
+0.000000/1000.000000 ==> Training loss: 2.218187    Training error rate: 60.000000
+100.000000/1000.000000 ==> Training loss: 1.589996    Training error rate: 46.000000
+200.000000/1000.000000 ==> Training loss: 2.257930    Training error rate: 58.000000
+300.000000/1000.000000 ==> Training loss: 2.341870    Training error rate: 62.000000
+400.000000/1000.000000 ==> Training loss: 1.817596    Training error rate: 46.000000
+500.000000/1000.000000 ==> Training loss: 2.115608    Training error rate: 62.000000
+600.000000/1000.000000 ==> Training loss: 1.698318    Training error rate: 46.000000
+700.000000/1000.000000 ==> Training loss: 2.055169    Training error rate: 60.000000
+800.000000/1000.000000 ==> Training loss: 2.047235    Training error rate: 62.000000
+900.000000/1000.000000 ==> Training loss: 1.863192    Training error rate: 52.000000
+==> Total training loss: 2077.066903    Total training error rate: 56.376000
+==> Testing Epoch: 5
+0.000000/100.000000 ==> Testing loss: 2.869548    Testing error rate: 60.000000
+==> Total testing loss: 272.381255    Total testing error rate: 64.710000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 6
+0.000000/1000.000000 ==> Training loss: 1.941952    Training error rate: 50.000000
+100.000000/1000.000000 ==> Training loss: 2.108315    Training error rate: 56.000000
+200.000000/1000.000000 ==> Training loss: 1.921093    Training error rate: 52.000000
+300.000000/1000.000000 ==> Training loss: 2.447163    Training error rate: 68.000000
+400.000000/1000.000000 ==> Training loss: 1.962664    Training error rate: 60.000000
+500.000000/1000.000000 ==> Training loss: 1.668089    Training error rate: 44.000000
+600.000000/1000.000000 ==> Training loss: 2.060458    Training error rate: 58.000000
+700.000000/1000.000000 ==> Training loss: 1.865462    Training error rate: 46.000000
+800.000000/1000.000000 ==> Training loss: 1.731291    Training error rate: 58.000000
+900.000000/1000.000000 ==> Training loss: 1.930985    Training error rate: 56.000000
+==> Total training loss: 1869.605372    Total training error rate: 51.750000
+==> Testing Epoch: 6
+0.000000/100.000000 ==> Testing loss: 2.446826    Testing error rate: 51.000000
+==> Total testing loss: 262.173633    Total testing error rate: 63.280000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 7
+0.000000/1000.000000 ==> Training loss: 1.458150    Training error rate: 46.000000
+100.000000/1000.000000 ==> Training loss: 1.551000    Training error rate: 50.000000
+200.000000/1000.000000 ==> Training loss: 1.812704    Training error rate: 48.000000
+300.000000/1000.000000 ==> Training loss: 1.762453    Training error rate: 46.000000
+400.000000/1000.000000 ==> Training loss: 1.290294    Training error rate: 46.000000
+500.000000/1000.000000 ==> Training loss: 1.742854    Training error rate: 50.000000
+600.000000/1000.000000 ==> Training loss: 1.701020    Training error rate: 48.000000
+700.000000/1000.000000 ==> Training loss: 1.647811    Training error rate: 44.000000
+800.000000/1000.000000 ==> Training loss: 1.338912    Training error rate: 40.000000
+900.000000/1000.000000 ==> Training loss: 1.866568    Training error rate: 56.000000
+==> Total training loss: 1701.566454    Total training error rate: 47.680000
+==> Testing Epoch: 7
+0.000000/100.000000 ==> Testing loss: 2.161837    Testing error rate: 53.000000
+==> Total testing loss: 223.756804    Total testing error rate: 56.840000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 8
+0.000000/1000.000000 ==> Training loss: 1.238703    Training error rate: 32.000000
+100.000000/1000.000000 ==> Training loss: 2.005628    Training error rate: 52.000000
+200.000000/1000.000000 ==> Training loss: 1.464485    Training error rate: 44.000000
+300.000000/1000.000000 ==> Training loss: 1.533148    Training error rate: 50.000000
+400.000000/1000.000000 ==> Training loss: 1.390836    Training error rate: 40.000000
+500.000000/1000.000000 ==> Training loss: 1.963462    Training error rate: 52.000000
+600.000000/1000.000000 ==> Training loss: 2.010920    Training error rate: 56.000000
+700.000000/1000.000000 ==> Training loss: 1.859288    Training error rate: 48.000000
+800.000000/1000.000000 ==> Training loss: 1.538333    Training error rate: 38.000000
+900.000000/1000.000000 ==> Training loss: 1.722815    Training error rate: 48.000000
+==> Total training loss: 1566.418599    Total training error rate: 44.240000
+==> Testing Epoch: 8
+0.000000/100.000000 ==> Testing loss: 2.619845    Testing error rate: 62.000000
+==> Total testing loss: 244.089349    Total testing error rate: 59.120000
+==> Set learning rate: 0.010000
+==> Training Epoch: 9
+0.000000/1000.000000 ==> Training loss: 1.191437    Training error rate: 28.000000
+100.000000/1000.000000 ==> Training loss: 1.348781    Training error rate: 42.000000
+200.000000/1000.000000 ==> Training loss: 1.260742    Training error rate: 36.000000
+300.000000/1000.000000 ==> Training loss: 1.417466    Training error rate: 42.000000
+400.000000/1000.000000 ==> Training loss: 1.291979    Training error rate: 36.000000
+500.000000/1000.000000 ==> Training loss: 1.746487    Training error rate: 52.000000
+600.000000/1000.000000 ==> Training loss: 1.465497    Training error rate: 42.000000
+700.000000/1000.000000 ==> Training loss: 1.009281    Training error rate: 28.000000
+800.000000/1000.000000 ==> Training loss: 1.464909    Training error rate: 42.000000
+900.000000/1000.000000 ==> Training loss: 1.769203    Training error rate: 60.000000
+==> Total training loss: 1452.411401    Total training error rate: 41.486000
+==> Testing Epoch: 9
+0.000000/100.000000 ==> Testing loss: 2.477402    Testing error rate: 62.000000
+==> Total testing loss: 229.357722    Total testing error rate: 56.310000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 10
+0.000000/1000.000000 ==> Training loss: 1.090159    Training error rate: 26.000000
+100.000000/1000.000000 ==> Training loss: 1.507515    Training error rate: 48.000000
+200.000000/1000.000000 ==> Training loss: 1.333416    Training error rate: 40.000000
+300.000000/1000.000000 ==> Training loss: 1.488067    Training error rate: 48.000000
+400.000000/1000.000000 ==> Training loss: 1.174894    Training error rate: 30.000000
+500.000000/1000.000000 ==> Training loss: 1.575401    Training error rate: 52.000000
+600.000000/1000.000000 ==> Training loss: 1.270527    Training error rate: 32.000000
+700.000000/1000.000000 ==> Training loss: 1.735292    Training error rate: 44.000000
+800.000000/1000.000000 ==> Training loss: 1.231460    Training error rate: 36.000000
+900.000000/1000.000000 ==> Training loss: 1.433516    Training error rate: 40.000000
+==> Total training loss: 1352.367397    Total training error rate: 39.176000
+==> Testing Epoch: 10
+0.000000/100.000000 ==> Testing loss: 2.176541    Testing error rate: 55.000000
+==> Total testing loss: 233.672915    Total testing error rate: 56.390000
+==> Set learning rate: 0.010000
+==> Training Epoch: 11
+0.000000/1000.000000 ==> Training loss: 1.359950    Training error rate: 36.000000
+100.000000/1000.000000 ==> Training loss: 1.223312    Training error rate: 38.000000
+200.000000/1000.000000 ==> Training loss: 1.157295    Training error rate: 40.000000
+300.000000/1000.000000 ==> Training loss: 1.333553    Training error rate: 38.000000
+400.000000/1000.000000 ==> Training loss: 1.066080    Training error rate: 34.000000
+500.000000/1000.000000 ==> Training loss: 1.024652    Training error rate: 26.000000
+600.000000/1000.000000 ==> Training loss: 1.151848    Training error rate: 26.000000
+700.000000/1000.000000 ==> Training loss: 0.961548    Training error rate: 28.000000
+800.000000/1000.000000 ==> Training loss: 1.223648    Training error rate: 36.000000
+900.000000/1000.000000 ==> Training loss: 0.939723    Training error rate: 32.000000
+==> Total training loss: 1277.522917    Total training error rate: 37.082000
+==> Testing Epoch: 11
+0.000000/100.000000 ==> Testing loss: 2.202897    Testing error rate: 47.000000
+==> Total testing loss: 220.316118    Total testing error rate: 52.530000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 12
+0.000000/1000.000000 ==> Training loss: 1.615157    Training error rate: 38.000000
+100.000000/1000.000000 ==> Training loss: 1.117235    Training error rate: 26.000000
+200.000000/1000.000000 ==> Training loss: 1.009745    Training error rate: 30.000000
+300.000000/1000.000000 ==> Training loss: 1.698366    Training error rate: 48.000000
+400.000000/1000.000000 ==> Training loss: 1.517463    Training error rate: 44.000000
+500.000000/1000.000000 ==> Training loss: 1.109598    Training error rate: 32.000000
+600.000000/1000.000000 ==> Training loss: 1.136448    Training error rate: 34.000000
+700.000000/1000.000000 ==> Training loss: 1.113020    Training error rate: 30.000000
+800.000000/1000.000000 ==> Training loss: 1.466735    Training error rate: 44.000000
+900.000000/1000.000000 ==> Training loss: 1.508898    Training error rate: 48.000000
+==> Total training loss: 1191.578637    Total training error rate: 34.896000
+==> Testing Epoch: 12
+0.000000/100.000000 ==> Testing loss: 1.861350    Testing error rate: 43.000000
+==> Total testing loss: 209.100292    Total testing error rate: 51.310000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 13
+0.000000/1000.000000 ==> Training loss: 0.705256    Training error rate: 22.000000
+100.000000/1000.000000 ==> Training loss: 1.287363    Training error rate: 38.000000
+200.000000/1000.000000 ==> Training loss: 1.153312    Training error rate: 30.000000
+300.000000/1000.000000 ==> Training loss: 0.924587    Training error rate: 28.000000
+400.000000/1000.000000 ==> Training loss: 0.948457    Training error rate: 32.000000
+500.000000/1000.000000 ==> Training loss: 1.017219    Training error rate: 30.000000
+600.000000/1000.000000 ==> Training loss: 1.112344    Training error rate: 38.000000
+700.000000/1000.000000 ==> Training loss: 0.786536    Training error rate: 22.000000
+800.000000/1000.000000 ==> Training loss: 0.915459    Training error rate: 28.000000
+900.000000/1000.000000 ==> Training loss: 1.059905    Training error rate: 34.000000
+==> Total training loss: 1124.762539    Total training error rate: 33.040000
+==> Testing Epoch: 13
+0.000000/100.000000 ==> Testing loss: 1.590490    Testing error rate: 43.000000
+==> Total testing loss: 207.308235    Total testing error rate: 50.440000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 14
+0.000000/1000.000000 ==> Training loss: 0.727659    Training error rate: 22.000000
+100.000000/1000.000000 ==> Training loss: 0.847028    Training error rate: 28.000000
+200.000000/1000.000000 ==> Training loss: 0.978221    Training error rate: 32.000000
+300.000000/1000.000000 ==> Training loss: 1.306388    Training error rate: 34.000000
+400.000000/1000.000000 ==> Training loss: 1.363574    Training error rate: 44.000000
+500.000000/1000.000000 ==> Training loss: 0.887851    Training error rate: 24.000000
+600.000000/1000.000000 ==> Training loss: 0.994562    Training error rate: 30.000000
+700.000000/1000.000000 ==> Training loss: 1.298183    Training error rate: 42.000000
+800.000000/1000.000000 ==> Training loss: 1.212095    Training error rate: 38.000000
+900.000000/1000.000000 ==> Training loss: 1.125716    Training error rate: 38.000000
+==> Total training loss: 1070.564591    Total training error rate: 31.720000
+==> Testing Epoch: 14
+0.000000/100.000000 ==> Testing loss: 1.835668    Testing error rate: 48.000000
+==> Total testing loss: 188.956884    Total testing error rate: 47.950000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 15
+0.000000/1000.000000 ==> Training loss: 0.867365    Training error rate: 26.000000
+100.000000/1000.000000 ==> Training loss: 0.905071    Training error rate: 26.000000
+200.000000/1000.000000 ==> Training loss: 1.098876    Training error rate: 32.000000
+300.000000/1000.000000 ==> Training loss: 0.946755    Training error rate: 30.000000
+400.000000/1000.000000 ==> Training loss: 1.075390    Training error rate: 34.000000
+500.000000/1000.000000 ==> Training loss: 1.024010    Training error rate: 32.000000
+600.000000/1000.000000 ==> Training loss: 1.370774    Training error rate: 46.000000
+700.000000/1000.000000 ==> Training loss: 1.247746    Training error rate: 46.000000
+800.000000/1000.000000 ==> Training loss: 1.234679    Training error rate: 36.000000
+900.000000/1000.000000 ==> Training loss: 0.913058    Training error rate: 24.000000
+==> Total training loss: 1026.268850    Total training error rate: 30.406000
+==> Testing Epoch: 15
+0.000000/100.000000 ==> Testing loss: 1.753206    Testing error rate: 46.000000
+==> Total testing loss: 186.556893    Total testing error rate: 47.230000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 16
+0.000000/1000.000000 ==> Training loss: 0.972240    Training error rate: 26.000000
+100.000000/1000.000000 ==> Training loss: 0.732156    Training error rate: 24.000000
+200.000000/1000.000000 ==> Training loss: 1.087373    Training error rate: 28.000000
+300.000000/1000.000000 ==> Training loss: 0.865208    Training error rate: 32.000000
+400.000000/1000.000000 ==> Training loss: 1.061655    Training error rate: 38.000000
+500.000000/1000.000000 ==> Training loss: 0.883252    Training error rate: 32.000000
+600.000000/1000.000000 ==> Training loss: 0.824690    Training error rate: 26.000000
+700.000000/1000.000000 ==> Training loss: 1.287393    Training error rate: 36.000000
+800.000000/1000.000000 ==> Training loss: 0.671131    Training error rate: 14.000000
+900.000000/1000.000000 ==> Training loss: 0.782254    Training error rate: 26.000000
+==> Total training loss: 966.196101    Total training error rate: 28.874000
+==> Testing Epoch: 16
+0.000000/100.000000 ==> Testing loss: 1.829895    Testing error rate: 45.000000
+==> Total testing loss: 164.973542    Total testing error rate: 43.190000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 17
+0.000000/1000.000000 ==> Training loss: 0.930844    Training error rate: 30.000000
+100.000000/1000.000000 ==> Training loss: 0.859077    Training error rate: 24.000000
+200.000000/1000.000000 ==> Training loss: 0.846491    Training error rate: 26.000000
+300.000000/1000.000000 ==> Training loss: 1.153001    Training error rate: 38.000000
+400.000000/1000.000000 ==> Training loss: 0.892448    Training error rate: 28.000000
+500.000000/1000.000000 ==> Training loss: 0.961587    Training error rate: 22.000000
+600.000000/1000.000000 ==> Training loss: 0.860275    Training error rate: 22.000000
+700.000000/1000.000000 ==> Training loss: 1.051998    Training error rate: 26.000000
+800.000000/1000.000000 ==> Training loss: 0.891180    Training error rate: 28.000000
+900.000000/1000.000000 ==> Training loss: 0.849393    Training error rate: 32.000000
+==> Total training loss: 928.491874    Total training error rate: 27.802000
+==> Testing Epoch: 17
+0.000000/100.000000 ==> Testing loss: 2.009072    Testing error rate: 41.000000
+==> Total testing loss: 178.010012    Total testing error rate: 45.560000
+==> Set learning rate: 0.010000
+==> Training Epoch: 18
+0.000000/1000.000000 ==> Training loss: 0.985289    Training error rate: 30.000000
+100.000000/1000.000000 ==> Training loss: 1.023056    Training error rate: 32.000000
+200.000000/1000.000000 ==> Training loss: 0.821960    Training error rate: 20.000000
+300.000000/1000.000000 ==> Training loss: 0.918700    Training error rate: 22.000000
+400.000000/1000.000000 ==> Training loss: 0.792798    Training error rate: 24.000000
+500.000000/1000.000000 ==> Training loss: 0.966619    Training error rate: 28.000000
+600.000000/1000.000000 ==> Training loss: 1.269490    Training error rate: 38.000000
+700.000000/1000.000000 ==> Training loss: 1.045064    Training error rate: 34.000000
+800.000000/1000.000000 ==> Training loss: 0.833244    Training error rate: 24.000000
+900.000000/1000.000000 ==> Training loss: 0.961873    Training error rate: 30.000000
+==> Total training loss: 890.947982    Total training error rate: 26.918000
+==> Testing Epoch: 18
+0.000000/100.000000 ==> Testing loss: 1.893654    Testing error rate: 51.000000
+==> Total testing loss: 184.767745    Total testing error rate: 45.740000
+==> Set learning rate: 0.010000
+==> Training Epoch: 19
+0.000000/1000.000000 ==> Training loss: 0.851345    Training error rate: 30.000000
+100.000000/1000.000000 ==> Training loss: 0.621927    Training error rate: 22.000000
+200.000000/1000.000000 ==> Training loss: 0.856993    Training error rate: 22.000000
+300.000000/1000.000000 ==> Training loss: 0.822045    Training error rate: 28.000000
+400.000000/1000.000000 ==> Training loss: 0.853403    Training error rate: 26.000000
+500.000000/1000.000000 ==> Training loss: 1.069491    Training error rate: 36.000000
+600.000000/1000.000000 ==> Training loss: 0.912433    Training error rate: 28.000000
+700.000000/1000.000000 ==> Training loss: 1.309409    Training error rate: 38.000000
+800.000000/1000.000000 ==> Training loss: 0.925332    Training error rate: 24.000000
+900.000000/1000.000000 ==> Training loss: 0.920110    Training error rate: 34.000000
+==> Total training loss: 850.675578    Total training error rate: 25.704000
+==> Testing Epoch: 19
+0.000000/100.000000 ==> Testing loss: 1.688738    Testing error rate: 42.000000
+==> Total testing loss: 182.654557    Total testing error rate: 45.100000
+==> Set learning rate: 0.010000
+==> Training Epoch: 20
+0.000000/1000.000000 ==> Training loss: 1.111462    Training error rate: 32.000000
+100.000000/1000.000000 ==> Training loss: 0.927440    Training error rate: 30.000000
+200.000000/1000.000000 ==> Training loss: 0.719967    Training error rate: 16.000000
+300.000000/1000.000000 ==> Training loss: 0.747653    Training error rate: 20.000000
+400.000000/1000.000000 ==> Training loss: 1.002347    Training error rate: 26.000000
+500.000000/1000.000000 ==> Training loss: 0.978879    Training error rate: 30.000000
+600.000000/1000.000000 ==> Training loss: 0.853503    Training error rate: 26.000000
+700.000000/1000.000000 ==> Training loss: 0.873061    Training error rate: 28.000000
+800.000000/1000.000000 ==> Training loss: 0.700647    Training error rate: 22.000000
+900.000000/1000.000000 ==> Training loss: 0.970740    Training error rate: 28.000000
+==> Total training loss: 812.841152    Total training error rate: 24.734000
+==> Testing Epoch: 20
+0.000000/100.000000 ==> Testing loss: 1.745551    Testing error rate: 42.000000
+==> Total testing loss: 191.539909    Total testing error rate: 46.810000
+==> Set learning rate: 0.010000
+==> Training Epoch: 21
+0.000000/1000.000000 ==> Training loss: 0.767264    Training error rate: 16.000000
+100.000000/1000.000000 ==> Training loss: 0.496520    Training error rate: 18.000000
+200.000000/1000.000000 ==> Training loss: 0.711522    Training error rate: 22.000000
+300.000000/1000.000000 ==> Training loss: 0.735959    Training error rate: 22.000000
+400.000000/1000.000000 ==> Training loss: 0.702699    Training error rate: 26.000000
+500.000000/1000.000000 ==> Training loss: 0.773586    Training error rate: 28.000000
+600.000000/1000.000000 ==> Training loss: 0.761338    Training error rate: 26.000000
+700.000000/1000.000000 ==> Training loss: 0.708230    Training error rate: 22.000000
+800.000000/1000.000000 ==> Training loss: 0.772515    Training error rate: 28.000000
+900.000000/1000.000000 ==> Training loss: 1.110233    Training error rate: 38.000000
+==> Total training loss: 780.506637    Total training error rate: 23.802000
+==> Testing Epoch: 21
+0.000000/100.000000 ==> Testing loss: 1.831831    Testing error rate: 44.000000
+==> Total testing loss: 185.576356    Total testing error rate: 45.920000
+==> Set learning rate: 0.010000
+==> Training Epoch: 22
+0.000000/1000.000000 ==> Training loss: 0.721962    Training error rate: 20.000000
+100.000000/1000.000000 ==> Training loss: 0.596653    Training error rate: 12.000000
+200.000000/1000.000000 ==> Training loss: 0.815078    Training error rate: 30.000000
+300.000000/1000.000000 ==> Training loss: 0.587151    Training error rate: 22.000000
+400.000000/1000.000000 ==> Training loss: 0.862949    Training error rate: 26.000000
+500.000000/1000.000000 ==> Training loss: 0.955908    Training error rate: 24.000000
+600.000000/1000.000000 ==> Training loss: 0.466026    Training error rate: 14.000000
+700.000000/1000.000000 ==> Training loss: 1.021729    Training error rate: 32.000000
+800.000000/1000.000000 ==> Training loss: 0.748277    Training error rate: 26.000000
+900.000000/1000.000000 ==> Training loss: 0.677640    Training error rate: 20.000000
+==> Total training loss: 752.806306    Total training error rate: 22.890000
+==> Testing Epoch: 22
+0.000000/100.000000 ==> Testing loss: 1.847974    Testing error rate: 47.000000
+==> Total testing loss: 181.441018    Total testing error rate: 44.190000
+==> Set learning rate: 0.010000
+==> Training Epoch: 23
+0.000000/1000.000000 ==> Training loss: 0.922359    Training error rate: 28.000000
+100.000000/1000.000000 ==> Training loss: 0.604717    Training error rate: 20.000000
+200.000000/1000.000000 ==> Training loss: 0.790466    Training error rate: 22.000000
+300.000000/1000.000000 ==> Training loss: 0.708143    Training error rate: 20.000000
+400.000000/1000.000000 ==> Training loss: 0.571669    Training error rate: 18.000000
+500.000000/1000.000000 ==> Training loss: 0.727346    Training error rate: 24.000000
+600.000000/1000.000000 ==> Training loss: 0.829836    Training error rate: 26.000000
+700.000000/1000.000000 ==> Training loss: 0.821543    Training error rate: 30.000000
+800.000000/1000.000000 ==> Training loss: 0.720870    Training error rate: 26.000000
+900.000000/1000.000000 ==> Training loss: 0.672778    Training error rate: 20.000000
+==> Total training loss: 723.227978    Total training error rate: 22.128000
+==> Testing Epoch: 23
+0.000000/100.000000 ==> Testing loss: 1.365129    Testing error rate: 36.000000
+==> Total testing loss: 168.138776    Total testing error rate: 41.840000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 24
+0.000000/1000.000000 ==> Training loss: 0.930956    Training error rate: 32.000000
+100.000000/1000.000000 ==> Training loss: 0.514888    Training error rate: 18.000000
+200.000000/1000.000000 ==> Training loss: 0.825244    Training error rate: 26.000000
+300.000000/1000.000000 ==> Training loss: 0.887017    Training error rate: 20.000000
+400.000000/1000.000000 ==> Training loss: 0.620502    Training error rate: 22.000000
+500.000000/1000.000000 ==> Training loss: 0.392536    Training error rate: 16.000000
+600.000000/1000.000000 ==> Training loss: 0.833283    Training error rate: 20.000000
+700.000000/1000.000000 ==> Training loss: 0.642860    Training error rate: 18.000000
+800.000000/1000.000000 ==> Training loss: 0.666740    Training error rate: 22.000000
+900.000000/1000.000000 ==> Training loss: 0.712117    Training error rate: 20.000000
+==> Total training loss: 701.354084    Total training error rate: 21.482000
+==> Testing Epoch: 24
+0.000000/100.000000 ==> Testing loss: 1.988589    Testing error rate: 45.000000
+==> Total testing loss: 196.064666    Total testing error rate: 46.140000
+==> Set learning rate: 0.010000
+==> Training Epoch: 25
+0.000000/1000.000000 ==> Training loss: 0.567033    Training error rate: 18.000000
+100.000000/1000.000000 ==> Training loss: 0.716140    Training error rate: 24.000000
+200.000000/1000.000000 ==> Training loss: 0.746252    Training error rate: 24.000000
+300.000000/1000.000000 ==> Training loss: 0.535953    Training error rate: 22.000000
+400.000000/1000.000000 ==> Training loss: 0.733747    Training error rate: 22.000000
+500.000000/1000.000000 ==> Training loss: 1.018139    Training error rate: 26.000000
+600.000000/1000.000000 ==> Training loss: 0.584336    Training error rate: 16.000000
+700.000000/1000.000000 ==> Training loss: 0.837975    Training error rate: 26.000000
+800.000000/1000.000000 ==> Training loss: 0.531305    Training error rate: 18.000000
+900.000000/1000.000000 ==> Training loss: 0.567354    Training error rate: 14.000000
+==> Total training loss: 677.171407    Total training error rate: 20.924000
+==> Testing Epoch: 25
+0.000000/100.000000 ==> Testing loss: 1.859807    Testing error rate: 41.000000
+==> Total testing loss: 202.691725    Total testing error rate: 46.620000
+==> Set learning rate: 0.010000
+==> Training Epoch: 26
+0.000000/1000.000000 ==> Training loss: 0.636332    Training error rate: 20.000000
+100.000000/1000.000000 ==> Training loss: 0.484798    Training error rate: 20.000000
+200.000000/1000.000000 ==> Training loss: 0.455995    Training error rate: 14.000000
+300.000000/1000.000000 ==> Training loss: 0.763539    Training error rate: 24.000000
+400.000000/1000.000000 ==> Training loss: 0.802256    Training error rate: 24.000000
+500.000000/1000.000000 ==> Training loss: 0.693749    Training error rate: 30.000000
+600.000000/1000.000000 ==> Training loss: 0.632875    Training error rate: 26.000000
+700.000000/1000.000000 ==> Training loss: 0.709342    Training error rate: 26.000000
+800.000000/1000.000000 ==> Training loss: 0.856173    Training error rate: 24.000000
+900.000000/1000.000000 ==> Training loss: 0.843223    Training error rate: 34.000000
+==> Total training loss: 662.346125    Total training error rate: 20.440000
+==> Testing Epoch: 26
+0.000000/100.000000 ==> Testing loss: 1.919270    Testing error rate: 47.000000
+==> Total testing loss: 184.929219    Total testing error rate: 44.860000
+==> Set learning rate: 0.010000
+==> Training Epoch: 27
+0.000000/1000.000000 ==> Training loss: 0.429896    Training error rate: 14.000000
+100.000000/1000.000000 ==> Training loss: 0.495214    Training error rate: 16.000000
+200.000000/1000.000000 ==> Training loss: 0.732127    Training error rate: 24.000000
+300.000000/1000.000000 ==> Training loss: 0.505759    Training error rate: 16.000000
+400.000000/1000.000000 ==> Training loss: 0.488221    Training error rate: 18.000000
+500.000000/1000.000000 ==> Training loss: 0.364903    Training error rate: 14.000000
+600.000000/1000.000000 ==> Training loss: 0.610658    Training error rate: 18.000000
+700.000000/1000.000000 ==> Training loss: 0.670561    Training error rate: 14.000000
+800.000000/1000.000000 ==> Training loss: 0.368453    Training error rate: 10.000000
+900.000000/1000.000000 ==> Training loss: 0.862486    Training error rate: 20.000000
+==> Total training loss: 639.013556    Total training error rate: 19.742000
+==> Testing Epoch: 27
+0.000000/100.000000 ==> Testing loss: 1.739962    Testing error rate: 35.000000
+==> Total testing loss: 200.991343    Total testing error rate: 44.890000
+==> Set learning rate: 0.010000
+==> Training Epoch: 28
+0.000000/1000.000000 ==> Training loss: 0.433776    Training error rate: 14.000000
+100.000000/1000.000000 ==> Training loss: 0.395830    Training error rate: 12.000000
+200.000000/1000.000000 ==> Training loss: 0.434292    Training error rate: 16.000000
+300.000000/1000.000000 ==> Training loss: 0.704329    Training error rate: 20.000000
+400.000000/1000.000000 ==> Training loss: 0.784605    Training error rate: 22.000000
+500.000000/1000.000000 ==> Training loss: 0.549654    Training error rate: 16.000000
+600.000000/1000.000000 ==> Training loss: 0.681449    Training error rate: 22.000000
+700.000000/1000.000000 ==> Training loss: 0.470264    Training error rate: 16.000000
+800.000000/1000.000000 ==> Training loss: 0.645613    Training error rate: 24.000000
+900.000000/1000.000000 ==> Training loss: 0.561598    Training error rate: 22.000000
+==> Total training loss: 622.867370    Total training error rate: 19.374000
+==> Testing Epoch: 28
+0.000000/100.000000 ==> Testing loss: 1.780073    Testing error rate: 44.000000
+==> Total testing loss: 184.258845    Total testing error rate: 43.720000
+==> Set learning rate: 0.010000
+==> Training Epoch: 29
+0.000000/1000.000000 ==> Training loss: 0.593890    Training error rate: 12.000000
+100.000000/1000.000000 ==> Training loss: 0.388087    Training error rate: 6.000000
+200.000000/1000.000000 ==> Training loss: 0.567218    Training error rate: 18.000000
+300.000000/1000.000000 ==> Training loss: 0.338313    Training error rate: 12.000000
+400.000000/1000.000000 ==> Training loss: 0.529858    Training error rate: 16.000000
+500.000000/1000.000000 ==> Training loss: 0.527370    Training error rate: 18.000000
+600.000000/1000.000000 ==> Training loss: 0.708977    Training error rate: 24.000000
+700.000000/1000.000000 ==> Training loss: 1.222622    Training error rate: 30.000000
+800.000000/1000.000000 ==> Training loss: 0.677094    Training error rate: 26.000000
+900.000000/1000.000000 ==> Training loss: 0.895189    Training error rate: 28.000000
+==> Total training loss: 606.264310    Total training error rate: 18.808000
+==> Testing Epoch: 29
+0.000000/100.000000 ==> Testing loss: 1.703405    Testing error rate: 36.000000
+==> Total testing loss: 172.523472    Total testing error rate: 42.220000
+==> Set learning rate: 0.010000
+==> Training Epoch: 30
+0.000000/1000.000000 ==> Training loss: 0.283194    Training error rate: 8.000000
+100.000000/1000.000000 ==> Training loss: 0.706512    Training error rate: 24.000000
+200.000000/1000.000000 ==> Training loss: 0.243106    Training error rate: 4.000000
+300.000000/1000.000000 ==> Training loss: 0.447093    Training error rate: 14.000000
+400.000000/1000.000000 ==> Training loss: 0.657774    Training error rate: 22.000000
+500.000000/1000.000000 ==> Training loss: 0.477736    Training error rate: 18.000000
+600.000000/1000.000000 ==> Training loss: 0.467876    Training error rate: 14.000000
+700.000000/1000.000000 ==> Training loss: 0.776594    Training error rate: 22.000000
+800.000000/1000.000000 ==> Training loss: 0.917392    Training error rate: 28.000000
+900.000000/1000.000000 ==> Training loss: 0.603711    Training error rate: 20.000000
+==> Total training loss: 589.211594    Total training error rate: 18.236000
+==> Testing Epoch: 30
+0.000000/100.000000 ==> Testing loss: 1.863570    Testing error rate: 45.000000
+==> Total testing loss: 185.586353    Total testing error rate: 42.940000
+==> Set learning rate: 0.010000
+==> Training Epoch: 31
+0.000000/1000.000000 ==> Training loss: 0.667476    Training error rate: 22.000000
+100.000000/1000.000000 ==> Training loss: 0.429468    Training error rate: 14.000000
+200.000000/1000.000000 ==> Training loss: 0.454455    Training error rate: 12.000000
+300.000000/1000.000000 ==> Training loss: 0.529448    Training error rate: 22.000000
+400.000000/1000.000000 ==> Training loss: 0.393655    Training error rate: 16.000000
+500.000000/1000.000000 ==> Training loss: 0.627022    Training error rate: 22.000000
+600.000000/1000.000000 ==> Training loss: 0.530973    Training error rate: 18.000000
+700.000000/1000.000000 ==> Training loss: 0.376977    Training error rate: 14.000000
+800.000000/1000.000000 ==> Training loss: 0.629609    Training error rate: 20.000000
+900.000000/1000.000000 ==> Training loss: 0.658979    Training error rate: 16.000000
+==> Total training loss: 577.352788    Total training error rate: 17.960000
+==> Testing Epoch: 31
+0.000000/100.000000 ==> Testing loss: 1.736038    Testing error rate: 42.000000
+==> Total testing loss: 176.786487    Total testing error rate: 42.270000
+==> Set learning rate: 0.010000
+==> Training Epoch: 32
+0.000000/1000.000000 ==> Training loss: 0.472172    Training error rate: 14.000000
+100.000000/1000.000000 ==> Training loss: 0.356516    Training error rate: 12.000000
+200.000000/1000.000000 ==> Training loss: 0.553725    Training error rate: 20.000000
+300.000000/1000.000000 ==> Training loss: 0.306670    Training error rate: 12.000000
+400.000000/1000.000000 ==> Training loss: 0.366554    Training error rate: 8.000000
+500.000000/1000.000000 ==> Training loss: 0.840575    Training error rate: 24.000000
+600.000000/1000.000000 ==> Training loss: 0.542408    Training error rate: 14.000000
+700.000000/1000.000000 ==> Training loss: 0.623253    Training error rate: 26.000000
+800.000000/1000.000000 ==> Training loss: 0.822080    Training error rate: 24.000000
+900.000000/1000.000000 ==> Training loss: 0.342558    Training error rate: 8.000000
+==> Total training loss: 566.742464    Total training error rate: 17.696000
+==> Testing Epoch: 32
+0.000000/100.000000 ==> Testing loss: 1.577955    Testing error rate: 43.000000
+==> Total testing loss: 173.298293    Total testing error rate: 42.010000
+==> Set learning rate: 0.010000
+==> Training Epoch: 33
+0.000000/1000.000000 ==> Training loss: 0.435449    Training error rate: 12.000000
+100.000000/1000.000000 ==> Training loss: 0.449043    Training error rate: 14.000000
+200.000000/1000.000000 ==> Training loss: 0.583985    Training error rate: 20.000000
+300.000000/1000.000000 ==> Training loss: 0.721934    Training error rate: 24.000000
+400.000000/1000.000000 ==> Training loss: 0.358271    Training error rate: 10.000000
+500.000000/1000.000000 ==> Training loss: 0.609229    Training error rate: 18.000000
+600.000000/1000.000000 ==> Training loss: 0.532423    Training error rate: 20.000000
+700.000000/1000.000000 ==> Training loss: 0.722628    Training error rate: 28.000000
+800.000000/1000.000000 ==> Training loss: 0.553848    Training error rate: 20.000000
+900.000000/1000.000000 ==> Training loss: 0.467757    Training error rate: 18.000000
+==> Total training loss: 546.680635    Total training error rate: 17.094000
+==> Testing Epoch: 33
+0.000000/100.000000 ==> Testing loss: 1.567699    Testing error rate: 34.000000
+==> Total testing loss: 165.118266    Total testing error rate: 40.870000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 34
+0.000000/1000.000000 ==> Training loss: 0.583549    Training error rate: 14.000000
+100.000000/1000.000000 ==> Training loss: 0.437764    Training error rate: 10.000000
+200.000000/1000.000000 ==> Training loss: 0.363839    Training error rate: 10.000000
+300.000000/1000.000000 ==> Training loss: 0.293470    Training error rate: 10.000000
+400.000000/1000.000000 ==> Training loss: 0.625180    Training error rate: 20.000000
+500.000000/1000.000000 ==> Training loss: 0.754290    Training error rate: 24.000000
+600.000000/1000.000000 ==> Training loss: 0.843100    Training error rate: 22.000000
+700.000000/1000.000000 ==> Training loss: 0.622585    Training error rate: 14.000000
+800.000000/1000.000000 ==> Training loss: 0.826806    Training error rate: 26.000000
+900.000000/1000.000000 ==> Training loss: 0.963691    Training error rate: 30.000000
+==> Total training loss: 531.285602    Total training error rate: 16.462000
+==> Testing Epoch: 34
+0.000000/100.000000 ==> Testing loss: 1.643411    Testing error rate: 42.000000
+==> Total testing loss: 200.234521    Total testing error rate: 44.940000
+==> Set learning rate: 0.010000
+==> Training Epoch: 35
+0.000000/1000.000000 ==> Training loss: 0.376417    Training error rate: 12.000000
+100.000000/1000.000000 ==> Training loss: 0.426742    Training error rate: 10.000000
+200.000000/1000.000000 ==> Training loss: 0.273081    Training error rate: 10.000000
+300.000000/1000.000000 ==> Training loss: 0.703059    Training error rate: 18.000000
+400.000000/1000.000000 ==> Training loss: 0.470574    Training error rate: 16.000000
+500.000000/1000.000000 ==> Training loss: 0.777677    Training error rate: 30.000000
+600.000000/1000.000000 ==> Training loss: 0.563870    Training error rate: 14.000000
+700.000000/1000.000000 ==> Training loss: 0.452867    Training error rate: 10.000000
+800.000000/1000.000000 ==> Training loss: 0.327057    Training error rate: 8.000000
+900.000000/1000.000000 ==> Training loss: 0.975420    Training error rate: 28.000000
+==> Total training loss: 530.336577    Total training error rate: 16.634000
+==> Testing Epoch: 35
+0.000000/100.000000 ==> Testing loss: 1.676841    Testing error rate: 38.000000
+==> Total testing loss: 198.537040    Total testing error rate: 44.380000
+==> Set learning rate: 0.010000
+==> Training Epoch: 36
+0.000000/1000.000000 ==> Training loss: 0.299896    Training error rate: 6.000000
+100.000000/1000.000000 ==> Training loss: 0.481739    Training error rate: 10.000000
+200.000000/1000.000000 ==> Training loss: 0.492338    Training error rate: 10.000000
+300.000000/1000.000000 ==> Training loss: 0.318471    Training error rate: 8.000000
+400.000000/1000.000000 ==> Training loss: 0.550953    Training error rate: 24.000000
+500.000000/1000.000000 ==> Training loss: 0.553974    Training error rate: 20.000000
+600.000000/1000.000000 ==> Training loss: 0.508106    Training error rate: 18.000000
+700.000000/1000.000000 ==> Training loss: 0.610186    Training error rate: 14.000000
+800.000000/1000.000000 ==> Training loss: 0.501686    Training error rate: 12.000000
+900.000000/1000.000000 ==> Training loss: 0.679145    Training error rate: 22.000000
+==> Total training loss: 520.711285    Total training error rate: 16.094000
+==> Testing Epoch: 36
+0.000000/100.000000 ==> Testing loss: 1.974536    Testing error rate: 47.000000
+==> Total testing loss: 193.991308    Total testing error rate: 44.310000
+==> Set learning rate: 0.010000
+==> Training Epoch: 37
+0.000000/1000.000000 ==> Training loss: 0.446330    Training error rate: 12.000000
+100.000000/1000.000000 ==> Training loss: 0.543741    Training error rate: 16.000000
+200.000000/1000.000000 ==> Training loss: 0.533313    Training error rate: 18.000000
+300.000000/1000.000000 ==> Training loss: 0.389153    Training error rate: 6.000000
+400.000000/1000.000000 ==> Training loss: 0.631879    Training error rate: 22.000000
+500.000000/1000.000000 ==> Training loss: 0.270356    Training error rate: 6.000000
+600.000000/1000.000000 ==> Training loss: 0.582469    Training error rate: 16.000000
+700.000000/1000.000000 ==> Training loss: 0.542956    Training error rate: 14.000000
+800.000000/1000.000000 ==> Training loss: 0.410186    Training error rate: 10.000000
+900.000000/1000.000000 ==> Training loss: 0.438462    Training error rate: 18.000000
+==> Total training loss: 507.499519    Total training error rate: 15.858000
+==> Testing Epoch: 37
+0.000000/100.000000 ==> Testing loss: 1.688732    Testing error rate: 35.000000
+==> Total testing loss: 177.363051    Total testing error rate: 42.240000
+==> Set learning rate: 0.010000
+==> Training Epoch: 38
+0.000000/1000.000000 ==> Training loss: 0.558060    Training error rate: 18.000000
+100.000000/1000.000000 ==> Training loss: 0.525210    Training error rate: 18.000000
+200.000000/1000.000000 ==> Training loss: 0.386224    Training error rate: 14.000000
+300.000000/1000.000000 ==> Training loss: 0.536929    Training error rate: 18.000000
+400.000000/1000.000000 ==> Training loss: 0.427879    Training error rate: 12.000000
+500.000000/1000.000000 ==> Training loss: 0.554228    Training error rate: 16.000000
+600.000000/1000.000000 ==> Training loss: 0.526124    Training error rate: 20.000000
+700.000000/1000.000000 ==> Training loss: 0.380708    Training error rate: 10.000000
+800.000000/1000.000000 ==> Training loss: 0.507705    Training error rate: 16.000000
+900.000000/1000.000000 ==> Training loss: 0.544712    Training error rate: 18.000000
+==> Total training loss: 493.957515    Total training error rate: 15.500000
+==> Testing Epoch: 38
+0.000000/100.000000 ==> Testing loss: 1.587887    Testing error rate: 34.000000
+==> Total testing loss: 172.873445    Total testing error rate: 40.340000
+==> Saving checkpoint..
+==> Set learning rate: 0.010000
+==> Training Epoch: 39
+0.000000/1000.000000 ==> Training loss: 0.389795    Training error rate: 10.000000
+100.000000/1000.000000 ==> Training loss: 0.497165    Training error rate: 16.000000
+200.000000/1000.000000 ==> Training loss: 0.375713    Training error rate: 8.000000
+300.000000/1000.000000 ==> Training loss: 0.425413    Training error rate: 14.000000
+400.000000/1000.000000 ==> Training loss: 0.453124    Training error rate: 16.000000
+500.000000/1000.000000 ==> Training loss: 0.289065    Training error rate: 6.000000
+600.000000/1000.000000 ==> Training loss: 0.754663    Training error rate: 22.000000
+700.000000/1000.000000 ==> Training loss: 0.455750    Training error rate: 12.000000
+800.000000/1000.000000 ==> Training loss: 0.407556    Training error rate: 14.000000
+900.000000/1000.000000 ==> Training loss: 0.820390    Training error rate: 26.000000
+==> Total training loss: 490.848706    Total training error rate: 15.298000
+==> Testing Epoch: 39
+0.000000/100.000000 ==> Testing loss: 1.781626    Testing error rate: 35.000000
+==> Total testing loss: 180.577140    Total testing error rate: 42.390000
+==> Set learning rate: 0.010000
+==> Training Epoch: 40
+0.000000/1000.000000 ==> Training loss: 0.301570    Training error rate: 10.000000
+100.000000/1000.000000 ==> Training loss: 0.362049    Training error rate: 10.000000
+200.000000/1000.000000 ==> Training loss: 0.555851    Training error rate: 24.000000
+300.000000/1000.000000 ==> Training loss: 0.441246    Training error rate: 18.000000
+400.000000/1000.000000 ==> Training loss: 0.499953    Training error rate: 22.000000
+500.000000/1000.000000 ==> Training loss: 0.587439    Training error rate: 22.000000
+600.000000/1000.000000 ==> Training loss: 0.720891    Training error rate: 20.000000
+700.000000/1000.000000 ==> Training loss: 0.462090    Training error rate: 14.000000
+800.000000/1000.000000 ==> Training loss: 0.582130    Training error rate: 18.000000
+900.000000/1000.000000 ==> Training loss: 0.706878    Training error rate: 22.000000
+==> Total training loss: 479.340496    Total training error rate: 14.862000
+==> Testing Epoch: 40
+0.000000/100.000000 ==> Testing loss: 1.653235    Testing error rate: 31.000000
+==> Total testing loss: 174.599410    Total testing error rate: 41.250000
+==> Set learning rate: 0.010000
+==> Training Epoch: 41
+0.000000/1000.000000 ==> Training loss: 0.331115    Training error rate: 8.000000
+100.000000/1000.000000 ==> Training loss: 0.403770    Training error rate: 8.000000
+200.000000/1000.000000 ==> Training loss: 0.498493    Training error rate: 18.000000
+300.000000/1000.000000 ==> Training loss: 0.207802    Training error rate: 6.000000
+400.000000/1000.000000 ==> Training loss: 0.357813    Training error rate: 10.000000
+500.000000/1000.000000 ==> Training loss: 0.408660    Training error rate: 12.000000
+600.000000/1000.000000 ==> Training loss: 0.474352    Training error rate: 16.000000
+700.000000/1000.000000 ==> Training loss: 0.452424    Training error rate: 10.000000
+800.000000/1000.000000 ==> Training loss: 0.589968    Training error rate: 16.000000
+900.000000/1000.000000 ==> Training loss: 0.561964    Training error rate: 14.000000
+==> Total training loss: 467.383191    Total training error rate: 14.554000
+==> Testing Epoch: 41
+0.000000/100.000000 ==> Testing loss: 1.792241    Testing error rate: 38.000000
+==> Total testing loss: 194.173753    Total testing error rate: 44.020000
+==> Set learning rate: 0.010000
+==> Training Epoch: 42
+0.000000/1000.000000 ==> Training loss: 0.385221    Training error rate: 12.000000
+100.000000/1000.000000 ==> Training loss: 0.392747    Training error rate: 12.000000
+200.000000/1000.000000 ==> Training loss: 0.268028    Training error rate: 8.000000
+300.000000/1000.000000 ==> Training loss: 0.298359    Training error rate: 4.000000
+400.000000/1000.000000 ==> Training loss: 0.700857    Training error rate: 18.000000
+500.000000/1000.000000 ==> Training loss: 0.386326    Training error rate: 10.000000
+600.000000/1000.000000 ==> Training loss: 0.383363    Training error rate: 14.000000
+700.000000/1000.000000 ==> Training loss: 0.504725    Training error rate: 16.000000
+800.000000/1000.000000 ==> Training loss: 0.457873    Training error rate: 12.000000
+900.000000/1000.000000 ==> Training loss: 0.560245    Training error rate: 18.000000
+==> Total training loss: 454.174499    Total training error rate: 14.034000
+==> Testing Epoch: 42
+0.000000/100.000000 ==> Testing loss: 1.534070    Testing error rate: 36.000000
+==> Total testing loss: 188.508849    Total testing error rate: 43.490000
+==> Set learning rate: 0.010000
+==> Training Epoch: 43
+0.000000/1000.000000 ==> Training loss: 0.260129    Training error rate: 10.000000
+100.000000/1000.000000 ==> Training loss: 0.302640    Training error rate: 10.000000
+200.000000/1000.000000 ==> Training loss: 0.332151    Training error rate: 6.000000
+300.000000/1000.000000 ==> Training loss: 0.348938    Training error rate: 8.000000
+400.000000/1000.000000 ==> Training loss: 0.467891    Training error rate: 12.000000
+500.000000/1000.000000 ==> Training loss: 0.460112    Training error rate: 12.000000
+600.000000/1000.000000 ==> Training loss: 0.360241    Training error rate: 12.000000
+700.000000/1000.000000 ==> Training loss: 0.718095    Training error rate: 28.000000
+800.000000/1000.000000 ==> Training loss: 0.433017    Training error rate: 18.000000
+900.000000/1000.000000 ==> Training loss: 0.429854    Training error rate: 20.000000
+==> Total training loss: 455.375407    Total training error rate: 14.322000
+==> Testing Epoch: 43
+0.000000/100.000000 ==> Testing loss: 1.934406    Testing error rate: 40.000000
+==> Total testing loss: 196.924587    Total testing error rate: 44.520000
+==> Set learning rate: 0.010000
+==> Training Epoch: 44
+0.000000/1000.000000 ==> Training loss: 0.568477    Training error rate: 14.000000
+100.000000/1000.000000 ==> Training loss: 0.196940    Training error rate: 6.000000
+200.000000/1000.000000 ==> Training loss: 0.336626    Training error rate: 10.000000
+300.000000/1000.000000 ==> Training loss: 0.333554    Training error rate: 10.000000
+400.000000/1000.000000 ==> Training loss: 0.169473    Training error rate: 2.000000
+500.000000/1000.000000 ==> Training loss: 0.849147    Training error rate: 28.000000
+600.000000/1000.000000 ==> Training loss: 0.490704    Training error rate: 14.000000
+700.000000/1000.000000 ==> Training loss: 0.549869    Training error rate: 18.000000
+800.000000/1000.000000 ==> Training loss: 0.450493    Training error rate: 18.000000
+900.000000/1000.000000 ==> Training loss: 0.476664    Training error rate: 18.000000
+==> Total training loss: 453.372014    Total training error rate: 13.964000
+==> Testing Epoch: 44
+0.000000/100.000000 ==> Testing loss: 1.559856    Testing error rate: 40.000000
+==> Total testing loss: 175.628382    Total testing error rate: 40.850000
+==> Set learning rate: 0.010000
+==> Training Epoch: 45
+0.000000/1000.000000 ==> Training loss: 0.360826    Training error rate: 10.000000
+100.000000/1000.000000 ==> Training loss: 0.512601    Training error rate: 16.000000
+200.000000/1000.000000 ==> Training loss: 0.097883    Training error rate: 2.000000
+300.000000/1000.000000 ==> Training loss: 0.303962    Training error rate: 12.000000
+400.000000/1000.000000 ==> Training loss: 0.308595    Training error rate: 6.000000
+500.000000/1000.000000 ==> Training loss: 0.303288    Training error rate: 10.000000
+600.000000/1000.000000 ==> Training loss: 0.578083    Training error rate: 12.000000
+700.000000/1000.000000 ==> Training loss: 0.491421    Training error rate: 20.000000
+800.000000/1000.000000 ==> Training loss: 0.264994    Training error rate: 10.000000
+900.000000/1000.000000 ==> Training loss: 0.729852    Training error rate: 28.000000
+==> Total training loss: 443.604300    Total training error rate: 13.904000
+==> Testing Epoch: 45
+0.000000/100.000000 ==> Testing loss: 1.752299    Testing error rate: 36.000000
+==> Total testing loss: 180.829504    Total testing error rate: 41.810000
+==> Set learning rate: 0.010000
+==> Training Epoch: 46
+0.000000/1000.000000 ==> Training loss: 0.299914    Training error rate: 8.000000
+100.000000/1000.000000 ==> Training loss: 0.392503    Training error rate: 10.000000
+200.000000/1000.000000 ==> Training loss: 0.239962    Training error rate: 10.000000
+300.000000/1000.000000 ==> Training loss: 0.491768    Training error rate: 14.000000
+400.000000/1000.000000 ==> Training loss: 0.370525    Training error rate: 10.000000
+500.000000/1000.000000 ==> Training loss: 0.358806    Training error rate: 10.000000
+600.000000/1000.000000 ==> Training loss: 0.548949    Training error rate: 20.000000
+700.000000/1000.000000 ==> Training loss: 0.463800    Training error rate: 14.000000
+800.000000/1000.000000 ==> Training loss: 0.742166    Training error rate: 26.000000
+900.000000/1000.000000 ==> Training loss: 0.501078    Training error rate: 18.000000
+==> Total training loss: 436.828023    Total training error rate: 13.782000
+==> Testing Epoch: 46
+0.000000/100.000000 ==> Testing loss: 1.789341    Testing error rate: 41.000000
+==> Total testing loss: 191.642171    Total testing error rate: 43.490000
+==> Set learning rate: 0.010000
+==> Training Epoch: 47
+0.000000/1000.000000 ==> Training loss: 0.297693    Training error rate: 16.000000
+100.000000/1000.000000 ==> Training loss: 0.290762    Training error rate: 10.000000
+200.000000/1000.000000 ==> Training loss: 0.508701    Training error rate: 18.000000
+300.000000/1000.000000 ==> Training loss: 0.454790    Training error rate: 14.000000
+400.000000/1000.000000 ==> Training loss: 0.358772    Training error rate: 10.000000
+500.000000/1000.000000 ==> Training loss: 0.686124    Training error rate: 26.000000
+600.000000/1000.000000 ==> Training loss: 0.236243    Training error rate: 6.000000
+700.000000/1000.000000 ==> Training loss: 0.559674    Training error rate: 20.000000
+800.000000/1000.000000 ==> Training loss: 0.354656    Training error rate: 14.000000
+900.000000/1000.000000 ==> Training loss: 0.527496    Training error rate: 18.000000
+==> Total training loss: 435.425904    Total training error rate: 13.424000
+==> Testing Epoch: 47
+0.000000/100.000000 ==> Testing loss: 1.714136    Testing error rate: 37.000000
+==> Total testing loss: 177.635438    Total testing error rate: 40.460000
+==> Set learning rate: 0.010000
+==> Training Epoch: 48
+0.000000/1000.000000 ==> Training loss: 0.138551    Training error rate: 4.000000
+100.000000/1000.000000 ==> Training loss: 0.319040    Training error rate: 12.000000
+200.000000/1000.000000 ==> Training loss: 0.182199    Training error rate: 4.000000
+300.000000/1000.000000 ==> Training loss: 0.518444    Training error rate: 16.000000
+400.000000/1000.000000 ==> Training loss: 0.467735    Training error rate: 16.000000
+500.000000/1000.000000 ==> Training loss: 0.428532    Training error rate: 12.000000
+600.000000/1000.000000 ==> Training loss: 0.265515    Training error rate: 10.000000
+700.000000/1000.000000 ==> Training loss: 0.523621    Training error rate: 18.000000
+800.000000/1000.000000 ==> Training loss: 0.494649    Training error rate: 14.000000
+900.000000/1000.000000 ==> Training loss: 0.336003    Training error rate: 10.000000
+==> Total training loss: 418.386427    Total training error rate: 13.272000
+==> Testing Epoch: 48
+0.000000/100.000000 ==> Testing loss: 2.003823    Testing error rate: 45.000000
+==> Total testing loss: 200.635009    Total testing error rate: 44.010000
+==> Set learning rate: 0.010000
+==> Training Epoch: 49
+0.000000/1000.000000 ==> Training loss: 0.246816    Training error rate: 8.000000
+100.000000/1000.000000 ==> Training loss: 0.253679    Training error rate: 12.000000
+200.000000/1000.000000 ==> Training loss: 0.536550    Training error rate: 16.000000
+300.000000/1000.000000 ==> Training loss: 0.389892    Training error rate: 14.000000
+400.000000/1000.000000 ==> Training loss: 0.365642    Training error rate: 8.000000
+500.000000/1000.000000 ==> Training loss: 0.308576    Training error rate: 8.000000
+600.000000/1000.000000 ==> Training loss: 0.483474    Training error rate: 14.000000
+700.000000/1000.000000 ==> Training loss: 0.296641    Training error rate: 6.000000
+800.000000/1000.000000 ==> Training loss: 0.487793    Training error rate: 16.000000
+900.000000/1000.000000 ==> Training loss: 0.273110    Training error rate: 4.000000
+==> Total training loss: 412.832659    Total training error rate: 12.900000
+==> Testing Epoch: 49
+0.000000/100.000000 ==> Testing loss: 1.997087    Testing error rate: 42.000000
+==> Total testing loss: 178.354542    Total testing error rate: 40.780000
+==> Set learning rate: 0.010000
+==> Training Epoch: 50
+0.000000/1000.000000 ==> Training loss: 0.297005    Training error rate: 8.000000
+100.000000/1000.000000 ==> Training loss: 0.359864    Training error rate: 12.000000
+200.000000/1000.000000 ==> Training loss: 0.259421    Training error rate: 8.000000
+300.000000/1000.000000 ==> Training loss: 0.428892    Training error rate: 14.000000
+400.000000/1000.000000 ==> Training loss: 0.271236    Training error rate: 8.000000
+500.000000/1000.000000 ==> Training loss: 0.333373    Training error rate: 10.000000
+600.000000/1000.000000 ==> Training loss: 0.485108    Training error rate: 14.000000
+700.000000/1000.000000 ==> Training loss: 0.656724    Training error rate: 20.000000
+800.000000/1000.000000 ==> Training loss: 0.529637    Training error rate: 16.000000
+900.000000/1000.000000 ==> Training loss: 0.490647    Training error rate: 16.000000
+==> Total training loss: 426.510389    Total training error rate: 13.322000
+==> Testing Epoch: 50
+0.000000/100.000000 ==> Testing loss: 1.737519    Testing error rate: 38.000000
+==> Total testing loss: 178.679605    Total testing error rate: 39.720000
+==> Saving checkpoint..
+==> Set learning rate: 0.001000
+==> Training Epoch: 51
+0.000000/1000.000000 ==> Training loss: 0.320525    Training error rate: 12.000000
+100.000000/1000.000000 ==> Training loss: 0.247355    Training error rate: 10.000000
+200.000000/1000.000000 ==> Training loss: 0.126598    Training error rate: 4.000000
+300.000000/1000.000000 ==> Training loss: 0.162959    Training error rate: 6.000000
+400.000000/1000.000000 ==> Training loss: 0.211973    Training error rate: 10.000000
+500.000000/1000.000000 ==> Training loss: 0.109017    Training error rate: 4.000000
+600.000000/1000.000000 ==> Training loss: 0.156750    Training error rate: 4.000000
+700.000000/1000.000000 ==> Training loss: 0.196200    Training error rate: 4.000000
+800.000000/1000.000000 ==> Training loss: 0.208056    Training error rate: 4.000000
+900.000000/1000.000000 ==> Training loss: 0.190046    Training error rate: 4.000000
+==> Total training loss: 184.197043    Total training error rate: 5.216000
+==> Testing Epoch: 51
+0.000000/100.000000 ==> Testing loss: 1.285091    Testing error rate: 33.000000
+==> Total testing loss: 142.988940    Total testing error rate: 33.710000
+==> Saving checkpoint..
+==> Set learning rate: 0.001000
+==> Training Epoch: 52
+0.000000/1000.000000 ==> Training loss: 0.158116    Training error rate: 4.000000
+100.000000/1000.000000 ==> Training loss: 0.120667    Training error rate: 4.000000
+200.000000/1000.000000 ==> Training loss: 0.080790    Training error rate: 4.000000
+300.000000/1000.000000 ==> Training loss: 0.094409    Training error rate: 4.000000
+400.000000/1000.000000 ==> Training loss: 0.101608    Training error rate: 2.000000
+500.000000/1000.000000 ==> Training loss: 0.160250    Training error rate: 6.000000
+600.000000/1000.000000 ==> Training loss: 0.096945    Training error rate: 4.000000
+700.000000/1000.000000 ==> Training loss: 0.052486    Training error rate: 2.000000
+800.000000/1000.000000 ==> Training loss: 0.167969    Training error rate: 6.000000
+900.000000/1000.000000 ==> Training loss: 0.059097    Training error rate: 0.000000
+==> Total training loss: 113.428152    Total training error rate: 2.930000
+==> Testing Epoch: 52
+0.000000/100.000000 ==> Testing loss: 1.156390    Testing error rate: 28.000000
+==> Total testing loss: 140.201340    Total testing error rate: 33.020000
+==> Saving checkpoint..
+==> Set learning rate: 0.001000
+==> Training Epoch: 53
+0.000000/1000.000000 ==> Training loss: 0.108002    Training error rate: 4.000000
+100.000000/1000.000000 ==> Training loss: 0.079384    Training error rate: 2.000000
+200.000000/1000.000000 ==> Training loss: 0.088064    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.041919    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.152938    Training error rate: 4.000000
+500.000000/1000.000000 ==> Training loss: 0.070447    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.097158    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.133303    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.068638    Training error rate: 2.000000
+900.000000/1000.000000 ==> Training loss: 0.043587    Training error rate: 0.000000
+==> Total training loss: 88.844801    Total training error rate: 2.024000
+==> Testing Epoch: 53
+0.000000/100.000000 ==> Testing loss: 1.503689    Testing error rate: 30.000000
+==> Total testing loss: 138.433738    Total testing error rate: 32.550000
+==> Saving checkpoint..
+==> Set learning rate: 0.001000
+==> Training Epoch: 54
+0.000000/1000.000000 ==> Training loss: 0.069005    Training error rate: 2.000000
+100.000000/1000.000000 ==> Training loss: 0.068513    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.072790    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.148733    Training error rate: 4.000000
+400.000000/1000.000000 ==> Training loss: 0.028963    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.062597    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.081202    Training error rate: 2.000000
+700.000000/1000.000000 ==> Training loss: 0.072123    Training error rate: 2.000000
+800.000000/1000.000000 ==> Training loss: 0.031213    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.118388    Training error rate: 4.000000
+==> Total training loss: 76.016492    Total training error rate: 1.768000
+==> Testing Epoch: 54
+0.000000/100.000000 ==> Testing loss: 1.417099    Testing error rate: 32.000000
+==> Total testing loss: 141.581464    Total testing error rate: 32.770000
+==> Set learning rate: 0.001000
+==> Training Epoch: 55
+0.000000/1000.000000 ==> Training loss: 0.093964    Training error rate: 4.000000
+100.000000/1000.000000 ==> Training loss: 0.048898    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.057994    Training error rate: 2.000000
+300.000000/1000.000000 ==> Training loss: 0.040021    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.122536    Training error rate: 4.000000
+500.000000/1000.000000 ==> Training loss: 0.128300    Training error rate: 4.000000
+600.000000/1000.000000 ==> Training loss: 0.045121    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.041675    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.034236    Training error rate: 2.000000
+900.000000/1000.000000 ==> Training loss: 0.052974    Training error rate: 0.000000
+==> Total training loss: 67.112165    Total training error rate: 1.420000
+==> Testing Epoch: 55
+0.000000/100.000000 ==> Testing loss: 1.342958    Testing error rate: 30.000000
+==> Total testing loss: 141.052833    Total testing error rate: 32.520000
+==> Saving checkpoint..
+==> Set learning rate: 0.001000
+==> Training Epoch: 56
+0.000000/1000.000000 ==> Training loss: 0.158171    Training error rate: 4.000000
+100.000000/1000.000000 ==> Training loss: 0.032808    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.011136    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.061031    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.115773    Training error rate: 4.000000
+500.000000/1000.000000 ==> Training loss: 0.067189    Training error rate: 2.000000
+600.000000/1000.000000 ==> Training loss: 0.106444    Training error rate: 4.000000
+700.000000/1000.000000 ==> Training loss: 0.047505    Training error rate: 2.000000
+800.000000/1000.000000 ==> Training loss: 0.092506    Training error rate: 4.000000
+900.000000/1000.000000 ==> Training loss: 0.039272    Training error rate: 0.000000
+==> Total training loss: 59.524477    Total training error rate: 1.214000
+==> Testing Epoch: 56
+0.000000/100.000000 ==> Testing loss: 1.362749    Testing error rate: 28.000000
+==> Total testing loss: 141.533901    Total testing error rate: 32.440000
+==> Saving checkpoint..
+==> Set learning rate: 0.001000
+==> Training Epoch: 57
+0.000000/1000.000000 ==> Training loss: 0.079926    Training error rate: 2.000000
+100.000000/1000.000000 ==> Training loss: 0.089909    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.131369    Training error rate: 2.000000
+300.000000/1000.000000 ==> Training loss: 0.027992    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.044402    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.104452    Training error rate: 2.000000
+600.000000/1000.000000 ==> Training loss: 0.058371    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.019197    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.057974    Training error rate: 2.000000
+900.000000/1000.000000 ==> Training loss: 0.073172    Training error rate: 2.000000
+==> Total training loss: 53.691636    Total training error rate: 1.072000
+==> Testing Epoch: 57
+0.000000/100.000000 ==> Testing loss: 1.148879    Testing error rate: 29.000000
+==> Total testing loss: 141.013417    Total testing error rate: 32.390000
+==> Saving checkpoint..
+==> Set learning rate: 0.001000
+==> Training Epoch: 58
+0.000000/1000.000000 ==> Training loss: 0.107288    Training error rate: 2.000000
+100.000000/1000.000000 ==> Training loss: 0.043087    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.046428    Training error rate: 2.000000
+300.000000/1000.000000 ==> Training loss: 0.060897    Training error rate: 2.000000
+400.000000/1000.000000 ==> Training loss: 0.045487    Training error rate: 2.000000
+500.000000/1000.000000 ==> Training loss: 0.091670    Training error rate: 2.000000
+600.000000/1000.000000 ==> Training loss: 0.056505    Training error rate: 2.000000
+700.000000/1000.000000 ==> Training loss: 0.043389    Training error rate: 2.000000
+800.000000/1000.000000 ==> Training loss: 0.025093    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.164821    Training error rate: 4.000000
+==> Total training loss: 50.132783    Total training error rate: 0.998000
+==> Testing Epoch: 58
+0.000000/100.000000 ==> Testing loss: 1.255159    Testing error rate: 29.000000
+==> Total testing loss: 144.767259    Total testing error rate: 32.810000
+==> Set learning rate: 0.001000
+==> Training Epoch: 59
+0.000000/1000.000000 ==> Training loss: 0.055877    Training error rate: 2.000000
+100.000000/1000.000000 ==> Training loss: 0.024316    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.023124    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.038425    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.037804    Training error rate: 2.000000
+500.000000/1000.000000 ==> Training loss: 0.036996    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.015738    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.130640    Training error rate: 4.000000
+800.000000/1000.000000 ==> Training loss: 0.031225    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.047878    Training error rate: 2.000000
+==> Total training loss: 46.707602    Total training error rate: 0.872000
+==> Testing Epoch: 59
+0.000000/100.000000 ==> Testing loss: 1.109963    Testing error rate: 27.000000
+==> Total testing loss: 144.477655    Total testing error rate: 32.880000
+==> Set learning rate: 0.001000
+==> Training Epoch: 60
+0.000000/1000.000000 ==> Training loss: 0.045214    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.057685    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.031914    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.017963    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.073834    Training error rate: 4.000000
+500.000000/1000.000000 ==> Training loss: 0.025416    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.028787    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.020951    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.016701    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.094510    Training error rate: 6.000000
+==> Total training loss: 41.863611    Total training error rate: 0.720000
+==> Testing Epoch: 60
+0.000000/100.000000 ==> Testing loss: 1.249949    Testing error rate: 27.000000
+==> Total testing loss: 141.777535    Total testing error rate: 31.940000
+==> Saving checkpoint..
+==> Set learning rate: 0.001000
+==> Training Epoch: 61
+0.000000/1000.000000 ==> Training loss: 0.069461    Training error rate: 2.000000
+100.000000/1000.000000 ==> Training loss: 0.057402    Training error rate: 2.000000
+200.000000/1000.000000 ==> Training loss: 0.032487    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.038262    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.021363    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.053674    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.029896    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.042236    Training error rate: 2.000000
+800.000000/1000.000000 ==> Training loss: 0.029614    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.063216    Training error rate: 4.000000
+==> Total training loss: 38.207204    Total training error rate: 0.656000
+==> Testing Epoch: 61
+0.000000/100.000000 ==> Testing loss: 1.440913    Testing error rate: 28.000000
+==> Total testing loss: 142.272004    Total testing error rate: 32.290000
+==> Set learning rate: 0.001000
+==> Training Epoch: 62
+0.000000/1000.000000 ==> Training loss: 0.023657    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.063487    Training error rate: 2.000000
+200.000000/1000.000000 ==> Training loss: 0.047431    Training error rate: 2.000000
+300.000000/1000.000000 ==> Training loss: 0.022565    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.055716    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.029911    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.032409    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.027048    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.028358    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.030833    Training error rate: 0.000000
+==> Total training loss: 37.526223    Total training error rate: 0.644000
+==> Testing Epoch: 62
+0.000000/100.000000 ==> Testing loss: 1.476224    Testing error rate: 29.000000
+==> Total testing loss: 141.859114    Total testing error rate: 32.360000
+==> Set learning rate: 0.001000
+==> Training Epoch: 63
+0.000000/1000.000000 ==> Training loss: 0.029648    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.074794    Training error rate: 2.000000
+200.000000/1000.000000 ==> Training loss: 0.013220    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.022326    Training error rate: 2.000000
+400.000000/1000.000000 ==> Training loss: 0.101080    Training error rate: 4.000000
+500.000000/1000.000000 ==> Training loss: 0.037477    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.061662    Training error rate: 2.000000
+700.000000/1000.000000 ==> Training loss: 0.029375    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.031801    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.035221    Training error rate: 0.000000
+==> Total training loss: 35.802158    Total training error rate: 0.596000
+==> Testing Epoch: 63
+0.000000/100.000000 ==> Testing loss: 1.306581    Testing error rate: 31.000000
+==> Total testing loss: 141.079653    Total testing error rate: 32.220000
+==> Set learning rate: 0.001000
+==> Training Epoch: 64
+0.000000/1000.000000 ==> Training loss: 0.017473    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.020279    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.052567    Training error rate: 2.000000
+300.000000/1000.000000 ==> Training loss: 0.040393    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.049670    Training error rate: 2.000000
+500.000000/1000.000000 ==> Training loss: 0.036671    Training error rate: 2.000000
+600.000000/1000.000000 ==> Training loss: 0.036836    Training error rate: 2.000000
+700.000000/1000.000000 ==> Training loss: 0.020262    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.051952    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.022726    Training error rate: 0.000000
+==> Total training loss: 32.820807    Total training error rate: 0.500000
+==> Testing Epoch: 64
+0.000000/100.000000 ==> Testing loss: 1.413165    Testing error rate: 30.000000
+==> Total testing loss: 141.253760    Total testing error rate: 32.150000
+==> Set learning rate: 0.001000
+==> Training Epoch: 65
+0.000000/1000.000000 ==> Training loss: 0.017534    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.012520    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.044375    Training error rate: 2.000000
+300.000000/1000.000000 ==> Training loss: 0.019953    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.011699    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.029094    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.035739    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.034966    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.052999    Training error rate: 2.000000
+900.000000/1000.000000 ==> Training loss: 0.015090    Training error rate: 0.000000
+==> Total training loss: 30.894315    Total training error rate: 0.456000
+==> Testing Epoch: 65
+0.000000/100.000000 ==> Testing loss: 1.726296    Testing error rate: 39.000000
+==> Total testing loss: 143.075107    Total testing error rate: 32.240000
+==> Set learning rate: 0.001000
+==> Training Epoch: 66
+0.000000/1000.000000 ==> Training loss: 0.035843    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.012680    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.021360    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.018068    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.039745    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.022078    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.038055    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.026968    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.011931    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.007543    Training error rate: 0.000000
+==> Total training loss: 29.172244    Total training error rate: 0.410000
+==> Testing Epoch: 66
+0.000000/100.000000 ==> Testing loss: 1.473724    Testing error rate: 31.000000
+==> Total testing loss: 144.854858    Total testing error rate: 32.630000
+==> Set learning rate: 0.001000
+==> Training Epoch: 67
+0.000000/1000.000000 ==> Training loss: 0.012375    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.041512    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.111619    Training error rate: 4.000000
+300.000000/1000.000000 ==> Training loss: 0.025216    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.010084    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.024737    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.027069    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.017285    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.020417    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.018324    Training error rate: 0.000000
+==> Total training loss: 28.523711    Total training error rate: 0.414000
+==> Testing Epoch: 67
+0.000000/100.000000 ==> Testing loss: 1.495765    Testing error rate: 31.000000
+==> Total testing loss: 144.275235    Total testing error rate: 32.090000
+==> Set learning rate: 0.001000
+==> Training Epoch: 68
+0.000000/1000.000000 ==> Training loss: 0.037717    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.021089    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.014103    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.039448    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.049939    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.041785    Training error rate: 2.000000
+600.000000/1000.000000 ==> Training loss: 0.024410    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.029934    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.086102    Training error rate: 2.000000
+900.000000/1000.000000 ==> Training loss: 0.012739    Training error rate: 0.000000
+==> Total training loss: 27.405983    Total training error rate: 0.386000
+==> Testing Epoch: 68
+0.000000/100.000000 ==> Testing loss: 1.176072    Testing error rate: 30.000000
+==> Total testing loss: 147.494897    Total testing error rate: 32.960000
+==> Set learning rate: 0.001000
+==> Training Epoch: 69
+0.000000/1000.000000 ==> Training loss: 0.028039    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.049799    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.025000    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.015986    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.013242    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.022108    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.010191    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.067827    Training error rate: 2.000000
+800.000000/1000.000000 ==> Training loss: 0.015079    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.020664    Training error rate: 0.000000
+==> Total training loss: 25.450167    Total training error rate: 0.374000
+==> Testing Epoch: 69
+0.000000/100.000000 ==> Testing loss: 1.503567    Testing error rate: 34.000000
+==> Total testing loss: 142.371767    Total testing error rate: 32.100000
+==> Set learning rate: 0.001000
+==> Training Epoch: 70
+0.000000/1000.000000 ==> Training loss: 0.025747    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.023130    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.024879    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.006996    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.021338    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.007852    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.009048    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.019790    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.012544    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.018481    Training error rate: 0.000000
+==> Total training loss: 24.879858    Total training error rate: 0.310000
+==> Testing Epoch: 70
+0.000000/100.000000 ==> Testing loss: 1.314105    Testing error rate: 29.000000
+==> Total testing loss: 150.315492    Total testing error rate: 33.510000
+==> Set learning rate: 0.001000
+==> Training Epoch: 71
+0.000000/1000.000000 ==> Training loss: 0.017971    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.006373    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.085529    Training error rate: 2.000000
+300.000000/1000.000000 ==> Training loss: 0.013462    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.018590    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.013936    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.037746    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.012397    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.007917    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.016363    Training error rate: 0.000000
+==> Total training loss: 23.169220    Total training error rate: 0.322000
+==> Testing Epoch: 71
+0.000000/100.000000 ==> Testing loss: 1.540465    Testing error rate: 31.000000
+==> Total testing loss: 142.257203    Total testing error rate: 31.850000
+==> Saving checkpoint..
+==> Set learning rate: 0.001000
+==> Training Epoch: 72
+0.000000/1000.000000 ==> Training loss: 0.012340    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.018826    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.008804    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.022145    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.014955    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.016314    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.021700    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.031842    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.019199    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.036171    Training error rate: 0.000000
+==> Total training loss: 22.745540    Total training error rate: 0.278000
+==> Testing Epoch: 72
+0.000000/100.000000 ==> Testing loss: 0.977867    Testing error rate: 24.000000
+==> Total testing loss: 142.192577    Total testing error rate: 31.690000
+==> Saving checkpoint..
+==> Set learning rate: 0.001000
+==> Training Epoch: 73
+0.000000/1000.000000 ==> Training loss: 0.007734    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.011259    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.044437    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.007822    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.017316    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.027300    Training error rate: 2.000000
+600.000000/1000.000000 ==> Training loss: 0.010859    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.021693    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.022591    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.004560    Training error rate: 0.000000
+==> Total training loss: 22.265043    Total training error rate: 0.298000
+==> Testing Epoch: 73
+0.000000/100.000000 ==> Testing loss: 1.203648    Testing error rate: 29.000000
+==> Total testing loss: 145.363334    Total testing error rate: 32.170000
+==> Set learning rate: 0.001000
+==> Training Epoch: 74
+0.000000/1000.000000 ==> Training loss: 0.022966    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.017286    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.013970    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.019289    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.012453    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.016210    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.030506    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.032196    Training error rate: 2.000000
+800.000000/1000.000000 ==> Training loss: 0.022420    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.013007    Training error rate: 0.000000
+==> Total training loss: 21.664354    Total training error rate: 0.248000
+==> Testing Epoch: 74
+0.000000/100.000000 ==> Testing loss: 1.320375    Testing error rate: 31.000000
+==> Total testing loss: 144.134061    Total testing error rate: 32.300000
+==> Set learning rate: 0.001000
+==> Training Epoch: 75
+0.000000/1000.000000 ==> Training loss: 0.018170    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.014786    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.035191    Training error rate: 2.000000
+300.000000/1000.000000 ==> Training loss: 0.031041    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.016588    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.018764    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.014427    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.015621    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.022745    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.026098    Training error rate: 0.000000
+==> Total training loss: 20.815269    Total training error rate: 0.242000
+==> Testing Epoch: 75
+0.000000/100.000000 ==> Testing loss: 1.263975    Testing error rate: 28.000000
+==> Total testing loss: 144.246487    Total testing error rate: 32.220000
+==> Set learning rate: 0.001000
+==> Training Epoch: 76
+0.000000/1000.000000 ==> Training loss: 0.022066    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.031176    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.016540    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.017948    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.024061    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.006537    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.009823    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.023894    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.017066    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.019770    Training error rate: 0.000000
+==> Total training loss: 19.484314    Total training error rate: 0.192000
+==> Testing Epoch: 76
+0.000000/100.000000 ==> Testing loss: 1.321049    Testing error rate: 24.000000
+==> Total testing loss: 143.012415    Total testing error rate: 31.950000
+==> Set learning rate: 0.001000
+==> Training Epoch: 77
+0.000000/1000.000000 ==> Training loss: 0.007825    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.014428    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.009989    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.015888    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.015134    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.007228    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.013831    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.027053    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.041870    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.116879    Training error rate: 2.000000
+==> Total training loss: 19.842673    Total training error rate: 0.228000
+==> Testing Epoch: 77
+0.000000/100.000000 ==> Testing loss: 1.419644    Testing error rate: 32.000000
+==> Total testing loss: 145.880005    Total testing error rate: 32.390000
+==> Set learning rate: 0.001000
+==> Training Epoch: 78
+0.000000/1000.000000 ==> Training loss: 0.009707    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.035776    Training error rate: 2.000000
+200.000000/1000.000000 ==> Training loss: 0.017016    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.003949    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.028801    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.013402    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.010746    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.014026    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.042763    Training error rate: 2.000000
+900.000000/1000.000000 ==> Training loss: 0.015670    Training error rate: 0.000000
+==> Total training loss: 19.295557    Total training error rate: 0.214000
+==> Testing Epoch: 78
+0.000000/100.000000 ==> Testing loss: 1.198316    Testing error rate: 29.000000
+==> Total testing loss: 142.745973    Total testing error rate: 32.260000
+==> Set learning rate: 0.001000
+==> Training Epoch: 79
+0.000000/1000.000000 ==> Training loss: 0.011255    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.024119    Training error rate: 2.000000
+200.000000/1000.000000 ==> Training loss: 0.008304    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.006010    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.010424    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.010379    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.014995    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.031203    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.019884    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.009807    Training error rate: 0.000000
+==> Total training loss: 19.044792    Total training error rate: 0.194000
+==> Testing Epoch: 79
+0.000000/100.000000 ==> Testing loss: 1.147463    Testing error rate: 27.000000
+==> Total testing loss: 142.697134    Total testing error rate: 32.010000
+==> Set learning rate: 0.001000
+==> Training Epoch: 80
+0.000000/1000.000000 ==> Training loss: 0.028166    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.016212    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.008374    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.008256    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.017388    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.006864    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.018408    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.022130    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.019406    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.025309    Training error rate: 0.000000
+==> Total training loss: 18.362989    Total training error rate: 0.228000
+==> Testing Epoch: 80
+0.000000/100.000000 ==> Testing loss: 1.422258    Testing error rate: 30.000000
+==> Total testing loss: 146.979122    Total testing error rate: 32.780000
+==> Set learning rate: 0.001000
+==> Training Epoch: 81
+0.000000/1000.000000 ==> Training loss: 0.003551    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.009153    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.012546    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.016540    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.021331    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.008342    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.008532    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.010606    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.007926    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.010391    Training error rate: 0.000000
+==> Total training loss: 18.047996    Total training error rate: 0.212000
+==> Testing Epoch: 81
+0.000000/100.000000 ==> Testing loss: 1.194148    Testing error rate: 29.000000
+==> Total testing loss: 144.609037    Total testing error rate: 32.620000
+==> Set learning rate: 0.001000
+==> Training Epoch: 82
+0.000000/1000.000000 ==> Training loss: 0.039310    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.012492    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.010847    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.007657    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.005520    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.011745    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.032141    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.023116    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.019835    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.018294    Training error rate: 0.000000
+==> Total training loss: 18.042470    Total training error rate: 0.210000
+==> Testing Epoch: 82
+0.000000/100.000000 ==> Testing loss: 1.318085    Testing error rate: 28.000000
+==> Total testing loss: 143.035585    Total testing error rate: 32.180000
+==> Set learning rate: 0.001000
+==> Training Epoch: 83
+0.000000/1000.000000 ==> Training loss: 0.003769    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.007185    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.010894    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.014725    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.023003    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.012431    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.010596    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.014289    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.015151    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.012201    Training error rate: 0.000000
+==> Total training loss: 17.470331    Total training error rate: 0.188000
+==> Testing Epoch: 83
+0.000000/100.000000 ==> Testing loss: 1.190510    Testing error rate: 29.000000
+==> Total testing loss: 144.513649    Total testing error rate: 31.830000
+==> Set learning rate: 0.001000
+==> Training Epoch: 84
+0.000000/1000.000000 ==> Training loss: 0.006768    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.023159    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.024680    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.009500    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.005877    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.011027    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.025681    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.013516    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.024636    Training error rate: 2.000000
+900.000000/1000.000000 ==> Training loss: 0.014978    Training error rate: 0.000000
+==> Total training loss: 16.259474    Total training error rate: 0.158000
+==> Testing Epoch: 84
+0.000000/100.000000 ==> Testing loss: 1.264252    Testing error rate: 26.000000
+==> Total testing loss: 140.609534    Total testing error rate: 31.890000
+==> Set learning rate: 0.001000
+==> Training Epoch: 85
+0.000000/1000.000000 ==> Training loss: 0.012782    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.011644    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.010091    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.007000    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.016523    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.007163    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.024993    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.048089    Training error rate: 2.000000
+800.000000/1000.000000 ==> Training loss: 0.007613    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.009235    Training error rate: 0.000000
+==> Total training loss: 16.342299    Total training error rate: 0.152000
+==> Testing Epoch: 85
+0.000000/100.000000 ==> Testing loss: 1.268001    Testing error rate: 27.000000
+==> Total testing loss: 144.198440    Total testing error rate: 32.500000
+==> Set learning rate: 0.001000
+==> Training Epoch: 86
+0.000000/1000.000000 ==> Training loss: 0.008774    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.016868    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.005607    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.007635    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.016415    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.078560    Training error rate: 2.000000
+600.000000/1000.000000 ==> Training loss: 0.012206    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.016896    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.004864    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.012317    Training error rate: 0.000000
+==> Total training loss: 16.135076    Total training error rate: 0.164000
+==> Testing Epoch: 86
+0.000000/100.000000 ==> Testing loss: 1.475390    Testing error rate: 30.000000
+==> Total testing loss: 141.464249    Total testing error rate: 31.520000
+==> Saving checkpoint..
+==> Set learning rate: 0.001000
+==> Training Epoch: 87
+0.000000/1000.000000 ==> Training loss: 0.010481    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.017154    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.011866    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.020867    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.011191    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.012238    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.049244    Training error rate: 2.000000
+700.000000/1000.000000 ==> Training loss: 0.016832    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.011733    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.007159    Training error rate: 0.000000
+==> Total training loss: 16.747912    Total training error rate: 0.188000
+==> Testing Epoch: 87
+0.000000/100.000000 ==> Testing loss: 1.307931    Testing error rate: 30.000000
+==> Total testing loss: 142.455131    Total testing error rate: 31.860000
+==> Set learning rate: 0.001000
+==> Training Epoch: 88
+0.000000/1000.000000 ==> Training loss: 0.008758    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.012835    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.019183    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.018222    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.024931    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.005307    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.010861    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.030549    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.012405    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.009527    Training error rate: 0.000000
+==> Total training loss: 15.284623    Total training error rate: 0.142000
+==> Testing Epoch: 88
+0.000000/100.000000 ==> Testing loss: 1.201663    Testing error rate: 27.000000
+==> Total testing loss: 140.225529    Total testing error rate: 31.380000
+==> Saving checkpoint..
+==> Set learning rate: 0.001000
+==> Training Epoch: 89
+0.000000/1000.000000 ==> Training loss: 0.020676    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.049636    Training error rate: 2.000000
+200.000000/1000.000000 ==> Training loss: 0.012005    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.007152    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.014072    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.036725    Training error rate: 2.000000
+600.000000/1000.000000 ==> Training loss: 0.011652    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.011099    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.014589    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.007925    Training error rate: 0.000000
+==> Total training loss: 15.748336    Total training error rate: 0.158000
+==> Testing Epoch: 89
+0.000000/100.000000 ==> Testing loss: 1.425009    Testing error rate: 29.000000
+==> Total testing loss: 140.373504    Total testing error rate: 31.780000
+==> Set learning rate: 0.001000
+==> Training Epoch: 90
+0.000000/1000.000000 ==> Training loss: 0.009697    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.007224    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.007952    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.012940    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.022480    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.006819    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.008787    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.021303    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.014464    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.009993    Training error rate: 0.000000
+==> Total training loss: 14.910370    Total training error rate: 0.140000
+==> Testing Epoch: 90
+0.000000/100.000000 ==> Testing loss: 1.327277    Testing error rate: 30.000000
+==> Total testing loss: 145.012874    Total testing error rate: 32.360000
+==> Set learning rate: 0.001000
+==> Training Epoch: 91
+0.000000/1000.000000 ==> Training loss: 0.009183    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.009504    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.005729    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.015251    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.006911    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.014947    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.005754    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.011656    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.015851    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.009099    Training error rate: 0.000000
+==> Total training loss: 13.957941    Total training error rate: 0.100000
+==> Testing Epoch: 91
+0.000000/100.000000 ==> Testing loss: 1.235512    Testing error rate: 29.000000
+==> Total testing loss: 142.503008    Total testing error rate: 31.830000
+==> Set learning rate: 0.001000
+==> Training Epoch: 92
+0.000000/1000.000000 ==> Training loss: 0.020037    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.010389    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.009877    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.017070    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.027194    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.008604    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.012271    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.030849    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.004483    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.008027    Training error rate: 0.000000
+==> Total training loss: 14.769687    Total training error rate: 0.126000
+==> Testing Epoch: 92
+0.000000/100.000000 ==> Testing loss: 1.470951    Testing error rate: 30.000000
+==> Total testing loss: 145.737728    Total testing error rate: 32.470000
+==> Set learning rate: 0.001000
+==> Training Epoch: 93
+0.000000/1000.000000 ==> Training loss: 0.031199    Training error rate: 2.000000
+100.000000/1000.000000 ==> Training loss: 0.013211    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.012385    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.005465    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.016436    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.014136    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.008393    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.012874    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.020084    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.007279    Training error rate: 0.000000
+==> Total training loss: 14.644998    Total training error rate: 0.134000
+==> Testing Epoch: 93
+0.000000/100.000000 ==> Testing loss: 1.514086    Testing error rate: 33.000000
+==> Total testing loss: 143.268926    Total testing error rate: 31.740000
+==> Set learning rate: 0.001000
+==> Training Epoch: 94
+0.000000/1000.000000 ==> Training loss: 0.006497    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.010875    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.019958    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.018383    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.016727    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.013387    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.025582    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.010427    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.018521    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.010805    Training error rate: 0.000000
+==> Total training loss: 14.071921    Total training error rate: 0.108000
+==> Testing Epoch: 94
+0.000000/100.000000 ==> Testing loss: 1.556845    Testing error rate: 34.000000
+==> Total testing loss: 144.054724    Total testing error rate: 32.480000
+==> Set learning rate: 0.001000
+==> Training Epoch: 95
+0.000000/1000.000000 ==> Training loss: 0.017962    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.008678    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.046926    Training error rate: 2.000000
+300.000000/1000.000000 ==> Training loss: 0.056125    Training error rate: 2.000000
+400.000000/1000.000000 ==> Training loss: 0.010361    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.006445    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.021723    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.024615    Training error rate: 2.000000
+800.000000/1000.000000 ==> Training loss: 0.013046    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.008639    Training error rate: 0.000000
+==> Total training loss: 13.703612    Total training error rate: 0.104000
+==> Testing Epoch: 95
+0.000000/100.000000 ==> Testing loss: 1.317990    Testing error rate: 30.000000
+==> Total testing loss: 142.613415    Total testing error rate: 31.490000
+==> Set learning rate: 0.001000
+==> Training Epoch: 96
+0.000000/1000.000000 ==> Training loss: 0.005661    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.017187    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.009335    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.013753    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.007807    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.005825    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.008581    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.008538    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.015203    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.017093    Training error rate: 0.000000
+==> Total training loss: 14.265961    Total training error rate: 0.134000
+==> Testing Epoch: 96
+0.000000/100.000000 ==> Testing loss: 1.393965    Testing error rate: 28.000000
+==> Total testing loss: 144.302057    Total testing error rate: 32.350000
+==> Set learning rate: 0.001000
+==> Training Epoch: 97
+0.000000/1000.000000 ==> Training loss: 0.007957    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.014851    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.015651    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.008781    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.011770    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.003998    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.011305    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.006723    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.018512    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.008628    Training error rate: 0.000000
+==> Total training loss: 13.230845    Total training error rate: 0.106000
+==> Testing Epoch: 97
+0.000000/100.000000 ==> Testing loss: 1.294190    Testing error rate: 29.000000
+==> Total testing loss: 143.176871    Total testing error rate: 31.970000
+==> Set learning rate: 0.001000
+==> Training Epoch: 98
+0.000000/1000.000000 ==> Training loss: 0.006973    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.005913    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.013264    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.015179    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.009448    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.014104    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.010554    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.006837    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.018681    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.012615    Training error rate: 0.000000
+==> Total training loss: 13.270811    Total training error rate: 0.118000
+==> Testing Epoch: 98
+0.000000/100.000000 ==> Testing loss: 1.373843    Testing error rate: 27.000000
+==> Total testing loss: 142.846047    Total testing error rate: 31.870000
+==> Set learning rate: 0.001000
+==> Training Epoch: 99
+0.000000/1000.000000 ==> Training loss: 0.019433    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.011706    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.005747    Training error rate: 0.000000
+300.000000/1000.000000 ==> Training loss: 0.005649    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.014543    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.022394    Training error rate: 0.000000
+600.000000/1000.000000 ==> Training loss: 0.005921    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.010827    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.011617    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.018390    Training error rate: 0.000000
+==> Total training loss: 13.683864    Total training error rate: 0.138000
+==> Testing Epoch: 99
+0.000000/100.000000 ==> Testing loss: 1.615673    Testing error rate: 29.000000
+==> Total testing loss: 143.804414    Total testing error rate: 31.880000
+==> Set learning rate: 0.001000
+==> Training Epoch: 100
+0.000000/1000.000000 ==> Training loss: 0.019698    Training error rate: 0.000000
+100.000000/1000.000000 ==> Training loss: 0.008261    Training error rate: 0.000000
+200.000000/1000.000000 ==> Training loss: 0.039859    Training error rate: 2.000000
+300.000000/1000.000000 ==> Training loss: 0.012662    Training error rate: 0.000000
+400.000000/1000.000000 ==> Training loss: 0.011943    Training error rate: 0.000000
+500.000000/1000.000000 ==> Training loss: 0.058410    Training error rate: 2.000000
+600.000000/1000.000000 ==> Training loss: 0.005072    Training error rate: 0.000000
+700.000000/1000.000000 ==> Training loss: 0.006770    Training error rate: 0.000000
+800.000000/1000.000000 ==> Training loss: 0.012677    Training error rate: 0.000000
+900.000000/1000.000000 ==> Training loss: 0.014454    Training error rate: 0.000000
+==> Total training loss: 13.290183    Total training error rate: 0.110000
+==> Testing Epoch: 100
+0.000000/100.000000 ==> Testing loss: 1.124148    Testing error rate: 24.000000
+==> Total testing loss: 138.465083    Total testing error rate: 31.260000
+==> Saving checkpoint..
