@@ -19,17 +19,9 @@ from torch.autograd import Variable
 from tools.logger import Logger
 
 class Trainer():
-<<<<<<< HEAD
-    def __init__(self, net, train_loader, test_loader, optimizer,
-                 baselr = 0.1, criterion=nn.CrossEntropyLoss(),
-                 lr_decay_interval = 50,
-                 use_cuda=True, savedir="checkpoint"):
-
-=======
     def __init__(self, net, train_loader, test_loader, optimizer, start_epoch=0,
                  best_accuracy=0, best_epoch=0, base_lr=0.1, criterion=nn.CrossEntropyLoss(),
                  lr_decay_interval=50, use_cuda=True, save_dir='checkpoint'):
->>>>>>> c7c7cfc6bcc02d76be5cad587c75e189f66d2d03
         self.net = net
         self.train_loader = train_loader
         self.test_loader = test_loader
