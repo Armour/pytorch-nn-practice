@@ -114,7 +114,6 @@ class Trainer():
 
     def test(self, epoch):
         """ Testing epoch """
-        global best_accuracy
         print('==> Testing Epoch: %d' % epoch)
         self.net.eval()
         total_test_loss = 0
