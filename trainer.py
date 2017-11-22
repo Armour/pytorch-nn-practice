@@ -14,29 +14,20 @@ import json
 import torch
 import torch.nn as nn
 import torch.cuda as cuda
-import torch.optim as optim
-import torch.utils as utils
-
-from model.resnet import resnet_cifar
-
-from transform.log_space import LogSpace
-from transform.disturb_illumination import DisturbIllumination
-
 from torch.autograd import Variable
-from torchvision import models, datasets, transforms
 
 from tools.logger import Logger
 
 class Trainer():
     def __init__(self, net, train_loader, test_loader, optimizer, start_epoch=0,
                  best_accuracy=0, best_epoch=0, base_lr=0.1, criterion=nn.CrossEntropyLoss(),
-                 lr_decay_interval=50, use_cuda=True, save_dir="checkpoint"):
+                 lr_decay_interval=50, use_cuda=True, save_dir='checkpoint'):
         self.net = net
         self.train_loader = train_loader
         self.test_loader = test_loader
         self.optimizer = optimizer
 
-        self.baselr = base_lr
+        self.base_lr = base_lr
         self.criterion = criterion
         self.lr_decay_interval = lr_decay_interval
         self.use_cuda = use_cuda
@@ -164,7 +155,7 @@ class Trainer():
 
     def adjust_learning_rate(self, epoch):
         """ Sets the learning rate to the initial learning rate decayed by 10 every args.lr_decay_interval epochs """
-        learning_rate = self.baselr * (0.1 ** (epoch // self.lr_decay_interval))
+        learning_rate = self.base_lr * (0.1 ** (epoch // self.lr_decay_interval))
         print('==> Set learning rate: %f' % learning_rate)
         for param_group in self.optimizer.param_groups:
             param_group['lr'] = learning_rate

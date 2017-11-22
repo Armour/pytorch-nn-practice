@@ -14,14 +14,13 @@ import torch.nn as nn
 import torch.cuda as cuda
 import torch.optim as optim
 import torch.utils as utils
+from torchvision import models, datasets, transforms
 
 from model.resnet import resnet_cifar
 
 from transform.log_space import LogSpace
 from transform.disturb_illumination import DisturbIllumination
 
-from torch.autograd import Variable
-from torchvision import models, datasets, transforms
 
 def calculate_mean_and_std(enable_log_transform):
     transform = transforms.Compose([
@@ -169,6 +168,7 @@ if __name__ == '__main__':
         net.load_state_dict(checkpoint['state_dict'])
 
     # Loss function and Optimizer
+    print('==> Setup loss function and optimizer..')
     criterion = nn.CrossEntropyLoss()
     if use_cuda:
         criterion = criterion.cuda()
@@ -177,9 +177,11 @@ if __name__ == '__main__':
                           nesterov=True)
 
     # Training
+    print('==> Init trainer..')
     from trainer import Trainer
     train = Trainer(net, trainloader, testloader, optimizer, start_epoch=start_epoch,
                  best_accuracy=best_accuracy, best_epoch=best_epoch, base_lr=args.learning_rate,
                  criterion=criterion, lr_decay_interval=args.lr_decay_interval, use_cuda=use_cuda, save_dir=args.save_directory)
+    print('==> Start training..')
     train.execute(args.epochs)
 
