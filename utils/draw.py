@@ -31,6 +31,7 @@ def get_data_from_log_file(log_file):
 
     return (traning_loss, testing_loss), (traning_error_rate, testng_error_rate)
 
+
 def draw_image(loss, error_rate, saved_name):
     """ Draw and save loss and error rate image """
     f, axs = plt.subplots(2, sharex=True)
@@ -45,10 +46,11 @@ def draw_image(loss, error_rate, saved_name):
     plt.xlabel('epoch')
     plt.savefig(saved_name)
 
+
 if __name__ == '__main__':
     # Setup args
     parser = argparse.ArgumentParser(description='Draw error and loss graph from log')
-    parser.add_argument('-f','--log-file', type=str, default='test/log',
+    parser.add_argument('-f', '--log-file', type=str, default='test/log',
                         help='the log file that we read data from')
     parser.add_argument('-s', '--saved-name', type=str, default='test/result.png',
                         help='the output image name')

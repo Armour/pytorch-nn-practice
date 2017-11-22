@@ -34,6 +34,7 @@ class Trainer():
                  baselr = 0.1, criterion=nn.CrossEntropyLoss(),
                  lr_decay_interval = 50,
                  use_cuda=True, savedir="checkpoint"):
+
         self.net = net
         self.train_loader = train_loader
         self.test_loader = test_loader
@@ -49,6 +50,7 @@ class Trainer():
         self.output = savedir
 
         self.tflog_writer = None
+
         try:
             from tools.logger import Logger
         except ImportError as e:

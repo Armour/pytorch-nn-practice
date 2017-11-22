@@ -1,0 +1,102 @@
+name: torch
+channels:
+- soumith
+- defaults
+dependencies:
+- bzip2=1.0.6=h0376d23_1
+- ca-certificates=2017.08.26=h1d4fec5_0
+- certifi=2017.7.27.1=py36h8b7b77e_0
+- cffi=1.10.0=py36had8d393_1
+- cmake=3.9.4=h142f0e9_0
+- curl=7.55.1=hcb0b314_2
+- expat=2.2.4=hc00ebd1_1
+- freetype=2.8=h52ed37b_0
+- intel-openmp=2018.0.0=h15fc484_7
+- jpeg=9b=habf39ab_1
+- libedit=3.1=heed3624_0
+- libffi=3.2.1=h4deb6c0_3
+- libgcc=7.2.0=h69d50b8_2
+- libgcc-ng=7.2.0=h7cc24e2_2
+- libpng=1.6.32=hda9c8bc_2
+- libssh2=1.8.0=h8c220ad_2
+- libstdcxx-ng=7.2.0=h7a57d05_2
+- libtiff=4.0.8=h90200ff_9
+- libuv=1.14.0=h56b52c2_0
+- mkl=2018.0.0=hb491cac_4
+- ncurses=6.0=h06874d7_1
+- numpy=1.13.3=py36ha12f23b_0
+- olefile=0.44=py36h79f9f78_0
+- openssl=1.0.2l=h077ae2c_5
+- pillow=4.2.1=py36h9119f52_0
+- pip=9.0.1=py36h6c6f9ce_4
+- pycparser=2.18=py36hf9f622e_1
+- python=3.6.3=hefd0734_2
+- pyyaml=3.12=py36hafb9ca4_1
+- readline=7.0=hac23ff0_3
+- rhash=1.3.5=hbf7ad62_1
+- setuptools=36.5.0=py36he42e2e1_0
+- six=1.11.0=py36h372c433_1
+- sqlite=3.20.1=h6d8b0f3_1
+- tk=8.6.7=h5979e9b_1
+- wheel=0.29.0=py36he7f4e38_1
+- xz=5.2.3=h2bcbf08_1
+- yaml=0.1.7=h96e3832_1
+- zlib=1.2.11=hfbfcf68_1
+- cuda80=1.0=0
+- magma-cuda80=2.1.0=5
+- pytorch=0.2.0=py36h53baedd_4cu80
+- torchvision=0.1.9=py36h7584368_1
+- pip:
+  - bleach==1.5.0
+  - cycler==0.10.0
+  - decorator==4.1.2
+  - entrypoints==0.2.3
+  - graphviz==0.8.1
+  - html5lib==0.9999999
+  - ipykernel==4.6.1
+  - ipython==6.2.1
+  - ipython-genutils==0.2.0
+  - ipywidgets==7.0.3
+  - jedi==0.11.0
+  - jinja2==2.9.6
+  - jsonschema==2.6.0
+  - jupyter==1.0.0
+  - jupyter-client==5.1.0
+  - jupyter-console==5.2.0
+  - jupyter-core==4.3.0
+  - markdown==2.6.9
+  - markupsafe==1.0
+  - matplotlib==2.1.0
+  - mistune==0.8
+  - nbconvert==5.3.1
+  - nbformat==4.4.0
+  - notebook==5.2.0
+  - pandocfilters==1.4.2
+  - parso==0.1.0
+  - pexpect==4.2.1
+  - pickleshare==0.7.4
+  - prompt-toolkit==1.0.15
+  - protobuf==3.4.0
+  - ptyprocess==0.5.2
+  - pygments==2.2.0
+  - pyparsing==2.2.0
+  - python-dateutil==2.6.1
+  - pytz==2017.3
+  - pyzmq==16.0.3
+  - qtconsole==4.3.1
+  - scipy==1.0.0
+  - setproctitle==1.1.10
+  - simplegeneric==0.8.1
+  - tensorboard==1.0.0a6
+  - tensorflow==1.3.0
+  - tensorflow-tensorboard==0.1.8
+  - terminado==0.6
+  - testpath==0.3.1
+  - torch==0.2.0.post4
+  - tornado==4.5.2
+  - traitlets==4.3.2
+  - wcwidth==0.1.7
+  - werkzeug==0.12.2
+  - widgetsnbextension==3.0.6
+prefix: /home/ligeng/anaconda3/envs/torch
+
