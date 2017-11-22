@@ -50,8 +50,8 @@ class Trainer():
         if not os.path.exists(self.output):
             os.makedirs(self.output)
 
-        self.jsonlog_writer_train = open(osp.join(self.output, "train_log.json"), 'w+')
-        self.jsonlog_writer_test = open(osp.join(self.output, "test_log.json"), 'w+')
+        self.jsonlog_writer_train = open(osp.join(self.output, "train.log"), 'w+')
+        self.jsonlog_writer_test = open(osp.join(self.output, "test.log"), 'w+')
 
         self.tflog_writer = Logger(self.output, restart=False)
 

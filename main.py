@@ -56,9 +56,9 @@ if __name__ == '__main__':
                         help='initial learning rate (default: 0.1)')
     parser.add_argument('-e', '--epochs', type=int, default=100,
                         help='number of epochs to train (default: 100)')
-    parser.add_argument('--train-batch-size', type=int, default=50,
+    parser.add_argument('--train-batch-size', type=int, default=64,
                         help='input batch size for training (default: 50)')
-    parser.add_argument('--test-batch-size', type=int, default=100,
+    parser.add_argument('--test-batch-size', type=int, default=64,
                         help='input batch size for testing (default: 100)')
     parser.add_argument('--lr-decay-interval', type=int, default=50,
                         help='number of epochs to decay the learning rate (default: 50)')
