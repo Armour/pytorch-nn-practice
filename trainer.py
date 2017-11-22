@@ -47,13 +47,21 @@ class Trainer():
         self.best_accuracy = 0
         self.best_epoch = 0
         self.output = savedir
+
+        self.tflog_writer = None
+        try:
+            from tools.logger import Logger
+        except ImportError as e:
+            print("fail to import tensorboard: {} ".format(e))
+        else:
+            self.tflog_writer = Logger(self.output, restart=True)
+
         if not os.path.exists(self.output):
             os.makedirs(self.output)
 
         self.jsonlog_writer_train = open(osp.join(self.output, "train.log"), 'w+')
         self.jsonlog_writer_test = open(osp.join(self.output, "test.log"), 'w+')
 
-        self.tflog_writer = Logger(self.output, restart=False)
 
 
     def __del__(self):
@@ -99,9 +107,10 @@ class Trainer():
             }
             self.jsonlog_writer_train.write(json.dumps(info) + "\n")
 
-            info.pop('epoch', None)
-            for tag, value in info.items():
-                self.tflog_writer.scalar_summary(tag, value, partial_epoch)
+            if self.tflog_writer is not None:
+                info.pop('epoch', None)
+                for tag, value in info.items():
+                    self.tflog_writer.scalar_summary(tag, value, partial_epoch)
 
     def test(self, epoch):
         """ Testing epoch """
@@ -145,9 +154,10 @@ class Trainer():
         }
         self.jsonlog_writer_train.write(json.dumps(info) + "\n")
 
-        info.pop('epoch', None)
-        for tag, value in info.items():
-            self.tflog_writer.scalar_summary(tag, value, partial_epoch)
+        if self.tflog_writer is not None:
+            info.pop('epoch', None)
+            for tag, value in info.items():
+                self.tflog_writer.scalar_summary(tag, value, partial_epoch)
 
         return accuracy, loss
 

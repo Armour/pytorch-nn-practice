@@ -178,16 +178,11 @@ if __name__ == '__main__':
     criterion = nn.CrossEntropyLoss()
     if use_cuda:
         criterion = criterion.cuda()
-    optimizer = optim.SGD(net.parameters(), lr=args.learning_rate, momentum=args.momentum, weight_decay=1e-4, nesterov=True)
+    optimizer = optim.SGD(net.parameters(), lr=args.learning_rate,
+                          momentum=args.momentum, weight_decay=1e-4,
+                          nesterov=True)
 
     from trainer import Trainer
     train = Trainer(net, trainloader, testloader, optimizer)
     train.execute(0, 150)
 
-    # for epoch in range(start_epoch, args.epochs):
-    #     if args.only_testing:
-    #         test(epoch + 1)
-    #     else:
-    #         adjust_learning_rate(optimizer, epoch)
-    #         train(epoch + 1)
-    #         test(epoch + 1)
