@@ -183,6 +183,6 @@ if __name__ == '__main__':
                           nesterov=True)
 
     from trainer import Trainer
-    train = Trainer(net, trainloader, testloader, optimizer, criterion=criterion)
+    train = Trainer(net, trainloader, testloader, optimizer, criterion=criterion, baselr=args.learning_rate)
     train.execute(0, 150)
 
