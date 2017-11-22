@@ -19,9 +19,9 @@ class LogSpace(object):
     def __call__(self, img):
         """ Call in torchvision transforms
         Args:
-            img (PIL.Image): Image to be transformed
+            img (Tensor Image): Image to be transformed
         Returns:
-            PIL.Image: transformed image
+            Tensor Image: transformed image
         """
         img = img * 255 + 1 # 1 ~ 256
         img = torch.div(torch.log(img), math.log(2)) # 0 ~ 8

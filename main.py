@@ -41,90 +41,6 @@ def calculate_mean_and_std(enable_log_transform):
     std = data.std(axis=(0,2,3))
     return mean, std
 
-def train(epoch):
-    """ Traning epoch """
-    print('==> Training Epoch: %d' % epoch)
-    net.train()
-    total_train_loss = 0
-    total_correct = 0
-    total_size = 0
-
-    for batch_idx, (inputs, targets) in enumerate(trainloader):
-        if use_cuda:
-            inputs, targets = inputs.cuda(), targets.cuda()
-        inputs, targets = Variable(inputs), Variable(targets)
-
-        optimizer.zero_grad()
-        outputs = net(inputs)
-        loss = criterion(outputs, targets)
-        loss.backward()
-        optimizer.step()
-
-        total_train_loss += loss.data[0]
-        _, predicted = torch.max(outputs.data, 1)
-        batch_correct = predicted.eq(targets.data).cpu().sum()
-        total_correct += batch_correct
-        total_size += targets.size(0)
-
-        # Print traning loss
-        if batch_idx % args.log_interval == 0:
-            print('%f/%f ==> Training loss: %f    Training error rate: %f' % (batch_idx, len(trainloader), loss.data[0], (targets.size(0) - batch_correct) / targets.size(0) * 100))
-
-    print('==> Total training loss: %f    Total training error rate: %f' % (total_train_loss, (total_size - total_correct) / total_size * 100))
-
-def test(epoch):
-    """ Testing epoch """
-    global best_accuracy
-    print('==> Testing Epoch: %d' % epoch)
-    net.eval()
-    total_test_loss = 0
-    total_correct = 0
-    total_size = 0
-
-    for batch_idx, (inputs, targets) in enumerate(testloader):
-        if use_cuda:
-            inputs, targets = inputs.cuda(), targets.cuda()
-        inputs, targets = Variable(inputs, volatile=True), Variable(targets)
-
-        outputs = net(inputs)
-        loss = criterion(outputs, targets)
-
-        total_test_loss += loss.data[0]
-        _, predicted = torch.max(outputs.data, 1)
-        batch_correct = predicted.eq(targets.data).cpu().sum()
-        total_correct += batch_correct
-        total_size += targets.size(0)
-
-        # Print testing loss
-        if batch_idx % args.log_interval == 0:
-            print('%f/%f ==> Testing loss: %f    Testing error rate: %f' % (batch_idx, len(testloader), loss.data[0], (targets.size(0) - batch_correct) / targets.size(0) * 100))
-
-        # Save output image
-        # if batch_idx % args.save_interval == 0:
-        #     img = inputs.data.cpu().numpy()[0]
-        #     img = img * testing_data_std.numpy()[0] + testing_data_mean.numpy()[0] # denormalize
-        #     img = np.clip(img, a_min=0.0, a_max=1.0) # clip
-        #     img = np.uint8(np.stack([img[0], img[1], img[2]], axis=-1) * 255)
-        #     font = cv2.FONT_HERSHEY_SIMPLEX
-        #     cv2.putText(img, str(predicted[0]) + ':' + str(targets.data[0]), (5,len(img[0]) - 15), font, 1, (255,255,255), 2, cv2.LINE_AA)
-        #     cv2.imwrite('test/illumination-%f-%f.jpg' % (epoch, batch_idx // args.save_interval), img)
-
-    print('==> Total testing loss: %f    Total testing error rate: %f' % (total_test_loss, (total_size - total_correct) / total_size * 100))
-
-    # Save checkpoint.
-    accuracy = 100.*total_correct/total_size
-    if accuracy > best_accuracy:
-        print('==> Saving checkpoint..')
-        state = {
-            'epoch': epoch,
-            'accuracy': accuracy,
-            'state_dict': net.state_dict(),
-        }
-        if not os.path.isdir('checkpoint'):
-            os.mkdir('checkpoint')
-        torch.save(state, './checkpoint/ckpt.t7')
-        best_accuracy = accuracy
-
 def adjust_learning_rate(optimizer, epoch):
     """ Sets the learning rate to the initial learning rate decayed by 10 every args.lr_decay_interval epochs """
     learning_rate = args.learning_rate * (0.1 ** (epoch // args.lr_decay_interval))
@@ -136,8 +52,8 @@ def adjust_learning_rate(optimizer, epoch):
 if __name__ == '__main__':
     # Setup args
     parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
-    parser.add_argument('-lr','--learning-rate', type=float, default=0.01,
-                        help='initial learning rate (default: 0.01)')
+    parser.add_argument('-lr','--learning-rate', type=float, default=0.1,
+                        help='initial learning rate (default: 0.1)')
     parser.add_argument('-e', '--epochs', type=int, default=100,
                         help='number of epochs to train (default: 100)')
     parser.add_argument('--train-batch-size', type=int, default=50,
@@ -178,18 +94,12 @@ if __name__ == '__main__':
     if use_cuda:
         cuda.manual_seed(args.seed)
 
-    # Download data
-    print('==> Download data..')
-    datasets.CIFAR100(root='data', train=True, download=True)
+    # # Download data
+    # print('==> Download data..')
+    # datasets.CIFAR100(root='data', train=True, download=True)
 
     # Calculate mean and std
-    print('==> Calculate mean and std..')
-    # mean_ori, std_ori = calculate_mean_and_std(enable_log_transform=False)
-    # print('mean_ori = ', mean_ori)
-    # print('std_ori = ', std_ori)
-    # mean_log, std_log = calculate_mean_and_std(enable_log_transform=True)
-    # print('mean_log = ', mean_log)
-    # print('std_log = ', std_log)
+    print('==> Prepare mean and std..')
     mean_ori, std_ori = (0.50707543, 0.48655024, 0.44091907), (0.26733398, 0.25643876, 0.27615029)
     mean_log, std_log = (6.69928741, 6.65900993, 6.40947819), (1.2056427,  1.15127575, 1.31597221)
 
@@ -249,9 +159,6 @@ if __name__ == '__main__':
     # Model
     print('==> Building model..')
     net = resnet_cifar.ResNet('res34', num_classes=100)
-    # net = vgg.VGG('vgg16', num_classes=100)
-    # net = alexnet.AlexNet(num_classes=100)
-    # net = inception.InceptionV3(num_classes=100)
     if use_cuda:
         net = net.cuda()
 
@@ -271,12 +178,16 @@ if __name__ == '__main__':
     criterion = nn.CrossEntropyLoss()
     if use_cuda:
         criterion = criterion.cuda()
-    optimizer = optim.SGD(net.parameters(), lr=args.learning_rate, momentum=args.momentum, weight_decay=5e-4)
+    optimizer = optim.SGD(net.parameters(), lr=args.learning_rate, momentum=args.momentum, weight_decay=1e-4, nesterov=True)
 
-    for epoch in range(start_epoch, args.epochs):
-        if args.only_testing:
-            test(epoch + 1)
-        else:
-            adjust_learning_rate(optimizer, epoch)
-            train(epoch + 1)
-            test(epoch + 1)
+    from trainer import Trainer
+    train = Trainer(net, trainloader, testloader, optimizer)
+    train.execute(0, 150)
+
+    # for epoch in range(start_epoch, args.epochs):
+    #     if args.only_testing:
+    #         test(epoch + 1)
+    #     else:
+    #         adjust_learning_rate(optimizer, epoch)
+    #         train(epoch + 1)
+    #         test(epoch + 1)

@@ -6,7 +6,6 @@ from __future__ import division
 
 import os
 import re
-import cv2
 import argparse
 
 from matplotlib import pyplot as plt
