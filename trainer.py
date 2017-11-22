@@ -145,7 +145,7 @@ class Trainer():
             'test-loss': loss,
             'test-top1-error': 100 - accuracy
         }
-        self.jsonlog_writer_train.write(json.dumps(info) + "\n")
+        self.jsonlog_writer_test.write(json.dumps(info) + "\n")
 
         if self.tflog_writer is not None:
             info.pop('epoch', None)
