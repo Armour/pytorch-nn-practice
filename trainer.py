@@ -14,40 +14,36 @@ import json
 import torch
 import torch.nn as nn
 import torch.cuda as cuda
-import torch.optim as optim
-import torch.utils as utils
-
-from model.vgg import vgg
-from model.alexnet import alexnet
-from model.inception import inception
-from model.resnet import resnet_cifar
-from transform.log_space import LogSpace
-from transform.disturb_illumination import DisturbIllumination
-
 from torch.autograd import Variable
-from torchvision import models, datasets, transforms
 
 from tools.logger import Logger
 
 class Trainer():
+<<<<<<< HEAD
     def __init__(self, net, train_loader, test_loader, optimizer,
                  baselr = 0.1, criterion=nn.CrossEntropyLoss(),
                  lr_decay_interval = 50,
                  use_cuda=True, savedir="checkpoint"):
 
+=======
+    def __init__(self, net, train_loader, test_loader, optimizer, start_epoch=0,
+                 best_accuracy=0, best_epoch=0, base_lr=0.1, criterion=nn.CrossEntropyLoss(),
+                 lr_decay_interval=50, use_cuda=True, save_dir='checkpoint'):
+>>>>>>> c7c7cfc6bcc02d76be5cad587c75e189f66d2d03
         self.net = net
         self.train_loader = train_loader
         self.test_loader = test_loader
         self.optimizer = optimizer
 
-        self.baselr = baselr
-        self.lr_decay_interval = lr_decay_interval
+        self.base_lr = base_lr
         self.criterion = criterion
+        self.lr_decay_interval = lr_decay_interval
         self.use_cuda = use_cuda
 
-        self.best_accuracy = 0
-        self.best_epoch = 0
-        self.output = savedir
+        self.best_accuracy = best_accuracy
+        self.best_epoch = best_epoch
+        self.start_epoch = start_epoch
+        self.save_dir = save_dir
 
         self.tflog_writer = None
 
@@ -56,13 +52,13 @@ class Trainer():
         except ImportError as e:
             print("fail to import tensorboard: {} ".format(e))
         else:
-            self.tflog_writer = Logger(self.output, restart=True)
+            self.tflog_writer = Logger(self.save_dir, restart=True)
 
-        if not os.path.exists(self.output):
-            os.makedirs(self.output)
+        if not os.path.exists(self.save_dir):
+            os.makedirs(self.save_dir)
 
-        self.jsonlog_writer_train = open(osp.join(self.output, "train.log"), 'w+')
-        self.jsonlog_writer_test = open(osp.join(self.output, "test.log"), 'w+')
+        self.jsonlog_writer_train = open(osp.join(self.save_dir, "train.log"), 'w+')
+        self.jsonlog_writer_test = open(osp.join(self.save_dir, "test.log"), 'w+')
 
 
 
@@ -98,7 +94,7 @@ class Trainer():
             total_size += targets.size(0)
 
             partial_epoch = epoch + batch_idx / len(self.train_loader)
-            print('Epoch: [{}] Train:[{}/{} ({:.0f}%)]\tLoss: {:.6f}\tError: {:.6f}'.format(
+            print('Epoch: [{}]\tTrain:[{}/{} ({:.0f}%)]\tLoss: {:.6f}\tError: {:.6f}'.format(
                 epoch, total_size, n_train, 100. * batch_idx / len(self.train_loader),
                 loss.data[0], error_rate))
 
@@ -113,6 +109,9 @@ class Trainer():
                 info.pop('epoch', None)
                 for tag, value in info.items():
                     self.tflog_writer.scalar_summary(tag, value, partial_epoch)
+
+        print('Epoch: [{}]\tTotal training loss: [{:.6f}]\tTotal training error rate: [{:.6f}]'.format(
+            epoch, total_train_loss, (total_size - total_correct) / total_size * 100))
 
     def test(self, epoch):
         """ Testing epoch """
@@ -142,8 +141,9 @@ class Trainer():
                 epoch, total_size, n_train, 100. * batch_idx / len(self.train_loader),
                 loss.data[0], error_rate))
 
-        print('Epoch %d Total testing loss: %f    Total testing error rate: %f' % (
+        print('Epoch: [{}]\tTotal testing loss: [{:.6f}]\tTotal testing error rate: [{:.6f}]'.format(
             epoch, total_test_loss, (total_size - total_correct) / total_size * 100))
+
         accuracy = total_correct / total_size * 100
         loss = total_test_loss / total_size
 
@@ -164,29 +164,29 @@ class Trainer():
 
     def adjust_learning_rate(self, epoch):
         """ Sets the learning rate to the initial learning rate decayed by 10 every args.lr_decay_interval epochs """
-        learning_rate = self.baselr * (0.1 ** (epoch // self.lr_decay_interval))
+        learning_rate = self.base_lr * (0.1 ** (epoch // self.lr_decay_interval))
         print('==> Set learning rate: %f' % learning_rate)
         for param_group in self.optimizer.param_groups:
             param_group['lr'] = learning_rate
 
-    def execute(self, start_epoch, end_epoch):
-        for epoch in range(start_epoch, end_epoch):
+    def execute(self, end_epoch):
+        for epoch in range(self.start_epoch, end_epoch):
             self.adjust_learning_rate(epoch)
             self.train(epoch)
-            acc, loss = self.test(epoch)
+            accuracy, loss = self.test(epoch)
 
             # Save checkpoint.
-            accuracy = acc
             if accuracy > self.best_accuracy:
                 print('==> Saving checkpoint..')
-                state = {
-                    'epoch': epoch,
-                    'accuracy': accuracy,
-                    'state_dict': self.net.state_dict(),
-                }
-                torch.save(state, osp.join(self.output, 'ckpt.t7'))
                 self.best_accuracy = accuracy
                 self.best_epoch = epoch
+                state = {
+                    'start_epoch': epoch,
+                    'best_epoch': self.best_epoch,
+                    'best_accuracy': self.best_accuracy,
+                    'state_dict': self.net.state_dict(),
+                }
+                torch.save(state, osp.join(self.save_dir, 'ckpt.t7'))
 
             print('Epoch [%d], Best accuracy : %.2f from Epoch [%d]' % (
                 epoch, self.best_accuracy, self.best_epoch))

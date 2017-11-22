@@ -14,16 +14,13 @@ import torch.nn as nn
 import torch.cuda as cuda
 import torch.optim as optim
 import torch.utils as utils
+from torchvision import models, datasets, transforms
 
-from model.vgg import vgg
-from model.alexnet import alexnet
-from model.inception import inception
 from model.resnet import resnet_cifar
+
 from transform.log_space import LogSpace
 from transform.disturb_illumination import DisturbIllumination
 
-from torch.autograd import Variable
-from torchvision import models, datasets, transforms
 
 def calculate_mean_and_std(enable_log_transform):
     transform = transforms.Compose([
@@ -41,14 +38,6 @@ def calculate_mean_and_std(enable_log_transform):
     std = data.std(axis=(0,2,3))
     return mean, std
 
-def adjust_learning_rate(optimizer, epoch):
-    """ Sets the learning rate to the initial learning rate decayed by 10 every args.lr_decay_interval epochs """
-    learning_rate = args.learning_rate * (0.1 ** (epoch // args.lr_decay_interval))
-    print('==> Set learning rate: %f' % learning_rate)
-    for param_group in optimizer.param_groups:
-        param_group['lr'] = learning_rate
-
-
 if __name__ == '__main__':
     # Setup args
     parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
@@ -57,9 +46,9 @@ if __name__ == '__main__':
     parser.add_argument('-e', '--epochs', type=int, default=100,
                         help='number of epochs to train (default: 100)')
     parser.add_argument('--train-batch-size', type=int, default=64,
-                        help='input batch size for training (default: 50)')
+                        help='input batch size for training (default: 64)')
     parser.add_argument('--test-batch-size', type=int, default=64,
-                        help='input batch size for testing (default: 100)')
+                        help='input batch size for testing (default: 64)')
     parser.add_argument('--lr-decay-interval', type=int, default=50,
                         help='number of epochs to decay the learning rate (default: 50)')
     parser.add_argument('--num-workers', type=int, default=0,
@@ -72,6 +61,8 @@ if __name__ == '__main__':
                         help='how many batches to wait before logging training status (default: 100)')
     parser.add_argument('--save-interval', type=int, default=50,
                         help='how many batches to wait before saving testing output image (default: 50)')
+    parser.add_argument('-s', '--save-directory', type=str, default='checkpoint',
+                        help='checkpoint save directory (default: checkpoint)')
     parser.add_argument('-d', '--enable-disturb-illumination', action='store_true', default=False,
                         help='enable disturb illumination for testing data')
     parser.add_argument('-l', '--enable-log-transform', action='store_true', default=False,
@@ -85,7 +76,8 @@ if __name__ == '__main__':
     # Init variables
     print('==> Init variables..')
     use_cuda = cuda.is_available()
-    best_accuracy = 0  # best test accuracy
+    best_accuracy = 0  # best testing accuracy
+    best_epoch = 0  # epoch with the best testing accuracy
     start_epoch = 0  # start from epoch 0 or last checkpoint epoch
 
     # Init seed
@@ -94,9 +86,9 @@ if __name__ == '__main__':
     if use_cuda:
         cuda.manual_seed(args.seed)
 
-    # # Download data
-    # print('==> Download data..')
-    # datasets.CIFAR100(root='data', train=True, download=True)
+    # Download data
+    print('==> Download data..')
+    datasets.CIFAR100(root='data', train=True, download=True)
 
     # Calculate mean and std
     print('==> Prepare mean and std..')
@@ -165,16 +157,18 @@ if __name__ == '__main__':
     # Resume if required
     if args.resume:
         print('==> Resuming from checkpoint..')
-        assert os.path.isdir('checkpoint'), 'Error: no checkpoint directory found!'
+        assert os.path.isdir(args.save_directory), 'Error: no checkpoint directory found!'
         if use_cuda:
-            checkpoint = torch.load('./checkpoint/ckpt.t7')
+            checkpoint = torch.load(args.save_directory + '/ckpt.t7')
         else:
-            checkpoint = torch.load('./checkpoint/ckpt.t7', map_location=lambda storage, loc: storage)
-        start_epoch = checkpoint['epoch']
-        best_accuracy = checkpoint['accuracy']
+            checkpoint = torch.load(args.save_directory + '/ckpt.t7', map_location=lambda storage, loc: storage)
+        start_epoch = checkpoint['start_epoch']
+        best_epoch = checkpoint['best_epoch']
+        best_accuracy = checkpoint['best_accuracy']
         net.load_state_dict(checkpoint['state_dict'])
 
     # Loss function and Optimizer
+    print('==> Setup loss function and optimizer..')
     criterion = nn.CrossEntropyLoss()
     if use_cuda:
         criterion = criterion.cuda()
@@ -182,7 +176,12 @@ if __name__ == '__main__':
                           momentum=args.momentum, weight_decay=1e-4,
                           nesterov=True)
 
+    # Training
+    print('==> Init trainer..')
     from trainer import Trainer
-    train = Trainer(net, trainloader, testloader, optimizer, criterion=criterion, baselr=args.learning_rate)
-    train.execute(0, 150)
+    train = Trainer(net, trainloader, testloader, optimizer, start_epoch=start_epoch,
+                 best_accuracy=best_accuracy, best_epoch=best_epoch, base_lr=args.learning_rate,
+                 criterion=criterion, lr_decay_interval=args.lr_decay_interval, use_cuda=use_cuda, save_dir=args.save_directory)
+    print('==> Start training..')
+    train.execute(args.epochs)
 
