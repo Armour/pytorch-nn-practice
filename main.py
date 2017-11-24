@@ -92,8 +92,14 @@ if __name__ == '__main__':
 
     # Calculate mean and std
     print('==> Prepare mean and std..')
-    mean_ori, std_ori = (0.50707543, 0.48655024, 0.44091907), (0.26733398, 0.25643876, 0.27615029)
-    mean_log, std_log = (6.69928741, 6.65900993, 6.40947819), (1.2056427,  1.15127575, 1.31597221)
+    mean_ori, std_ori = calculate_mean_and_std(enable_log_transform=False)
+    print('mean_ori = ', mean_ori)
+    print('std_ori = ', std_ori)
+    mean_log, std_log = calculate_mean_and_std(enable_log_transform=True)
+    print('mean_log = ', mean_log)
+    print('std_log = ', std_log)
+    # mean_ori, std_ori = (0.50707543, 0.48655024, 0.44091907), (0.26733398, 0.25643876, 0.27615029)
+    # mean_log, std_log = (6.69928741, 6.65900993, 6.40947819), (1.2056427,  1.15127575, 1.31597221)
 
     if args.enable_log_transform:
         data_mean = torch.FloatTensor(mean_log)

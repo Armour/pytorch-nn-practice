@@ -110,4 +110,4 @@ data/
 test/*.jpg
 
 # checkpoint
-checkpoint/
+checkpoint*/
