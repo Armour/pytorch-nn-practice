@@ -39,9 +39,4 @@ class LogSpace(object):
 
         img = img.neg() + (offset0 + offset1 + offset2 + offset3) / 4
 
-        img.sub_(torch.min(img))
-        maxv = torch.max(img)
-        if maxv > 0:
-            img.div_(maxv) # 0 ~ 1
-
         return img
