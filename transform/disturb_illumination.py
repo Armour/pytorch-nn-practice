@@ -22,14 +22,15 @@ class DisturbIllumination(object):
         Returns:
             PIL.Image: transformed image
         """
+
         rgb_scale = torch.rand(3) * 0.8 + 0.6  # 0.6 ~ 1.4
 
         img[0,:,:] = img[0,:,:] * rgb_scale[0]  # 0.0 ~ 1.4
         img[1,:,:] = img[1,:,:] * rgb_scale[1]  # 0.0 ~ 1.4
         img[2,:,:] = img[2,:,:] * rgb_scale[2]  # 0.0 ~ 1.4
 
-        maxv = torch.max(img)
-        if maxv > 0:
-            img.div_(maxv)  # 0.0 ~ 1.0
+        # maxv = torch.max(img)
+        # if maxv > 0:
+        #     img.div_(maxv)  # 0.0 ~ 1.0
 
         return img

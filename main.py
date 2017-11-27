@@ -117,9 +117,11 @@ if __name__ == '__main__':
     # print('std_log = ', std_log)
     print("\t Log : %s" % args.enable_log_transform)
     if not args.enable_log_transform:
-        mean_log, std_log = (0.50707543, 0.48655024, 0.44091907), (0.26733398, 0.25643876, 0.27615029)
+        # mean_log, std_log = (0.50707543, 0.48655024, 0.44091907), (0.26733398, 0.25643876, 0.27615029)
+        mean_log, std_log = calculate_mean_and_std(enable_log_transform=False)
     else:
-        mean_log, std_log = (6.69928741, 6.65900993, 6.40947819), (1.2056427,  1.15127575, 1.31597221)
+        # mean_log, std_log = (6.69928741, 6.65900993, 6.40947819), (1.2056427,  1.15127575, 1.31597221)
+        mean_log, std_log = calculate_mean_and_std(enable_log_transform=True)
     print('\tmean_log = ', mean_log)
     print('\tstd_log = ', std_log)
 
@@ -147,7 +149,7 @@ if __name__ == '__main__':
         *t_trans,
         transforms.Normalize(data_mean, data_std),
     ])
-
+    print(t_trans)
     # Prepare testing transform
     print('==> Prepare testing transform..')
     t_trans = [
@@ -165,6 +167,7 @@ if __name__ == '__main__':
         *t_trans,
         transforms.Normalize(data_mean, data_std),
     ])
+    print(t_trans)
 
     # Init dataloaderenable_log_transform
     print('==> Init dataloader..')
@@ -176,9 +179,9 @@ if __name__ == '__main__':
 
     # Model
     print('==> Building model..')
-    # net = resnet_cifar.ResNet('res34', num_classes=100)
-    from model.resnet_correct import PreActResNet152
-    net = PreActResNet152()
+    net = resnet_cifar.ResNet('res34', num_classes=100)
+    # from model.resnet_correct import PreActResNet152
+    # net = PreActResNet152()
     if use_cuda:
         net = net.cuda()
 
