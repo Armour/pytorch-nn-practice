@@ -6,6 +6,7 @@ from __future__ import division
 
 import os
 import math
+import os.path as osp
 import argparse
 import numpy as np
 
@@ -49,6 +50,7 @@ if __name__ == '__main__':
                         help='input batch size for training (default: 64)')
     parser.add_argument('--test-batch-size', type=int, default=64,
                         help='input batch size for testing (default: 64)')
+
     parser.add_argument('--lr-decay-interval', type=int, default=50,
                         help='number of epochs to decay the learning rate (default: 50)')
     parser.add_argument('--num-workers', type=int, default=0,
@@ -57,20 +59,29 @@ if __name__ == '__main__':
                         help='SGD momentum (default: 0.9)')
     parser.add_argument('--seed', type=int, default=1,
                         help='random seed (default: 1)')
+
     parser.add_argument('--log-interval', type=int, default=100,
                         help='how many batches to wait before logging training status (default: 100)')
     parser.add_argument('--save-interval', type=int, default=50,
                         help='how many batches to wait before saving testing output image (default: 50)')
     parser.add_argument('-s', '--save-directory', type=str, default='checkpoint',
                         help='checkpoint save directory (default: checkpoint)')
-    parser.add_argument('-d', '--enable-disturb-illumination', action='store_true', default=False,
+    parser.add_argument('-n', '--env-name', type=str, default=None,
+                        help='experiment name (default: None)')
+
+
+    parser.add_argument('-dtest', '--enable-disturb-illumination-test', action='store_true', default=False,
                         help='enable disturb illumination for testing data')
+    parser.add_argument('-dtrain', '--enable-disturb-illumination-train', action='store_true', default=False,
+                        help='enable disturb illumination for training data')
+
     parser.add_argument('-l', '--enable-log-transform', action='store_true', default=False,
                         help='enable log transform for both traning and testing data')
     parser.add_argument('-t', '--only-testing', action='store_true', default=False,
                         help='only run testing')
     parser.add_argument('-r', '--resume', action='store_true', default=False,
                         help='resume from checkpoint')
+
     args = parser.parse_args()
 
     # Init variables
@@ -80,6 +91,12 @@ if __name__ == '__main__':
     best_epoch = 0  # epoch with the best testing accuracy
     start_epoch = 0  # start from epoch 0 or last checkpoint epoch
 
+    if args.env_name is None:
+        args.env_name = "Log:%s-Train:%s-Test:%s" % (args.enable_log_transform, \
+                                                     args.enable_disturb_illumination_train, \
+                                                     args.enable_disturb_illumination_test)
+        args.save_directory = osp.join(args.save_directory, args.env_name)
+
     # Init seed
     print('==> Init seed..')
     torch.manual_seed(args.seed)
@@ -87,62 +104,65 @@ if __name__ == '__main__':
         cuda.manual_seed(args.seed)
 
     # Download data
-    print('==> Download data..')
-    datasets.CIFAR100(root='data', train=True, download=True)
+    # print('==> Download data..')
+    # datasets.CIFAR100(root='data', train=True, download=True)
 
     # Calculate mean and std
     print('==> Prepare mean and std..')
-    mean_ori, std_ori = calculate_mean_and_std(enable_log_transform=False)
-    print('mean_ori = ', mean_ori)
-    print('std_ori = ', std_ori)
-    mean_log, std_log = calculate_mean_and_std(enable_log_transform=True)
-    print('mean_log = ', mean_log)
-    print('std_log = ', std_log)
-    # mean_ori, std_ori = (0.50707543, 0.48655024, 0.44091907), (0.26733398, 0.25643876, 0.27615029)
-    # mean_log, std_log = (6.69928741, 6.65900993, 6.40947819), (1.2056427,  1.15127575, 1.31597221)
-
-    if args.enable_log_transform:
-        data_mean = torch.FloatTensor(mean_log)
-        data_std = torch.FloatTensor(std_log)
+    # mean_ori, std_ori = calculate_mean_and_std(enable_log_transform=False)
+    # print('mean_ori = ', mean_ori)
+    # print('std_ori = ', std_ori)
+    # mean_log, std_log = calculate_mean_and_std(enable_log_transform=True)
+    # print('mean_log = ', mean_log)
+    # print('std_log = ', std_log)
+    print("\t Log : %s" % args.enable_log_transform)
+    if not args.enable_log_transform:
+        mean_log, std_log = (0.50707543, 0.48655024, 0.44091907), (0.26733398, 0.25643876, 0.27615029)
     else:
-        data_mean = torch.FloatTensor(mean_ori)
-        data_std = torch.FloatTensor(std_ori)
+        mean_log, std_log = (6.69928741, 6.65900993, 6.40947819), (1.2056427,  1.15127575, 1.31597221)
+    print('\tmean_log = ', mean_log)
+    print('\tstd_log = ', std_log)
+
+    data_mean = torch.FloatTensor(mean_log)
+    data_std = torch.FloatTensor(std_log)
+
 
     # Prepare training transform
     print('==> Prepare training transform..')
-    traning_transform = transforms.Compose([
+    t_trans = [
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
-    ])
+    ]
+
+    if args.enable_disturb_illumination_train:
+        print("\tDisturbance on train")
+        t_trans += [DisturbIllumination(), ]
 
     if args.enable_log_transform:
-        traning_transform = transforms.Compose([
-            traning_transform,
-            LogSpace(),
-        ])
+        print("\tLogSpace on train")
+        t_trans = t_trans + [LogSpace()]
+
     traning_transform = transforms.Compose([
-        traning_transform,
+        *t_trans,
         transforms.Normalize(data_mean, data_std),
     ])
 
     # Prepare testing transform
     print('==> Prepare testing transform..')
-    testing_transform = transforms.Compose([
+    t_trans = [
         transforms.ToTensor(),
-    ])
-    if args.enable_disturb_illumination:
-        testing_transform = transforms.Compose([
-            testing_transform,
-            DisturbIllumination(),
-        ])
+    ]
+    if args.enable_disturb_illumination_test:
+        print("\tDisturbance on test")
+        t_trans += [DisturbIllumination(), ]
+
     if args.enable_log_transform:
-        testing_transform = transforms.Compose([
-            testing_transform,
-            LogSpace(),
-        ])
+        print("\tLogSpace on test")
+        t_trans += [LogSpace(), ]
+
     testing_transform = transforms.Compose([
-        testing_transform,
+        *t_trans,
         transforms.Normalize(data_mean, data_std),
     ])
 
@@ -156,7 +176,9 @@ if __name__ == '__main__':
 
     # Model
     print('==> Building model..')
-    net = resnet_cifar.ResNet('res34', num_classes=100)
+    # net = resnet_cifar.ResNet('res34', num_classes=100)
+    from model.resnet_correct import PreActResNet152
+    net = PreActResNet152()
     if use_cuda:
         net = net.cuda()
 

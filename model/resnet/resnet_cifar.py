@@ -74,11 +74,11 @@ class Bottleneck(nn.Module):
         """
         super(Bottleneck, self).__init__()
         expanded_channel = out_channels * Bottleneck.expansion
-        self.conv1 = nn.Conv2d(in_channels, out_channel, kernel_size=1, bias=False)
-        self.bn1 = nn.BatchNorm2d(out_channel)
-        self.conv2 = nn.Conv2d(out_channel, out_channel, kernel_size=3, stride=stride, padding=1, bias=False)
-        self.bn2 = nn.BatchNorm2d(out_channel)
-        self.conv3 = nn.Conv2d(out_channel, expanded_channel, kernel_size=1, bias=False)
+        self.conv1 = nn.Conv2d(in_channels, out_channels, kernel_size=1, bias=False)
+        self.bn1 = nn.BatchNorm2d(out_channels)
+        self.conv2 = nn.Conv2d(out_channels, out_channels, kernel_size=3, stride=stride, padding=1, bias=False)
+        self.bn2 = nn.BatchNorm2d(out_channels)
+        self.conv3 = nn.Conv2d(out_channels, expanded_channel, kernel_size=1, bias=False)
         self.bn3 = nn.BatchNorm2d(expanded_channel)
         self.relu = nn.ReLU(inplace=True)
         self.downsample = downsample

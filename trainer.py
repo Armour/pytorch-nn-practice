@@ -18,6 +18,7 @@ from torch.autograd import Variable
 
 from tools.logger import Logger
 
+
 class Trainer():
     def __init__(self, net, train_loader, test_loader, optimizer, start_epoch=0,
                  best_accuracy=0, best_epoch=0, base_lr=0.1, criterion=nn.CrossEntropyLoss(),
@@ -51,8 +52,6 @@ class Trainer():
 
         self.jsonlog_writer_train = open(osp.join(self.save_dir, "train.log"), 'w+')
         self.jsonlog_writer_test = open(osp.join(self.save_dir, "test.log"), 'w+')
-
-
 
     def __del__(self):
         self.jsonlog_writer_train.close()
@@ -91,7 +90,7 @@ class Trainer():
                 loss.data[0], error_rate))
 
             info = {
-                'epoch' : partial_epoch,
+                'epoch': partial_epoch,
                 'train-loss': loss.data[0],
                 'train-top1-error': error_rate
             }
