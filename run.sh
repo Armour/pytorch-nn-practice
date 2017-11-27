@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 source activate torch
 # global enviroments
 epochs=300

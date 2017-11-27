@@ -141,7 +141,7 @@ if __name__ == '__main__':
 
     if args.enable_log_transform:
         print("\tLogSpace on train")
-        t_trans = t_trans + [LogSpace()]
+        t_trans += [LogSpace(), ]
 
     traning_transform = transforms.Compose([
         *t_trans,
