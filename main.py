@@ -69,7 +69,6 @@ if __name__ == '__main__':
     parser.add_argument('-n', '--env-name', type=str, default=None,
                         help='experiment name (default: None)')
 
-
     parser.add_argument('-dtest', '--enable-disturb-illumination-test', action='store_true', default=False,
                         help='enable disturb illumination for testing data')
     parser.add_argument('-dtrain', '--enable-disturb-illumination-train', action='store_true', default=False,
@@ -103,18 +102,8 @@ if __name__ == '__main__':
     if use_cuda:
         cuda.manual_seed(args.seed)
 
-    # Download data
-    # print('==> Download data..')
-    # datasets.CIFAR100(root='data', train=True, download=True)
-
     # Calculate mean and std
     print('==> Prepare mean and std..')
-    # mean_ori, std_ori = calculate_mean_and_std(enable_log_transform=False)
-    # print('mean_ori = ', mean_ori)
-    # print('std_ori = ', std_ori)
-    # mean_log, std_log = calculate_mean_and_std(enable_log_transform=True)
-    # print('mean_log = ', mean_log)
-    # print('std_log = ', std_log)
     print("\t Log : %s" % args.enable_log_transform)
     if not args.enable_log_transform:
         # mean_log, std_log = (0.50707543, 0.48655024, 0.44091907), (0.26733398, 0.25643876, 0.27615029)
@@ -149,7 +138,7 @@ if __name__ == '__main__':
         *t_trans,
         transforms.Normalize(data_mean, data_std),
     ])
-    print(t_trans)
+    print(traning_transform)
     # Prepare testing transform
     print('==> Prepare testing transform..')
     t_trans = [
@@ -167,7 +156,7 @@ if __name__ == '__main__':
         *t_trans,
         transforms.Normalize(data_mean, data_std),
     ])
-    print(t_trans)
+    print(testing_transform)
 
     # Init dataloaderenable_log_transform
     print('==> Init dataloader..')
@@ -179,9 +168,9 @@ if __name__ == '__main__':
 
     # Model
     print('==> Building model..')
-    net = resnet_cifar.ResNet('res34', num_classes=100)
-    # from model.resnet_correct import PreActResNet152
-    # net = PreActResNet152()
+    # net = resnet_cifar.ResNet('res34', num_classes=100)
+    from model.resnet_correct import PreActResNet152
+    net = PreActResNet152()
     if use_cuda:
         net = net.cuda()
 
