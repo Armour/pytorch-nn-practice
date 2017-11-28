@@ -111,3 +111,6 @@ test/*.jpg
 
 # checkpoint
 checkpoint*/
+
+# vscode config file
+.vscode/

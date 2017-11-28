@@ -1,28 +1,14 @@
 #!/usr/bin/env bash
 source activate torch
-# global enviroments
-epochs=300
-lr_decay_interval=75
 
 # no log, normal train, normal test
-GPUid=0
-
-CUDA_VISIBLE_DEVICES=${GPUid}  python main.py -epochs ${epochs} \
-                               --lr-decay-interval ${lr_decay_interval}
+CUDA_VISIBLE_DEVICES=0 python main.py -e 150 --lr-decay-interval 50 -s checkpoint_0
 
 # no log, disturb train, normal test
-GPUid=1
-
-CUDA_VISIBLE_DEVICES=${GPUid}  python main.py --epochs ${epochs} \
-                               --lr-decay-interval ${lr_decay_interval} -dtrain
+CUDA_VISIBLE_DEVICES=1 python main.py -e 150 --lr-decay-interval 50 -dtrain  -s checkpoint_1
 
 # yes log, normal train, normal test
-GPUid=2
+CUDA_VISIBLE_DEVICES=2 python main.py -e 150 --lr-decay-interval 50 -l  -s checkpoint_2
 
-CUDA_VISIBLE_DEVICES=${GPUid}  python main.py --epochs ${epochs} \
-                               --lr-decay-interval${lr_decay_interval} -l
 # yes log, disturb on train, normal test
-GPUid=3
-
-CUDA_VISIBLE_DEVICES=${GPUid}  python main.py --epochs ${epochs} \
-                               --lr-decay-interval${lr_decay_interval} -l -dtrain
+CUDA_VISIBLE_DEVICES=3 python main.py -e 150 --lr-decay-interval 50 -l -dtrain  -s checkpoint_3
