@@ -16,7 +16,7 @@ import torch.nn as nn
 import torch.cuda as cuda
 from torch.autograd import Variable
 
-from tools.logger import Logger
+from utils.logger import Logger
 
 
 class Trainer():
