@@ -1,5 +1,12 @@
-#!/usr/bin/env python3
-# coding: utf-8
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""VGG model."""
+
+__author__ = 'Chong Guo'
+__copyright__ = 'Copyright 2017, Chong Guo'
+__license__ = 'MIT'
+__email__ = 'armourcy@email.com'
 
 import math
 import torch.nn as nn
@@ -11,8 +18,9 @@ cfg = {
     'vgg19': [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 256, 'M', 512, 512, 512, 512, 'M', 512, 512, 512, 512, 'M'],
 }
 
+
 class VGG(nn.Module):
-    """ VGG model """
+    """VGG model."""
     def __init__(self, vgg_name, batch_norm=True, num_classes=1000):
         """ Init
         Args:
@@ -26,16 +34,12 @@ class VGG(nn.Module):
             self.classifier = nn.Sequential(
                 # [n, 512 * 7 * 7]
                 nn.Linear(512 * 7 * 7, 4096),
-                # [n, 4096]
                 nn.ReLU(inplace=True),
-                # [n, 4096]
-                nn.Dropout(),
+                nn.Dropout(p=0.5),
                 # [n, 4096]
                 nn.Linear(4096, 4096),
-                # [n, 4096]
                 nn.ReLU(inplace=True),
-                # [n, 4096]
-                nn.Dropout(),
+                nn.Dropout(p=0.5),
                 # [n, 4096]
                 nn.Linear(4096, num_classes),
                 # [n, num_classes]
@@ -45,29 +49,28 @@ class VGG(nn.Module):
             print('vgg_name doesn\'t exist, please choose from vgg11, vgg13, vgg16 and vgg19')
 
     def forward(self, x):
-        """ Pytorch forward function implementation """
+        """Pytorch forward function implementation."""
         x = self.features(x)
         x = x.view(x.size(0), 512 * 7 * 7)
         x = self.classifier(x)
         return x
 
     def _initialize_weights(self):
-        """ Init weight parameters """
+        """Init weight parameters."""
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
-                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                m.weight.data.normal_(0, math.sqrt(2. / n))
+                nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
                 if m.bias is not None:
-                    m.bias.data.zero_()
+                    nn.init.constant_(m.bias, 0)
             elif isinstance(m, nn.BatchNorm2d):
-                m.weight.data.fill_(1)
-                m.bias.data.zero_()
+                nn.init.constant_(m.weight, 1)
+                nn.init.constant_(m.bias, 0)
             elif isinstance(m, nn.Linear):
-                m.weight.data.normal_(0, 0.01)
-                m.bias.data.zero_()
+                nn.init.normal_(m.weight, 0, 0.01)
+                nn.init.constant_(m.bias, 0)
 
 def make_layers(cfg, batch_norm=False):
-    """ Generate network layers based on configs """
+    """Generate network layers based on configs."""
     layers = []
     in_channels = 3
     for v in cfg:
@@ -89,4 +92,6 @@ if __name__ == "__main__":
     sample_data = torch.ones(12, 3, 224, 224)
     sample_input = Variable(sample_data)
     net = VGG("vgg16")
+    print(net)
     print(net(sample_input))
+    print(net(sample_input).shape)

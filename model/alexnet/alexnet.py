@@ -60,23 +60,22 @@ class AlexNet(nn.Module):
         self._initialize_weights()
 
     def forward(self, x):
-        """ Pytorch forward function implementation """
+        """Pytorch forward function implementation."""
         x = self.features(x)
         x = x.view(x.size(0), 256 * 6 * 6)
         x = self.classifier(x)
         return x
 
     def _initialize_weights(self):
-        """ Init weight parameters """
+        """Init weight parameters."""
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
-                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                m.weight.data.normal_(0, math.sqrt(2. / n))
+                nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
                 if m.bias is not None:
-                    m.bias.data.zero_()
+                    nn.init.constant_(m.bias, 0)
             elif isinstance(m, nn.Linear):
-                m.weight.data.normal_(0, 0.01)
-                m.bias.data.zero_()
+                nn.init.normal_(m.weight, 0, 0.01)
+                nn.init.constant_(m.bias, 0)
 
 
 if __name__ == "__main__":
