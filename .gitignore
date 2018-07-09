@@ -117,6 +117,7 @@ venv.bak/
 
 # .idea
 .idea/
+
 # downloaded image data
 data/
 

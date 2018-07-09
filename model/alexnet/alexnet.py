@@ -4,9 +4,8 @@
 """Alexnet model."""
 
 __author__ = 'Chong Guo'
-__copyright__ = 'Copyright 2017, Chong Guo'
+__email__ = 'armourcy@gmail.com'
 __license__ = 'MIT'
-__email__ = 'armourcy@email.com'
 
 import math
 import torch.nn as nn
