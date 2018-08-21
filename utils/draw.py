@@ -1,5 +1,11 @@
-#!/usr/bin/env python3
-# coding: utf-8
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""Drawing utilities."""
+
+__author__ = 'Chong Guo <armourcy@gmail.com>'
+__copyright__ = 'Copyright 2018, Chong Guo'
+__license__ = 'MIT'
 
 from __future__ import print_function
 from __future__ import division

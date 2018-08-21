@@ -3,8 +3,8 @@
 
 """Alexnet model."""
 
-__author__ = 'Chong Guo'
-__email__ = 'armourcy@gmail.com'
+__author__ = 'Chong Guo <armourcy@gmail.com>'
+__copyright__ = 'Copyright 2018, Chong Guo'
 __license__ = 'MIT'
 
 import math

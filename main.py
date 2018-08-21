@@ -1,8 +1,11 @@
-#!/usr/bin/env python3
-# coding: utf-8
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-from __future__ import print_function
-from __future__ import division
+"""Main function."""
+
+__author__ = 'Chong Guo <armourcy@gmail.com>'
+__copyright__ = 'Copyright 2018, Chong Guo'
+__license__ = 'MIT'
 
 import os
 import math
@@ -168,9 +171,7 @@ if __name__ == '__main__':
 
     # Model
     print('==> Building model..')
-    # net = resnet_cifar.ResNet('res34', num_classes=100)
-    from model.resnet_correct import PreActResNet152
-    net = PreActResNet152()
+    net = resnet_cifar.ResNet('res34', num_classes=100)
     if use_cuda:
         net = net.cuda()
 

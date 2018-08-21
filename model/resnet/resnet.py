@@ -1,5 +1,11 @@
-#!/usr/bin/env python3
-# coding: utf-8
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""Resnet model."""
+
+__author__ = 'Chong Guo <armourcy@gmail.com>'
+__copyright__ = 'Copyright 2018, Chong Guo'
+__license__ = 'MIT'
 
 import math
 import torch.nn as nn
