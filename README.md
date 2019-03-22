@@ -8,19 +8,19 @@
 
 ## datasets
 
-* [x] mnist
-* [x] cifar10
-* [x] cifar100
-* [ ] imagenet
+* [x] [mnist](http://yann.lecun.com/exdb/mnist/)
+* [x] [cifar10](https://www.cs.toronto.edu/~kriz/cifar.html)
+* [x] [cifar100](https://www.cs.toronto.edu/~kriz/cifar.html)
+* [ ] [imagenet](http://www.image-net.org/)
 
 ## model
 
-* [x] alexnet
-* [x] vgg
-* [x] inception
-* [x] resnet
-* [ ] densenet
-* [ ] gan
+* [x] [alexnet](http://vision.stanford.edu/teaching/cs231b_spring1415/slides/alexnet_tugce_kyunghee.pdf)
+* [x] [vgg](https://arxiv.org/pdf/1409.1556.pdf)
+* [x] [inception](https://arxiv.org/pdf/1409.4842.pdf)
+* [x] [resnet](https://arxiv.org/pdf/1512.03385.pdf)
+* [ ] [densenet](https://arxiv.org/pdf/1608.06993.pdf)
+* [ ] [gan](https://arxiv.org/pdf/1406.2661.pdf)
 
 ## Contributing
 
